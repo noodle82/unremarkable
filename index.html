@@ -8,8 +8,14 @@
 
 /* Reveal theatre and player lobby */
 .header-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.header-controls button{font-size:12px;padding:9px 12px;min-height:40px}.player-entry{display:flex;gap:10px;align-items:center}.player-entry input{margin:0;min-width:0}.player-entry button{white-space:nowrap}.roster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:20px 0}.player-token{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:#11172e;animation:arrive .3s ease-out;min-width:0}.avatar{width:34px;height:34px;display:grid;place-items:center;background:#44406b;color:#e8e0ff;border-radius:50%;font-size:13px;font-weight:800;flex-shrink:0}.player-token span:nth-child(2){flex:1;overflow-wrap:anywhere}.remove-player{background:transparent;color:#b8bfd9;padding:0;min-height:36px;width:30px;font-size:22px}.start-game{width:100%;margin-top:8px}.lobby-count{font-size:13px;color:var(--muted)}.reveal-card{overflow:hidden;position:relative}.reveal-card:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,#d4ff6313,transparent 65%);pointer-events:none}.reveal-status{min-height:55px;font-size:clamp(17px,3vw,22px);font-weight:700;color:var(--lime);position:relative}.phase-label{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:24px}.number-stage{position:relative;padding:24px 0 12px}.axis{height:50px;position:relative;margin:12px 24px 8px}.axis-line{position:absolute;top:25px;left:0;right:0;height:3px;border-radius:3px;background:linear-gradient(90deg,#ff7e94,#a6b0de 35%,#d4ff63 50%,#a6b0de 65%,#ff7e94);transform-origin:left;animation:drawline .8s ease both}.axis-line:after{content:'';position:absolute;inset:-5px 0;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),#818bb0 calc(10% - 1px),#818bb0 10%);opacity:.5}.axis-end{position:absolute;left:0;top:0;font-size:11px;color:var(--muted)}.axis-end.high{left:auto;right:0}.axis-dot{position:absolute;top:19px;left:50%;width:15px;height:15px;border-radius:50%;background:#b2b9df;border:3px solid #171c35;opacity:0;transform:translateX(-50%);transition:left 1.1s cubic-bezier(.2,.8,.2,1),opacity .4s,background .5s,box-shadow .5s}.axis-dot.visible{opacity:1}.axis-dot.win{background:var(--lime);box-shadow:0 0 0 6px #d4ff6322,0 0 24px #d4ff6388;z-index:2}.axis-dot.out{background:var(--red);box-shadow:0 0 14px #ff7e9466}.median-pin{position:absolute;top:-14px;height:80px;left:50%;width:2px;background:var(--lime);opacity:0;transform:scaleY(0);transform-origin:top;transition:transform .7s,opacity .5s;z-index:3;pointer-events:none}.median-pin.visible{opacity:1;transform:scaleY(1)}.median-pin:before{content:'▼';position:absolute;top:-12px;left:50%;transform:translateX(-50%);color:var(--lime);font-size:18px}.median-readout{text-align:center;color:var(--lime);min-height:48px;opacity:0;transition:opacity .5s;font-size:14px}.median-readout.visible{opacity:1}.median-readout strong{font-size:25px;font-variant-numeric:tabular-nums;margin-left:6px}.reveal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 24px}.guess-tile{position:relative;border:1px solid #4b557f;border-radius:16px;min-height:132px;padding:16px 10px;text-align:center;background:#242c4d;transform:translateY(20px) scale(.94);opacity:.3;transition:transform .7s cubic-bezier(.2,1.5,.5,1),opacity .5s,background .5s,box-shadow .5s,border-color .5s;overflow:hidden}.guess-tile.revealed{opacity:1;transform:translateY(0) scale(1)}.guess-tile .tile-name{font-size:13px;overflow-wrap:anywhere;color:#d4d9ec;position:relative}.guess-tile .tile-value{font-size:clamp(20px,3.2vw,32px);font-weight:850;letter-spacing:-1px;min-height:48px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;position:relative}.tile-badge{font-size:11px;font-weight:800;letter-spacing:.4px;min-height:20px;position:relative}.guess-tile.win{background:#31452c;border-color:var(--lime);box-shadow:0 0 28px #d4ff6322;animation:winner-pop .8s ease}.guess-tile.win .tile-value,.guess-tile.win .tile-badge{color:var(--lime)}.guess-tile.bonus{background:linear-gradient(135deg,#465329,#233e3c);border-color:#eaff93}.guess-tile.bonus:before{content:'';position:absolute;inset:-100%;background:linear-gradient(100deg,transparent 40%,#ffffff25 50%,transparent 60%);animation:shine 1.8s ease-in-out 2}.guess-tile.out{border-color:var(--red);background:#44243c;animation:knockout .65s ease}.guess-tile.out .tile-value,.guess-tile.out .tile-badge{color:#ff9db0}.reveal-meta{display:flex;justify-content:space-between;align-items:center;gap:12px}.skip-reveal{font-size:12px;min-height:36px;padding:8px 12px;background:#30385b;color:#d9dff5}.score-note{padding:12px 16px;border-left:3px solid var(--lime);background:#d4ff6309;border-radius:0 8px 8px 0}.music-note{font-size:12px;color:var(--muted);margin:18px 0 0}.countdown{position:absolute;inset:0;display:grid;place-items:center;background:#13182bed;z-index:4;border-radius:20px;pointer-events:none}.countdown span{font-size:110px;font-weight:950;color:var(--lime);animation:countbeat .75s ease both}.reveal-grid .bonus-tag{color:#d4ff63}.fade-in{animation:arrive .55s ease both}@keyframes arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes drawline{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes winner-pop{0%{transform:scale(.95)}45%{transform:scale(1.07)}100%{transform:scale(1)}}@keyframes knockout{20%,60%{transform:translateX(-5px) rotate(-1deg)}40%,80%{transform:translateX(5px) rotate(1deg)}100%{transform:translateX(0)}}@keyframes shine{from{transform:translateX(-60%) rotate(12deg)}to{transform:translateX(60%) rotate(12deg)}}@keyframes countbeat{from{opacity:0;transform:scale(1.4)}30%{opacity:1}to{opacity:0;transform:scale(.8)}}@media(max-width:550px){header{align-items:flex-start}.brand{font-size:19px;padding-top:8px}.header-controls{max-width:170px;gap:6px}.header-controls button{font-size:11px;padding:8px}.roster{grid-template-columns:1fr}.reveal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.guess-tile{padding:12px 8px;min-height:120px}.guess-tile .tile-value{font-size:25px}.axis{margin-left:10px;margin-right:10px}.reveal-meta{align-items:flex-start}.reveal-card{padding:20px 16px}}
+/* Shared visual language: ascending bars, a lime crown, coral extremes. */
+header{gap:16px}.brand{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:23px}.brand-icon{width:58px;height:48px;flex-shrink:0}.hero-logo{max-width:500px;margin:0 auto 18px}.hero-logo svg{display:block;width:100%;height:auto}.hero-tagline{font-size:clamp(27px,5vw,42px);text-align:center;letter-spacing:-1px;margin:0 0 12px}.hero-copy{text-align:center;max-width:620px;margin:0 auto 25px}.hero-logo .logo-bar{transform-box:fill-box;transform-origin:bottom;animation:logo-rise .85s cubic-bezier(.2,.8,.2,1) both}.hero-logo .logo-bar:nth-child(2),.hero-logo .logo-bar:nth-child(4){animation-delay:.1s}.hero-logo .logo-bar:nth-child(1),.hero-logo .logo-bar:nth-child(5){animation-delay:.35s}.hero-logo .logo-bar:nth-child(3){animation-delay:.6s}.hero-logo .logo-crown{animation:arrive .6s .95s both}.chart-unit{font-size:12px;margin:0 0 6px}.chart-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-color:#596589 #151b33;scrollbar-width:thin;position:relative;padding:0 0 12px}.bar-plot{min-width:calc(var(--players)*76px);padding:0 12px}.chart-bars{height:340px;position:relative;margin-top:8px;border-bottom:2px solid #6c7597}.chart-grid{position:absolute;inset:0;background:repeating-linear-gradient(to top,transparent 0,transparent calc(25% - 1px),#b5c6ff13 calc(25% - 1px),#b5c6ff13 25%);pointer-events:none}.scale-max,.scale-zero{position:absolute;left:0;font-size:10px;color:#a9b3d3}.scale-max{bottom:78%;transform:translateY(-18px)}.scale-zero{bottom:0;left:1px;transform:translateY(100%)}.bar-columns,.bar-labels{display:grid;grid-template-columns:repeat(var(--players),minmax(0,1fr));gap:12px}.bar-columns{height:100%;position:relative}.bar-column{position:relative;min-width:0;height:100%}.bar-fill{position:absolute;bottom:0;left:12%;width:76%;height:var(--height);min-height:2px;border-radius:10px 10px 0 0;background:linear-gradient(90deg,#679ad6,#a5c9ff);transform:scaleY(0);transform-origin:bottom;transition:transform 1.15s cubic-bezier(.18,.85,.24,1),background .5s,box-shadow .5s}.bar-column.revealed .bar-fill{transform:scaleY(1)}.bar-column.out .bar-fill{background:linear-gradient(90deg,#d65075,#ff8ba2)}.bar-column.win .bar-fill{background:linear-gradient(90deg,#9cca36,#d4ff63);box-shadow:0 -6px 35px #d4ff6322}.bar-column.bonus .bar-fill:after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,#ffffff77 50%,transparent 75%);animation:bar-shimmer 1.6s 1s 2 both}.bar-number{position:absolute;bottom:calc(var(--height) + 7px);left:-4%;width:108%;text-align:center;opacity:0;transform:translateY(15px);transition:opacity .5s,transform .8s;font-size:clamp(12px,2vw,18px);font-weight:850;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;line-height:1.15;color:#cfdef8}.bar-column.revealed .bar-number{opacity:1;transform:translateY(0)}.bar-column.win .bar-number{color:var(--lime)}.bar-column.out .bar-number{color:#ff9fb1}.bar-crown{position:absolute;bottom:calc(var(--height) + 32px);left:50%;width:38px;height:28px;opacity:0;transform:translate(-50%,20px) scale(.4);transition:opacity .5s 1s,transform .7s 1s cubic-bezier(.2,1.7,.5,1)}.bar-crown svg{width:100%;height:100%}.bar-column.win .bar-crown{opacity:1;transform:translate(-50%,0) scale(1)}.bar-labels{text-align:center;padding-top:12px;position:relative}.bar-name{display:block;font-size:12px;font-weight:700;overflow-wrap:anywhere;min-height:38px;line-height:1.4}.bar-score{display:block;font-size:9px;letter-spacing:.3px;color:var(--muted);min-height:24px;margin-top:5px;font-weight:750}.bar-score.positive{color:var(--lime)}.bar-score.negative{color:#ff9fb1}.average-line{position:absolute;left:0;right:0;border-top:2px dashed #d4ff63;transform:scaleX(0);transform-origin:left;opacity:0;transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .5s;pointer-events:none;z-index:2}.average-line.visible{opacity:1;transform:scaleX(1)}.average-line span{position:absolute;right:0;top:-24px;padding:3px 7px;background:#151c32;border-radius:5px;color:var(--lime);font-size:10px;font-weight:800;white-space:nowrap}.average-readout{text-align:center;border:1px solid #d4ff6340;background:#d4ff630a;border-radius:12px;padding:15px;margin:10px 0 24px;font-size:14px;color:#d2d8ed}.average-readout strong{font-size:28px;margin-left:9px;color:var(--lime)}.average-readout span{display:block;font-size:12px;color:var(--muted);margin-top:2px}.chart-hint{font-size:11px;color:var(--muted);text-align:right;margin:0 0 8px}.average-maths{font-size:13px;overflow-wrap:anywhere}.average-maths p{line-height:1.7}.answer-card{border:1px solid #93bbff55;background:linear-gradient(125deg,#91b8f718,#a69aff0b);border-radius:18px;padding:23px;margin:24px 0}.answer-card h3{font-size:clamp(25px,5vw,36px);line-height:1.15;margin:10px 0 16px;letter-spacing:-.5px;overflow-wrap:anywhere}.answer-card p{font-size:14px;color:#d6ddef}.answer-card a{color:#b3d3ff;font-size:13px;text-underline-offset:4px}.answer-card .answer-note{font-size:12px;color:var(--muted);border-top:1px solid #93bbff33;padding-top:12px;margin-bottom:0}.wild-answer h3{font-size:25px}.music-note{max-width:100%}@keyframes logo-rise{from{transform:scaleY(0)}to{transform:scaleY(1)}}@keyframes bar-shimmer{from{opacity:0}50%{opacity:.7}to{opacity:0}}@media(max-width:550px){header{gap:8px}.brand{font-size:14px;gap:5px;padding:0}.brand-icon{width:38px;height:35px}.header-controls{max-width:148px}.header-controls button{font-size:10px;padding:7px;min-height:36px}.hero-logo{max-width:340px;margin-top:20px}.hero-tagline{font-size:28px}.bar-plot{min-width:calc(var(--players)*61px);padding:0 8px}.bar-columns,.bar-labels{gap:8px}.chart-bars{height:310px}.bar-fill{left:7%;width:86%;border-radius:7px 7px 0 0}.bar-number{font-size:12px}.bar-name{font-size:11px}.bar-score{font-size:8px}.bar-crown{width:29px;height:23px;bottom:calc(var(--height) + 28px)}.bar-plot .scale-max{font-size:9px}.answer-card{padding:20px}.reveal-status{min-height:72px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.hero-logo .logo-bar{transform:none}.bar-column.win .bar-crown{opacity:1}}
+
+
+.middle-line{position:absolute;left:0;right:0;border-top:2px dashed #d4ff63;transform:scaleX(0);transform-origin:left;opacity:0;transition:transform .9s,opacity .5s;z-index:2;pointer-events:none}.middle-line.visible{opacity:1;transform:scaleX(1)}.middle-line span{position:absolute;left:0;top:-24px;background:#151c32;padding:3px 7px;border-radius:5px;color:var(--lime);font-size:10px;font-weight:800}.average-line{border-color:#b6a5ff}.average-line span{color:#c9baff;top:5px}.target-readouts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 24px}.target-readouts[hidden]{display:none}.middle-readout,.target-readouts .average-readout{margin:0;padding:15px 10px;text-align:center;border:1px solid #d4ff6340;background:#d4ff630a;border-radius:12px;font-size:12px}.middle-readout strong,.target-readouts .average-readout strong{display:block;font-size:26px;color:var(--lime);margin:4px 0}.middle-readout span,.target-readouts .average-readout span{display:block;font-size:10px;color:var(--muted)}.target-readouts .average-readout{border-color:#b6a5ff55;background:#b6a5ff0a}.target-readouts .average-readout strong{color:#c9baff}.bar-column.bonus-only .bar-fill{background:linear-gradient(90deg,#9680e0,#c9baff)}.bar-column.bonus-only .bar-number{color:#c9baff}
 </style></head>
-<body><main><header><div class="brand">UNREMARKABLE<span>!</span></div><div class="header-controls"><button id="music" class="secondary" aria-pressed="false">♫ Music: off</button><button id="sound" class="secondary" aria-pressed="false">SFX: off</button></div></header><section id="app" aria-label="Game"></section><footer>One device. Secret guesses. Spectacularly average.</footer></main>
+<body><main><header><div class="brand"><svg class="brand-icon" viewBox="85 20 470 240" aria-hidden="true"><path d="M85 251H555" stroke="#667095" stroke-width="2"/><rect x="112" y="202" width="62" height="48" rx="7" fill="#ff7e94"/><rect x="200" y="157" width="62" height="93" rx="7" fill="#91b8f7"/><rect x="288" y="113" width="62" height="137" rx="7" fill="#d4ff63"/><rect x="376" y="70" width="62" height="180" rx="7" fill="#91b8f7"/><rect x="464" y="26" width="62" height="224" rx="7" fill="#ff7e94"/><path d="M296 72 307 83 319 64 331 83 342 72 338 101H300Z" fill="#d4ff63"/></svg><div>UNREMARKABLE<span>!</span></div></div><div class="header-controls"><button id="music" class="secondary" aria-pressed="false">♫ Music: off</button><button id="sound" class="secondary" aria-pressed="false">SFX: off</button></div></header><section id="app" aria-label="Game"></section><footer>One device. Secret guesses. Spectacularly average.</footer></main>
 <script>
 'use strict';
 const categories=[
@@ -19,43 +25,103 @@ const categories=[
     "questions": [
       [
         "How tall is the Eiffel Tower, including its antenna installed in 2022?",
-        "metres"
+        "metres",
+        {
+          "answer": "330 metres",
+          "note": "Including the radio antenna fitted in March 2022.",
+          "source": "Eiffel Tower official site",
+          "url": "https://www.toureiffel.paris/en/news/events/eiffel-tower-grows-330-meters-tall"
+        }
       ],
       [
         "How tall is the Burj Khalifa in Dubai?",
-        "metres"
+        "metres",
+        {
+          "answer": "828 metres",
+          "note": "The architectural height, including the spire.",
+          "source": "Emaar — Burj Khalifa",
+          "url": "https://www.emaar.com/en/other-emaar-businesses/burj-khalifa"
+        }
       ],
       [
         "How tall is the Statue of Liberty, from the ground to the torch?",
-        "metres"
+        "metres",
+        {
+          "answer": "About 93 metres",
+          "note": "Ground to the tip of the torch, including the pedestal. The statue alone is about 46 metres tall.",
+          "source": "US National Park Service",
+          "url": "https://www.nps.gov/stli/learn/statue-of-liberty-facts.htm"
+        }
       ],
       [
         "How tall is London’s Elizabeth Tower, which houses Big Ben?",
-        "metres"
+        "metres",
+        {
+          "answer": "About 96 metres",
+          "note": "Parliament lists 96 metres in its facts guide and 96.3 metres in its architecture guide. Big Ben is the bell inside.",
+          "source": "UK Parliament",
+          "url": "https://www.parliament.uk/about/living-heritage/building/palace/architecture/palacestructure/towers-of-parliament/"
+        }
       ],
       [
         "How high above sea level is Mount Everest, approximately?",
-        "metres"
+        "metres",
+        {
+          "answer": "8,848.86 metres",
+          "note": "The snow-height measurement jointly announced by Nepal and China in 2020.",
+          "source": "State Council of China",
+          "url": "https://english.www.gov.cn/news/videos/202012/10/content_WS5fd17893c6d0f72576941a2f.html"
+        }
       ],
       [
         "What is the diameter of Earth at the equator, approximately?",
-        "km"
+        "km",
+        {
+          "answer": "About 12,756 km",
+          "note": "The equatorial diameter; the polar diameter is slightly smaller.",
+          "source": "NASA — Earth facts",
+          "url": "https://science.nasa.gov/earth/facts/"
+        }
       ],
       [
         "How tall was the Great Pyramid of Giza when it was first built, approximately?",
-        "metres"
+        "metres",
+        {
+          "answer": "About 146.5 metres",
+          "note": "The Egyptian Ministry of Tourism and Antiquities gives this original height. Some references round it to 146.6 metres.",
+          "source": "Egyptian Ministry of Tourism and Antiquities",
+          "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
+        }
       ],
       [
-        "What is the diameter of a regulation basketball hoop?",
-        "inches"
+        "What is the inside diameter of an NBA basketball hoop?",
+        "inches",
+        {
+          "answer": "18 inches",
+          "note": "The inside diameter specified for an NBA basket ring.",
+          "source": "NBA official rules",
+          "url": "https://official.nba.com/rule-no-1-court-dimensions-equipment"
+        }
       ],
       [
         "How long is a standard Olympic-size swimming pool?",
-        "metres"
+        "metres",
+        {
+          "answer": "50 metres",
+          "note": "Olympic swimming races use a long-course pool; short-course pools are 25 metres.",
+          "source": "World Aquatics swimming rules",
+          "url": "https://media.specialolympics.org/resources/sports-essentials/swimming/m-e-r-c/World-Aquatics-Swimming-Rules-EN.pdf"
+        }
       ],
       [
         "How tall is a standard adult football goal, from the ground to the underside of the crossbar?",
-        "metres"
+        "metres",
+        {
+          "answer": "2.44 metres",
+          "note": "Measured from the ground to the lower edge of the crossbar.",
+          "source": "IFAB — Law 1",
+          "url": "https://www.theifab.com/laws/latest/the-field-of-play/"
+        }
       ]
     ]
   },
@@ -65,43 +131,103 @@ const categories=[
     "questions": [
       [
         "What is the average distance from Earth to the Moon, approximately?",
-        "km"
+        "km",
+        {
+          "answer": "About 384,400 km",
+          "note": "An average distance between Earth and the Moon. The actual separation varies during the orbit.",
+          "source": "NASA — Moon facts",
+          "url": "https://science.nasa.gov/moon/facts/"
+        }
       ],
       [
         "What is the official length of a marathon?",
-        "km"
+        "km",
+        {
+          "answer": "42.195 km",
+          "note": "That is 42,195 metres. Rather more than a gentle stroll.",
+          "source": "AIMS — road-race records",
+          "url": "https://aims-worldrunning.org/world-records.html"
+        }
       ],
       [
         "How long is the Channel Tunnel, approximately?",
-        "km"
+        "km",
+        {
+          "answer": "About 50.5 km",
+          "note": "LeShuttle gives this approximate length between Folkestone and Calais.",
+          "source": "LeShuttle — Channel Tunnel facts",
+          "url": "https://www.leshuttle.com/uk-en/discover/why-choose-leshuttle/build/the-channel-tunnel?viewmode=0"
+        }
       ],
       [
         "What is the average distance from Earth to the Sun, approximately?",
-        "million km"
+        "million km",
+        {
+          "answer": "About 150 million km",
+          "note": "The average Earth–Sun separation is approximately one astronomical unit.",
+          "source": "NASA — Earth facts",
+          "url": "https://science.nasa.gov/earth/facts/"
+        }
       ],
       [
         "How far is one complete lap of a standard outdoor athletics track in lane one?",
-        "metres"
+        "metres",
+        {
+          "answer": "400 metres",
+          "note": "One lap measured along lane one of a standard outdoor athletics track.",
+          "source": "World Athletics — 400 m track plan",
+          "url": "https://worldathletics.org/download/download?filename=596848ce-6afe-4f00-8eb0-62a019ee215e.pdf&urlslug=track%2Band%2Bfield%2Bfacilities%2Bmanual%2B2019%2Bedition%2B-%2Bmarking%2Bplan%2B400m%2Bstandard%2Btrack"
+        }
       ],
       [
         "What is the straight-line distance from London to New York, approximately?",
-        "km"
+        "km",
+        {
+          "answer": "About 5,570 km",
+          "note": "Approximate great-circle distance between city centres; the exact value depends on the points selected.",
+          "source": "MapGO — London to New York",
+          "url": "https://mapgo.io/distance-between/london-to-new-york"
+        }
       ],
       [
         "How long is the River Nile, approximately?",
-        "km"
+        "km",
+        {
+          "answer": "Over 6,800 km (estimate)",
+          "note": "National Geographic uses this estimate. River lengths vary with the chosen source and measurement method.",
+          "source": "National Geographic — Nile River",
+          "url": "https://education.nationalgeographic.org/resource/nile-river/"
+        }
       ],
       [
         "How far is a half marathon?",
-        "km"
+        "km",
+        {
+          "answer": "21.0975 km",
+          "note": "Exactly half of 42.195 km. About 21.10 km when rounded to two decimal places.",
+          "source": "World Athletics / AIMS — course measurement",
+          "url": "https://laufstreckenvermessung.de/wp-content/uploads/2024/11/2023-Course-Measurement-Book-ENG.pdf"
+        }
       ],
       [
         "How long is the main span of the Golden Gate Bridge, approximately?",
-        "metres"
+        "metres",
+        {
+          "answer": "About 1,280 metres",
+          "note": "The main suspended span between the two towers, rather than the bridge’s total length.",
+          "source": "Golden Gate Bridge District",
+          "url": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/"
+        }
       ],
       [
         "How far does light travel in one second in a vacuum, approximately?",
-        "km"
+        "km",
+        {
+          "answer": "About 299,792 km",
+          "note": "The defined speed is exactly 299,792,458 metres per second in a vacuum.",
+          "source": "NIST — defining constants",
+          "url": "https://www.nist.gov/si-redefinition/meet-constants"
+        }
       ]
     ]
   },
@@ -110,44 +236,104 @@ const categories=[
     "icon": "🔢",
     "questions": [
       [
-        "How many squares are on a standard chessboard?",
-        "squares"
+        "How many individual playing squares are on a standard chessboard?",
+        "squares",
+        {
+          "answer": "64 squares",
+          "note": "Eight rows × eight columns. Counting all larger squares within the grid would be a different question.",
+          "source": "FIDE — Laws of Chess",
+          "url": "https://old.fide.com/fide/handbook.html?id=208&view=article"
+        }
       ],
       [
         "How many keys are on a standard full-size piano?",
-        "keys"
+        "keys",
+        {
+          "answer": "88 keys",
+          "note": "A standard full-size piano has 52 white keys and 36 black keys.",
+          "source": "Yamaha — piano guide",
+          "url": "https://www.yamaha.com/en/musical_instrument_guide/piano/manufacturing/manufacturing005.html"
+        }
       ],
       [
         "How many cards are in a standard deck, excluding jokers?",
-        "cards"
+        "cards",
+        {
+          "answer": "52 cards",
+          "note": "Four suits with thirteen cards each, excluding jokers.",
+          "source": "Bicycle — standard card decks",
+          "url": "https://bicyclecards.com/how-to-play/bingo"
+        }
       ],
       [
         "How many minutes are there in one week?",
-        "minutes"
+        "minutes",
+        {
+          "answer": "10,080 minutes",
+          "note": "7 days × 24 hours × 60 minutes. The standard seven-day week.",
+          "source": "Calculation: 7 × 24 × 60 · NIST time units",
+          "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-5-units-outside-si"
+        }
       ],
       [
         "How many seconds are there in 24 hours?",
-        "seconds"
+        "seconds",
+        {
+          "answer": "86,400 seconds",
+          "note": "24 hours × 60 minutes × 60 seconds.",
+          "source": "NIST — time units",
+          "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-5-units-outside-si"
+        }
       ],
       [
         "How many millilitres are in an imperial pint, approximately?",
-        "ml"
+        "ml",
+        {
+          "answer": "About 568 ml",
+          "note": "An imperial pint is 568.26125 ml. A US liquid pint is a different size.",
+          "source": "GOV.UK — packaged quantities",
+          "url": "https://www.gov.uk/guidance/packaged-goods-weights-and-measures-regulations"
+        }
       ],
       [
         "How many dimples are on a standard six-sided die in total?",
-        "dimples"
+        "dimples",
+        {
+          "answer": "21 dimples",
+          "note": "Add the spots on the six numbered faces: 1 + 2 + 3 + 4 + 5 + 6.",
+          "source": "Calculation: 1 + 2 + 3 + 4 + 5 + 6",
+          "url": null
+        }
       ],
       [
         "How many tiles does a standard English-language Scrabble set contain?",
-        "tiles"
+        "tiles",
+        {
+          "answer": "100 tiles",
+          "note": "The standard English-language set includes the two blank tiles.",
+          "source": "Hasbro — Scrabble instructions",
+          "url": "https://instructions.hasbro.com/en-us/instruction/scrabble-board-game"
+        }
       ],
       [
         "How many bones are in a typical adult human skeleton?",
-        "bones"
+        "bones",
+        {
+          "answer": "206 bones",
+          "note": "The usual adult skeleton count. Individual anatomical variation can change the number.",
+          "source": "US National Museum of Health and Medicine",
+          "url": "https://medicalmuseum.health.mil/index.cfm/visit/exhibits/past/visiblyhuman/page_05"
+        }
       ],
       [
         "How many individual small squares cover all six faces of a 3×3 Rubik’s Cube?",
-        "squares"
+        "squares",
+        {
+          "answer": "54 small squares",
+          "note": "Six faces × nine visible small squares per face.",
+          "source": "Calculation: 6 × 3 × 3",
+          "url": null
+        }
       ]
     ]
   },
@@ -157,43 +343,103 @@ const categories=[
     "questions": [
       [
         "In what year did humans first land on the Moon?",
-        "year"
+        "year",
+        {
+          "answer": "1969",
+          "note": "Apollo 11 landed on the Moon on 20 July 1969.",
+          "source": "NASA — Moon missions",
+          "url": "https://science.nasa.gov/moon/missions/"
+        }
       ],
       [
         "In what year did the Titanic sink?",
-        "year"
+        "year",
+        {
+          "answer": "1912",
+          "note": "Titanic sank on 15 April 1912, after striking an iceberg the previous evening.",
+          "source": "NOAA — RMS Titanic",
+          "url": "https://www.noaa.gov/rms-titanic"
+        }
       ],
       [
         "In what year were the first modern Olympic Games held in Athens?",
-        "year"
+        "year",
+        {
+          "answer": "1896",
+          "note": "Athens hosted the first Olympic Games of the modern era.",
+          "source": "International Olympic Committee",
+          "url": "https://www.olympics.com/ioc/faq/history-and-origin-of-the-games/what-is-the-origin-of-the-olympic-games"
+        }
       ],
       [
         "In what year did the Berlin Wall fall?",
-        "year"
+        "year",
+        {
+          "answer": "1989",
+          "note": "The border opened on 9 November 1989, the event remembered as the fall of the Berlin Wall.",
+          "source": "City of Berlin — history",
+          "url": "https://www.berlin.de/en/history/8482274-8619314-opening-and-fall-of-the-berlin-wall.en.html"
+        }
       ],
       [
         "In what year was Magna Carta first issued?",
-        "year"
+        "year",
+        {
+          "answer": "1215",
+          "note": "King John first granted Magna Carta in June 1215; it was reissued in later years.",
+          "source": "UK Parliament — Magna Carta",
+          "url": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/originsofparliament/birthofparliament/overview/magnacarta/"
+        }
       ],
       [
         "In what year did the Great Fire of London begin?",
-        "year"
+        "year",
+        {
+          "answer": "1666",
+          "note": "The fire began on 2 September 1666 in Pudding Lane.",
+          "source": "London Museum",
+          "url": "https://www.londonmuseum.org.uk/collections/london-stories/great-fire-of-london/"
+        }
       ],
       [
         "How many seconds did Usain Bolt take in his 100-metre world-record run in Berlin in 2009?",
-        "seconds"
+        "seconds",
+        {
+          "answer": "9.58 seconds",
+          "note": "Usain Bolt ran this time in the world final in Berlin on 16 August 2009.",
+          "source": "World Athletics — 100 metres results",
+          "url": "https://worldathletics.org/records/all-time-toplists/sprints/100-metres/all/men/senior"
+        }
       ],
       [
         "How many metres did Mike Powell jump when he set the long-jump world record in 1991?",
-        "metres"
+        "metres",
+        {
+          "answer": "8.95 metres",
+          "note": "Mike Powell’s record jump came in Tokyo on 30 August 1991.",
+          "source": "USA Track & Field — Mike Powell",
+          "url": "https://www.usatf.org/athlete-bios/mike-powell"
+        }
       ],
       [
         "In what year did the Wright brothers make their first powered flights at Kitty Hawk?",
-        "year"
+        "year",
+        {
+          "answer": "1903",
+          "note": "The Wright brothers’ first successful powered flights were on 17 December 1903 near Kitty Hawk.",
+          "source": "US National Park Service — first flight",
+          "url": "https://home.nps.gov/wrbr/learn/historyculture/thefirstflight.htm"
+        }
       ],
       [
         "In what year was Sputnik 1 launched?",
-        "year"
+        "year",
+        {
+          "answer": "1957",
+          "note": "Sputnik 1 launched on 4 October 1957.",
+          "source": "NASA — Sputnik history",
+          "url": "https://www.nasa.gov/history/sputnik/sputorig.html"
+        }
       ]
     ]
   },
@@ -244,6 +490,7 @@ const categories=[
     ]
   }
 ];
+const brandLogo="<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 350\" role=\"img\" aria-labelledby=\"logo-title logo-desc\">\n<title id=\"logo-title\">UNREMARKABLE!</title><desc id=\"logo-desc\">Five rising bars. Red extremes, blue ordinary bars, and a crowned lime winner in the middle.</desc>\n<path d=\"M85 251H555\" stroke=\"#667095\" stroke-width=\"2\"/>\n<g><rect class=\"logo-bar\" x=\"112\" y=\"202\" width=\"62\" height=\"48\" rx=\"7\" fill=\"#ff7e94\"/><rect class=\"logo-bar\" x=\"200\" y=\"157\" width=\"62\" height=\"93\" rx=\"7\" fill=\"#91b8f7\"/><rect class=\"logo-bar\" x=\"288\" y=\"113\" width=\"62\" height=\"137\" rx=\"7\" fill=\"#d4ff63\"/><rect class=\"logo-bar\" x=\"376\" y=\"70\" width=\"62\" height=\"180\" rx=\"7\" fill=\"#91b8f7\"/><rect class=\"logo-bar\" x=\"464\" y=\"26\" width=\"62\" height=\"224\" rx=\"7\" fill=\"#ff7e94\"/></g>\n<path class=\"logo-crown\" d=\"M296 72 307 83 319 64 331 83 342 72 338 101H300Z\" fill=\"#d4ff63\" stroke=\"#efffbb\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/>\n<text x=\"320\" y=\"307\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"53\" font-weight=\"900\" letter-spacing=\"-2\" fill=\"#f8f7f2\">UNREMARKABLE<tspan fill=\"#d4ff63\">!</tspan></text>\n<text x=\"320\" y=\"337\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"13\" font-weight=\"700\" letter-spacing=\"3.5\" fill=\"#b8bfd9\">THE PARTY GAME WHERE AVERAGE WINS</text>\n</svg>\n";
 const app=document.getElementById('app');let players=[],round=0,turn=0,answers=[],deck=[],deltas=[],stage='setup',timers=[],sound=false,audioCtx;
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>new Intl.NumberFormat('en-GB',{maximumFractionDigits:3}).format(n);
@@ -251,37 +498,119 @@ function later(fn,ms){timers.push(setTimeout(fn,ms))}function clearTimers(){time
 function beep(win=false){if(!sound)return;try{audioCtx ||=new (window.AudioContext||window.webkitAudioContext)();audioCtx.resume();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.setValueAtTime(win?660:280,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(win?990:420,audioCtx.currentTime+.18);g.gain.setValueAtTime(.05,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.3);o.start();o.stop(audioCtx.currentTime+.3)}catch{}}
 document.getElementById('sound').onclick=()=>{sound=!sound;document.getElementById('sound').textContent='SFX: '+(sound?'on':'off');document.getElementById('sound').setAttribute('aria-pressed',String(sound));beep()};
 function focusHeading(){const h=app.querySelector('h1,h2');if(h){h.tabIndex=-1;h.focus()}}
-function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play five rounds in order: Heights & Sizes, Distances, Everyday Numbers, History & Records, then Wild Cards.</li><li>The first four rounds ask factual numerical questions. The fifth is hypothetical. Secretly enter your estimate, then pass the device. You score against the group’s guesses, rather than the factual answer.</li><li>The median is the middle guess. With an even number of players, it is the average of the two central guesses.</li><li>Closest to the median: <strong>+1 each</strong>. Hit the median exactly: <strong>+1 bonus = +2 total</strong>. Tied identical guesses share the same award.</li><li>Lowest and highest guesses: <strong>−1 each</strong>. Others: 0. Middle winners take priority over extremes; if all guesses match, everyone gets +2.</li><li>Highest total after five rounds wins. Tied totals mean shared champions.</li></ol></details>`}
+function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play five rounds: Heights & Sizes, Distances, Everyday Numbers, History & Records, then Wild Cards.</li><li>Enter your guess secretly and pass the device. Rounds 1–4 have factual answers, shown after the reveal. Wild Cards are hypothetical.</li><li><strong>The middle guess wins +2.</strong> Sort everyone’s guesses from low to high. With an odd number of players, the central value wins. With an even number, both central values win. Everyone sharing a winning value earns +2.</li><li><strong>Highest and lowest lose −1 each.</strong> Everyone else gets 0. A middle winner takes priority over an extreme when guesses tie.</li><li><strong>Exact average bonus: +1 independently.</strong> Add all guesses and divide by the number of players. Anyone who guesses that exact, unrounded average earns +1 extra, even if they are not a middle winner.</li><li>A middle winner who also hits the average gets <strong>+3 total</strong>. If everyone guesses the same, everyone gets +3. Equally distant guesses do not earn an average bonus unless they hit it exactly.</li><li>Bars rise for zero-point players, then the losing extremes, then any average-bonus-only players, and finally the crowned middle winner(s).</li><li>The real answer is for curiosity; factual accuracy does not change points. Highest total after five rounds wins. Tied totals share the crown.</li></ol></details>`}
 let lobby=[];
 function saveLobby(){try{localStorage.setItem('unremarkable-names',JSON.stringify(lobby))}catch{}}
 function renderRoster(){const list=document.getElementById('roster');list.innerHTML=lobby.map((name,i)=>`<div class="player-token"><span class="avatar">${i+1}</span><span>${escapeHTML(name)}</span><button class="remove-player" type="button" data-remove="${i}" aria-label="Remove ${escapeHTML(name)}">×</button></div>`).join('');document.getElementById('player-count').textContent=lobby.length+' / 12 players'+(lobby.length<3?' · add '+(3-lobby.length)+' more to play':' · a beautifully ordinary crowd');document.getElementById('start').disabled=lobby.length<3;list.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{lobby.splice(Number(b.dataset.remove),1);saveLobby();renderRoster()})}
-function setup(){clearTimers();stage='setup';lobby=[];try{const saved=JSON.parse(localStorage.getItem('unremarkable-names')||'[]');if(Array.isArray(saved))lobby=saved.filter(n=>typeof n==='string'&&n.trim()&&n.length<=24).slice(0,12)}catch{}app.innerHTML=`<div class="eyebrow">The party game where average wins</div><h1>Greatness is<br>overrated.</h1><p class="muted">Four rounds of facts. One round of what-ifs. Aim for the middle — and hit the exact median for a bonus.</p><div class="chips">${categories.map((c,i)=>`<span class="chip">${i+1}. ${c.icon} ${c.name}</span>`).join('')}</div><div class="card"><h2>Who’s playing?</h2><form id="add-player"><label for="player-name">Add a player</label><div class="player-entry"><input id="player-name" maxlength="24" placeholder="Player name" autocomplete="off"><button type="submit">Add +</button></div><div id="error" class="error" role="alert"></div></form><div class="lobby-count" id="player-count" role="status"></div><div class="roster" id="roster"></div><button id="start" class="start-game">Let’s be average →</button><p class="music-note">♫ Switch on Music for a little groove. Talent remains optional.</p>${rules()}</div>`;renderRoster();document.getElementById('add-player').onsubmit=e=>{e.preventDefault();const input=document.getElementById('player-name'),name=input.value.trim();let error='';if(!name)error='A name would help. Even a spectacularly ordinary one.';else if(lobby.length>=12)error='Twelve is a crowd. Remove someone before adding another.';else if(lobby.some(n=>n.toLowerCase()===name.toLowerCase()))error='That name is already in. Try a nickname.';if(error){document.getElementById('error').textContent=error;return}lobby.push(name);saveLobby();renderRoster();input.value='';document.getElementById('error').textContent='';input.focus();beep()};document.getElementById('start').onclick=()=>{if(lobby.length<3)return;players=lobby.map(name=>({name,score:0}));deck=categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]}));round=0;beginRound()}}
+function setup(){clearTimers();stage='setup';lobby=[];try{const saved=JSON.parse(localStorage.getItem('unremarkable-names')||'[]');if(Array.isArray(saved))lobby=saved.filter(n=>typeof n==='string'&&n.trim()&&n.length<=24).slice(0,12)}catch{}app.innerHTML=`<div class="hero-logo">${brandLogo}</div><h1 class="hero-tagline">Greatness is overrated.</h1><p class="muted hero-copy">Four rounds of facts. One round of what-ifs. The middle guess wins +2. Nail the average for a +1 bonus.</p><div class="chips">${categories.map((c,i)=>`<span class="chip">${i+1}. ${c.icon} ${c.name}</span>`).join('')}</div><div class="card"><h2>Who’s playing?</h2><form id="add-player"><label for="player-name">Add a player</label><div class="player-entry"><input id="player-name" maxlength="24" placeholder="Player name" autocomplete="off"><button type="submit">Add +</button></div><div id="error" class="error" role="alert"></div></form><div class="lobby-count" id="player-count" role="status"></div><div class="roster" id="roster"></div><button id="start" class="start-game">Let’s be average →</button><p class="music-note">♫ Switch on Music for a bass-led groove and light drums. Talent remains optional.</p>${rules()}</div>`;renderRoster();document.getElementById('add-player').onsubmit=e=>{e.preventDefault();const input=document.getElementById('player-name'),name=input.value.trim();let error='';if(!name)error='A name would help. Even a spectacularly ordinary one.';else if(lobby.length>=12)error='Twelve is a crowd. Remove someone before adding another.';else if(lobby.some(n=>n.toLowerCase()===name.toLowerCase()))error='That name is already in. Try a nickname.';if(error){document.getElementById('error').textContent=error;return}lobby.push(name);saveLobby();renderRoster();input.value='';document.getElementById('error').textContent='';input.focus();beep()};document.getElementById('start').onclick=()=>{if(lobby.length<3)return;players=lobby.map(name=>({name,score:0}));deck=categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]}));round=0;beginRound()}}
 
 function roundTop(){return `<div class="eyebrow">Round ${round+1} / 5 · ${deck[round].icon} ${deck[round].name}</div><div class="progress"><div style="width:${round/5*100}%"></div></div>`}
 function beginRound(){answers=[];turn=0;handoff()}
 function handoff(){stage='handoff';app.innerHTML=roundTop()+`<div class="card center"><p class="muted">Player ${turn+1} of ${players.length}</p><h2>Pass to ${escapeHTML(players[turn].name)}</h2><p class="muted">Keep the next screen to yourself.</p><button id="ready">I’m ${escapeHTML(players[turn].name)} — ready</button></div>`;document.getElementById('ready').onclick=guess;focusHeading()}
-function guess(){stage='guess';app.innerHTML=roundTop()+`<div class="card"><p class="muted">${escapeHTML(players[turn].name)}, find the middle.</p><h2>${escapeHTML(deck[round].q[0])}</h2><form id="guess"><label for="answer">Your secret number · ${deck[round].q[1]}</label><input id="answer" type="number" inputmode="decimal" min="0" max="1000000000" step="0.01" required autocomplete="off" placeholder="Enter your guess"><small>0 to 1,000,000,000 · up to 2 decimal places</small><div class="error" id="error" role="alert"></div><button>Lock in & hide →</button></form></div>`;document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=document.getElementById('answer').value;const n=Number(raw);if(!raw.trim()||!Number.isFinite(n)||n<0||n>1e9||Math.abs(n*100-Math.round(n*100))>.0001){document.getElementById('error').textContent='Enter a number in range, with up to 2 decimal places.';return}answers.push(n);beep();turn++;if(turn<players.length)handoff();else revealReady()};focusHeading()}
-function revealReady(){stage='reveal-ready';app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">Reveal the number line →</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
-function scoreGuesses(values){const sorted=[...values].sort((a,b)=>a-b),n=sorted.length,median=n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;const cents=values.map(v=>Math.round(v*100)),sortedCents=[...cents].sort((a,b)=>a-b),middle2=n%2?2*sortedCents[(n-1)/2]:sortedCents[n/2-1]+sortedCents[n/2];const distances=cents.map(v=>Math.abs(v*2-middle2)),best=Math.min(...distances);return {median:middle2/200,deltas:values.map((v,i)=>distances[i]===0?2:distances[i]===best?1:(v===sorted[0]||v===sorted[n-1]?-1:0))}}
-function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.party').forEach(el=>el.remove());return;}for(let i=0;i<35;i++){const el=document.createElement('i');el.className='party';el.style.left=Math.random()*100+'vw';el.style.background=['#d4ff63','#ff7e94','#a69aff'][i%3];el.style.animationDelay=Math.random()*.5+'s';document.body.append(el);later(()=>el.remove(),3200)}}
-let revealRun=0;
-const quips={intro:['Confidence is high. Evidence is patchy.','Let’s see who has aggressively misunderstood the question.','Everyone’s a genius until the number line arrives.'],extremes:['A little too ambitious. A little too economical.','The extremes have left the group chat.','Too much. Too little. A masterclass in standing out.'],middle:['Perfectly unremarkable. Your parents must be moderately proud.','The middle has spoken. Quietly, of course.','Outstandingly average. Please accept this modest glory.'],bonus:['BANG AVERAGE! The median called. You answered.','An exact hit. Precision mediocrity deserves a bonus.','You are the statistical centre of attention. +2!']};
+function guess(){stage='guess';app.innerHTML=roundTop()+`<div class="card"><p class="muted">${escapeHTML(players[turn].name)}, aim for the middle.</p><h2>${escapeHTML(deck[round].q[0])}</h2><form id="guess"><label for="answer">Your secret number · ${deck[round].q[1]}</label><input id="answer" type="number" inputmode="decimal" min="0" max="1000000000" step="0.01" required autocomplete="off" placeholder="Enter your guess"><small>0 to 1,000,000,000 · up to 2 decimal places</small><div class="error" id="error" role="alert"></div><button>Lock in & hide →</button></form></div>`;document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=document.getElementById('answer').value;const n=Number(raw);if(!raw.trim()||!Number.isFinite(n)||n<0||n>1e9||Math.abs(n*100-Math.round(n*100))>.0001){document.getElementById('error').textContent='Enter a number in range, with up to 2 decimal places.';return}answers.push(n);beep();turn++;if(turn<players.length)handoff();else revealReady()};focusHeading()}
+function revealReady(){stage='reveal-ready';app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">Raise the bars →</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
+function scoreGuesses(values) {
+  const cents=values.map(v=>Math.round(v*100)),sorted=[...cents].sort((a,b)=>a-b),count=cents.length;
+  const middleTwice=count%2?2*sorted[(count-1)/2]:sorted[count/2-1]+sorted[count/2];
+  const distances=cents.map(v=>Math.abs(v*2-middleTwice)),closest=Math.min(...distances);
+  const totalCents=cents.reduce((a,b)=>a+b,0),low=sorted[0],high=sorted[count-1];
+  const baseDeltas=cents.map((v,i)=>distances[i]===closest?2:(v===low||v===high?-1:0));
+  const bonuses=cents.map(v=>v*count===totalCents?1:0);
+  return {middle:middleTwice/200,average:totalCents/(100*count),totalCents,count,
+    rounded:(totalCents*10)%count!==0,baseDeltas,bonuses,deltas:baseDeltas.map((v,i)=>v+bonuses[i])};
+}
+function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.party').forEach(el=>el.remove());return;}for(let i=0;i<35;i++){const el=document.createElement('i');el.className='party';el.style.left=Math.random()*100+'vw';el.style.background=['#d4ff63','#ff7e94','#91b8f7'][i%3];el.style.animationDelay=Math.random()*.5+'s';document.body.append(el);later(()=>el.remove(),3200)}}
+let revealRun=0,currentReveal=null;
+const quips={intro:['Perfectly fine. Nobody is writing a biography.','Zero points. A solid contribution to absolutely nothing.','Safely ordinary. The participation certificate is in the post.'],extremes:['A little too ambitious. A little too economical.','The extremes have left the group chat.','Too much. Too little. A masterclass in standing out.'],middle:['Perfectly unremarkable. Your parents must be moderately proud.','Outstandingly average. Please accept this modest glory.','Congratulations. You have peaked at being average.'],bonus:['BANG AVERAGE! The average called. You answered.','An exact hit. Precision mediocrity deserves a bonus.','You are the statistical centre of attention. Average bonus +1!']};
 function quip(type){return quips[type][Math.floor(Math.random()*quips[type].length)]}
-function countValue(node,value,run){if(matchMedia('(prefers-reduced-motion: reduce)').matches){node.textContent=fmt(value);return}const start=performance.now();function tick(now){if(run!==revealRun||stage!=='revealing')return;const t=Math.min(1,(now-start)/650);node.textContent=fmt(Math.round(value*(1-Math.pow(1-t,3))*100)/100);if(t<1)requestAnimationFrame(tick);else node.textContent=fmt(value)}requestAnimationFrame(tick)}
-function reveal(){if(stage!=='reveal-ready')return;stage='revealing';const run=++revealRun;const result=scoreGuesses(answers);deltas=result.deltas;players.forEach((p,i)=>p.score+=deltas[i]);const min=Math.min(...answers),max=Math.max(...answers),spread=max-min;const position=v=>spread?5+(v-min)/spread*90:50;const groups=[...new Set(answers)].sort((a,b)=>a-b).map(v=>({v,ids:answers.map((x,i)=>x===v?i:-1).filter(i=>i>=0)}));app.innerHTML=roundTop()+`<div class="card reveal-card"><div class="reveal-meta"><span class="eyebrow">The grand underachievement</span><button id="skip" class="skip-reveal">Show results</button></div><h2>${escapeHTML(deck[round].q[0])}</h2><div class="phase-label" id="phase">Act 1 · The estimates</div><p class="reveal-status" id="commentary" role="status">${quip('intro')}</p><div class="number-stage"><div class="axis"><div class="axis-line"></div><span class="axis-end">${fmt(min)}</span><span class="axis-end high">${fmt(max)}</span>${groups.map((g,i)=>`<i class="axis-dot" id="dot-${i}" aria-hidden="true"></i>`).join('')}<div class="median-pin" id="median-pin" style="left:${position(result.median)}%"></div></div><div class="median-readout" id="median-readout">Exact median <strong>${fmt(result.median)}</strong></div><div class="reveal-grid">${players.map((p,i)=>`<div class="guess-tile" id="tile-${i}"><div class="tile-name">${escapeHTML(p.name)}</div><div class="tile-value" id="value-${i}">?</div><div class="tile-badge" id="badge-${i}">LOCKED IN</div></div>`).join('')}</div><div class="countdown" id="countdown"><span>3</span></div></div><div id="results" hidden></div><button id="next" hidden>${round===4?'Final results →':'Next round →'}</button></div>`;focusHeading();document.getElementById('skip').onclick=()=>{clearTimers();finishReveal(result,groups)};const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const lead=reduced?0:2100;if(!reduced){[2,1].forEach((n,i)=>later(()=>{document.getElementById('countdown').innerHTML='<span>'+n+'</span>';beep()},(i+1)*700))}later(()=>document.getElementById('countdown')?.remove(),lead);players.forEach((p,i)=>later(()=>{if(stage!=='revealing')return;const tile=document.getElementById('tile-'+i);tile.classList.add('revealed');document.getElementById('badge-'+i).textContent='GUESS REVEALED';countValue(document.getElementById('value-'+i),answers[i],run);const gi=groups.findIndex(g=>g.v===answers[i]),dot=document.getElementById('dot-'+gi);dot.classList.add('visible');dot.style.left=position(answers[i])+'%';beep()},lead+i*(reduced?0:480)));const afterGuesses=lead+players.length*(reduced?0:480)+850;later(()=>{if(stage!=='revealing')return;document.getElementById('phase').textContent='Act 2 · The extremes';document.getElementById('commentary').textContent=deltas.some(d=>d<0)?quip('extremes'):'Nobody at the extremes? Suspiciously well coordinated.';players.forEach((p,i)=>{if(deltas[i]<0){document.getElementById('tile-'+i).classList.add('out');document.getElementById('badge-'+i).textContent='TOO FAR · −1'}});groups.forEach((g,i)=>{if(deltas[g.ids[0]]<0)document.getElementById('dot-'+i).classList.add('out')});beep()},afterGuesses);later(()=>finishReveal(result,groups),afterGuesses+(reduced?0:1800))}
-function finishReveal(result,groups){if(stage!=='revealing')return;stage='results';document.getElementById('countdown')?.remove();document.getElementById('skip').hidden=true;document.getElementById('phase').textContent='Act 3 · The glorious middle';document.getElementById('median-pin').classList.add('visible');document.getElementById('median-readout').classList.add('visible');groups.forEach((g,i)=>{const dot=document.getElementById('dot-'+i);dot.classList.add('visible',deltas[g.ids[0]]>0?'win':deltas[g.ids[0]]<0?'out':'neutral');const min=Math.min(...answers),spread=Math.max(...answers)-min;dot.style.left=(spread?5+(g.v-min)/spread*90:50)+'%'});players.forEach((p,i)=>{const tile=document.getElementById('tile-'+i);tile.classList.add('revealed',deltas[i]>0?'win':deltas[i]<0?'out':'neutral');if(deltas[i]===2)tile.classList.add('bonus');document.getElementById('value-'+i).textContent=fmt(answers[i]);document.getElementById('badge-'+i).textContent=deltas[i]===2?'EXACT HIT · +2':deltas[i]===1?'MIDDLE WINNER · +1':deltas[i]===-1?'TOO FAR · −1':'SAFELY ORDINARY · 0'});document.getElementById('commentary').textContent=quip(deltas.includes(2)?'bonus':'middle');const el=document.getElementById('results');el.hidden=false;el.className='fade-in';el.innerHTML=`<p class="score-note">${players.filter((_,i)=>deltas[i]>0).map(p=>escapeHTML(p.name)).join(', ')}${deltas.includes(2)?' hit the exact median. +1 for the middle, +1 bonus.':' take the middle. +1 each. No exact-hit bonus this round.'}</p>${leaderboard(true)}`;const next=document.getElementById('next');next.hidden=false;next.onclick=()=>{clearTimers();if(round===4)final();else{round++;beginRound()}};beep(true);confetti()}
+function countValue(node,value,run){if(matchMedia('(prefers-reduced-motion: reduce)').matches){node.textContent=fmt(value);return}const start=performance.now();function tick(now){if(run!==revealRun||stage!=='revealing')return;const t=Math.min(1,(now-start)/1050);node.textContent=fmt(Math.round(value*(1-Math.pow(1-t,3))*100)/100);if(t<1)requestAnimationFrame(tick);else node.textContent=fmt(value)}requestAnimationFrame(tick)}
+const crownMarkup='<svg viewBox="0 0 60 40" aria-hidden="true"><path d="M5 8 18 20 30 3 42 20 55 8 50 35H10Z" fill="#d4ff63" stroke="#efffbb" stroke-width="2.5" stroke-linejoin="round"/></svg>';
+function averageText(result){return (result.rounded?'≈ ':'')+fmt(result.average)}
+function revealBar(i,run){
+  const el=document.getElementById('bar-'+i);if(!el)return;
+  const award=deltas[i],base=currentReveal.baseDeltas[i];el.classList.add('revealed',base===2?'win':base<0?'out':'neutral');if(currentReveal.bonuses[i]&&base!==2)el.classList.add('bonus-only');
+  if(currentReveal.bonuses[i])el.classList.add('bonus');
+  el.setAttribute('aria-label',players[i].name+': '+fmt(answers[i])+', '+(award>0?'+':'')+award+' points');
+  document.getElementById('bar-score-'+i).classList.add(award>0?'positive':award<0?'negative':'neutral');
+  document.getElementById('bar-score-'+i).textContent=base===2?(currentReveal.bonuses[i]?'MIDDLE +2 · BONUS +1':'MIDDLE +2'):currentReveal.bonuses[i]?'AVERAGE BONUS +1':base===-1?'EXTREME −1':'NO POINTS';
+  if(stage==='revealing'){countValue(document.getElementById('value-'+i),answers[i],run);beep(award>0)}
+}
+function reveal(){
+  if(stage!=='reveal-ready')return;
+  stage='revealing';const run=++revealRun,result=scoreGuesses(answers);deltas=result.deltas;currentReveal=result;
+  players.forEach((p,i)=>p.score+=deltas[i]);
+  const max=Math.max(...answers),scaleMax=max||1;
+  const sorted=players.map((p,i)=>i).sort((a,b)=>answers[a]-answers[b]||a-b);
+  const noPoints=sorted.filter(i=>result.baseDeltas[i]===0&&!result.bonuses[i]),extremes=sorted.filter(i=>result.baseDeltas[i]<0),bonusOnly=sorted.filter(i=>result.baseDeltas[i]===0&&result.bonuses[i]),winners=sorted.filter(i=>result.baseDeltas[i]===2);
+  app.innerHTML=roundTop()+`<div class="card reveal-card"><div class="reveal-meta"><span class="eyebrow">The rise of the unremarkable</span><button id="skip" class="skip-reveal">Show results</button></div><h2>${escapeHTML(deck[round].q[0])}</h2><div class="phase-label" id="phase">Act 1 · Out of the points</div><p class="reveal-status" id="commentary" role="status">${noPoints.length?quip('intro'):'No passengers this round. Everyone has a part to play.'}</p><p class="chart-unit muted">Guesses in ${escapeHTML(deck[round].q[1])} · bars rise from zero</p><div class="chart-scroll" tabindex="0" aria-label="Player guesses chart. Scroll horizontally for more players."><div class="bar-plot" style="--players:${players.length}"><div class="chart-bars"><div class="chart-grid" aria-hidden="true"><span class="scale-max">${fmt(max)}</span><span class="scale-zero">0</span></div><div id="average-line" class="average-line" style="bottom:${result.average/scaleMax*78}%"><span>AVG BONUS ${escapeHTML(averageText(result))}</span></div><div id="middle-line" class="middle-line" style="bottom:${result.middle/scaleMax*78}%"><span>MIDDLE ${fmt(result.middle)}</span></div><div class="bar-columns">${sorted.map(i=>`<div class="bar-column" id="bar-${i}" style="--height:${answers[i]/scaleMax*78}%" aria-label="${escapeHTML(players[i].name)}: guess locked"><div class="bar-fill"></div><div class="bar-number" id="value-${i}">?</div><div class="bar-crown">${crownMarkup}</div></div>`).join('')}</div></div><div class="bar-labels">${sorted.map(i=>`<div><span class="bar-name">${escapeHTML(players[i].name)}</span><span class="bar-score" id="bar-score-${i}">LOCKED</span></div>`).join('')}</div></div></div><p class="chart-hint" id="chart-hint">Swipe the chart to see everyone →</p><div class="target-readouts" id="target-readouts" hidden><div class="middle-readout">Middle target <strong>${fmt(result.middle)}</strong><span>Middle guess(es) earn +2</span></div><div class="average-readout" id="average-readout">Average bonus <strong>${escapeHTML(averageText(result))}</strong><span>Hit the exact average for +1 extra</span></div></div><div id="results" hidden></div><button id="next" hidden>${round===4?'Final results →':'Next round →'}</button></div>`;
+  focusHeading();const scroll=document.querySelector('.chart-scroll');document.getElementById('chart-hint').hidden=scroll.scrollWidth<=scroll.clientWidth;
+  document.getElementById('skip').onclick=()=>{clearTimers();finishReveal(result)};
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let time=reduced?0:200;
+  function queueBars(ids){ids.forEach(i=>{later(()=>{if(stage==='revealing')revealBar(i,run)},time);time+=reduced?0:420});time+=reduced?0:(ids.length?1200:450)}
+  queueBars(noPoints);
+  later(()=>{if(stage!=='revealing')return;document.getElementById('phase').textContent='Act 2 · Highest & lowest';document.getElementById('commentary').textContent=extremes.length?quip('extremes'):'A winner at the extreme keeps their points. Average has its privileges.'},time);
+  queueBars(extremes);
+  later(()=>{if(stage!=='revealing')return;document.getElementById('phase').textContent='Act 3 · The middle wins';document.getElementById('commentary').textContent='And now… the least remarkable of you all.';document.getElementById('average-line').classList.add('visible');document.getElementById('middle-line').classList.add('visible');document.getElementById('target-readouts').hidden=false},time);
+  time+=reduced?0:650;queueBars(bonusOnly);queueBars(winners);
+  later(()=>finishReveal(result),time+(reduced?0:150));
+}
+function answerCard(){
+  const q=deck[round].q;
+  if(!q[2])return '<div class="answer-card wild-answer"><div class="eyebrow">Wild Cards</div><h3>No factual answer. Just questionable judgement.</h3><p>This one is hypothetical. The middle guess wins +2; an exact average guess gets +1 extra.</p></div>';
+  const fact=q[2];return `<div class="answer-card"><div class="eyebrow">And the real answer is…</div><h3>${escapeHTML(fact.answer)}</h3><p>${escapeHTML(fact.note)}</p>${fact.url?`<a href="${escapeHTML(fact.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(fact.source)} ↗</a>`:`<small>${escapeHTML(fact.source)}</small>`}<p class="answer-note">A little knowledge to take home. Points reward the middle guess, with an extra bonus for hitting the average.</p></div>`;
+}
+function finishReveal(result){
+  if(stage!=='revealing')return;stage='results';document.getElementById('skip').hidden=true;
+  document.getElementById('phase').textContent='Act 3 · The middle wins';document.getElementById('average-line').classList.add('visible');document.getElementById('middle-line').classList.add('visible');document.getElementById('target-readouts').hidden=false;
+  players.forEach((p,i)=>{revealBar(i,revealRun);document.getElementById('value-'+i).textContent=fmt(answers[i])});
+  document.getElementById('commentary').textContent=quip(result.bonuses.some(Boolean)?'bonus':'middle');
+  const results=document.getElementById('results');results.hidden=false;results.className='fade-in';
+  const middleNames=players.filter((_,i)=>result.baseDeltas[i]===2).map(p=>escapeHTML(p.name)).join(', '),bonusNames=players.filter((_,i)=>result.bonuses[i]).map(p=>escapeHTML(p.name)).join(', ');
+  const sortedAnswers=[...answers].sort((a,b)=>a-b),n=answers.length,central=n%2?fmt(sortedAnswers[(n-1)/2]):fmt(sortedAnswers[n/2-1])+' and '+fmt(sortedAnswers[n/2]);
+  results.innerHTML=`<p class="score-note"><strong>Middle +2:</strong> ${middleNames}.<br><strong>Exact average +1:</strong> ${bonusNames||'Nobody this round'}.${result.baseDeltas.some((v,i)=>v===2&&result.bonuses[i])?'<br>Middle + average bonus = <strong>+3 total</strong>.':''}</p><details class="average-maths"><summary>How the middle and average were calculated</summary><p>Sorted guesses: ${sortedAnswers.map(fmt).join(', ')}.<br>Central guess${n%2?'':'es'}: ${central}. ${n%2?'':'Both central guess values earn +2.'}</p><p>Average: (${answers.map(fmt).join(' + ')}) ÷ ${n} = ${escapeHTML(averageText(result))}</p><p class="muted">${result.rounded?'The displayed average is rounded to 3 decimal places. The bonus uses the full value.':'The bonus uses the unrounded average.'} A middle winner also hitting the average gets +3.</p></details>${answerCard()}${leaderboard(true)}`;
+  const next=document.getElementById('next');next.hidden=false;next.onclick=()=>{clearTimers();if(round===4)final();else{round++;beginRound()}};
+  beep(true);confetti();
+}
 
 function leaderboard(showRound=false){return `<table><caption class="eyebrow">${showRound?'Live leaderboard':'Final standings'}</caption><thead><tr><th scope="col">Player</th>${showRound?'<th scope="col">Round</th>':''}<th scope="col">Total</th></tr></thead><tbody>${players.map((p,i)=>({...p,i})).sort((a,b)=>b.score-a.score||a.i-b.i).map(p=>`<tr><th scope="row">${escapeHTML(p.name)}</th>${showRound?`<td class="${deltas[p.i]>0?'positive':deltas[p.i]<0?'negative':''}">${deltas[p.i]>0?'+':''}${deltas[p.i]}</td>`:''}<td>${p.score}</td></tr>`).join('')}</tbody></table>`}
 function final(){stage='final';const best=Math.max(...players.map(p=>p.score)),winners=players.filter(p=>p.score===best);app.innerHTML=`<div class="eyebrow">Five rounds. Utterly ordinary.</div><div class="card center"><p>🏆</p><h1>${winners.length>1?'Shared champions!':'Average royalty.'}</h1><h2>${winners.map(p=>escapeHTML(p.name)).join(' & ')}</h2><p class="muted">${best} point${best===1?'':'s'}. An outstanding commitment to being unremarkable.</p>${leaderboard()}<div class="row"><button id="again">Play again →</button><button id="new" class="secondary">Change players</button></div></div>`;document.getElementById('again').onclick=()=>{players.forEach(p=>p.score=0);deck=categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]}));round=0;beginRound()};document.getElementById('new').onclick=setup;confetti();focusHeading()}
 
-// Original eight-bar composition, synthesised locally. No audio downloads.
+// Original eight-bar pocket-funk loop: syncopated bass, soft keys, hook and light drums.
 let musicEnabled=false,musicTimer=null,musicBus=null,musicStep=0,nextMusicTime=0;
-const melody=[76,null,79,81,null,79,76,74,72,null,76,79,null,76,74,null,69,null,72,76,null,79,76,72,74,null,76,74,null,71,67,null,76,null,79,84,null,81,79,76,72,null,76,79,null,76,74,72,69,null,72,76,null,74,72,69,71,null,74,79,null,74,71,null];
-const chords=[[48,60,64,67],[43,59,62,67],[45,60,64,69],[41,57,60,65]];
-function musicVoice(midi,time,duration,volume,kind='sine'){const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=kind;o.frequency.value=440*Math.pow(2,(midi-69)/12);o.connect(g);g.connect(musicBus);g.gain.setValueAtTime(0,time);g.gain.linearRampToValueAtTime(volume,time+.015);g.gain.exponentialRampToValueAtTime(.0001,time+duration);o.start(time);o.stop(time+duration+.03)}
-function scheduleMusic(){if(!musicEnabled||document.hidden||audioCtx.state!=='running')return;const eighth=60/104/2;let guard=0;while(nextMusicTime<audioCtx.currentTime+.18&&guard++<16){const step=musicStep%64,chord=chords[Math.floor(step/16)],note=melody[step];if(note!==null)musicVoice(note,nextMusicTime,.28,.16,'sine');if(step%8===0){musicVoice(chord[0],nextMusicTime,.48,.16,'triangle');chord.slice(1).forEach(n=>musicVoice(n,nextMusicTime,.75,.025))}if(step%8===4)musicVoice(chord[0]+12,nextMusicTime,.24,.075,'triangle');if(step%2===1)musicVoice(91,nextMusicTime,.035,.018,'triangle');musicStep++;nextMusicTime+=eighth}}
+const noiseCache=new WeakMap();
+const grooveRoots=[33,33,29,29,36,36,31,31];
+const grooveChords=[[60,64,67,71],[60,64,67,71],[57,60,64,67],[57,60,64,67],[59,62,64,67],[59,62,64,67],[59,62,65,69],[59,62,65,69]];
+const bassHook=[0,null,0,12,null,null,7,null,0,null,12,10,null,7,null,12];
+const leadHook=[76,null,null,79,null,null,81,null,null,79,null,76,null,null,74,null,72,null,null,76,null,null,79,null,null,76,null,74,72,null,null,null];
+function musicVoice(midi,time,duration,volume,kind='sine'){
+  const o=audioCtx.createOscillator(),gain=audioCtx.createGain();o.type=kind;o.frequency.value=440*Math.pow(2,(midi-69)/12);o.connect(gain);gain.connect(musicBus);
+  gain.gain.setValueAtTime(.0001,time);gain.gain.linearRampToValueAtTime(volume,time+.006);gain.gain.exponentialRampToValueAtTime(.0001,time+duration);o.start(time);o.stop(time+duration+.02);
+}
+function bassVoice(midi,time){
+  const o=audioCtx.createOscillator(),sub=audioCtx.createOscillator(),filter=audioCtx.createBiquadFilter(),gain=audioCtx.createGain();
+  o.type='sawtooth';sub.type='sine';o.frequency.value=sub.frequency.value=440*Math.pow(2,(midi-69)/12);filter.type='lowpass';filter.Q.value=.8;
+  filter.frequency.setValueAtTime(750,time);filter.frequency.exponentialRampToValueAtTime(160,time+.2);o.connect(filter);sub.connect(filter);filter.connect(gain);gain.connect(musicBus);
+  gain.gain.setValueAtTime(.0001,time);gain.gain.linearRampToValueAtTime(.19,time+.009);gain.gain.exponentialRampToValueAtTime(.0001,time+.21);o.start(time);sub.start(time);o.stop(time+.24);sub.stop(time+.24);
+}
+function drumNoise(time,duration,volume,cutoff){
+  let noise=noiseCache.get(audioCtx);if(!noise){noise=audioCtx.createBuffer(1,Math.ceil(audioCtx.sampleRate*.3),audioCtx.sampleRate);const samples=noise.getChannelData(0);for(let i=0;i<samples.length;i++)samples[i]=Math.random()*2-1;noiseCache.set(audioCtx,noise)}
+  const source=audioCtx.createBufferSource(),filter=audioCtx.createBiquadFilter(),gain=audioCtx.createGain();source.buffer=noise;filter.type='highpass';filter.frequency.value=cutoff;source.connect(filter);filter.connect(gain);gain.connect(musicBus);gain.gain.setValueAtTime(volume,time);gain.gain.exponentialRampToValueAtTime(.0001,time+duration);source.start(time);source.stop(time+duration+.01);
+}
+function kick(time){const o=audioCtx.createOscillator(),gain=audioCtx.createGain();o.frequency.setValueAtTime(135,time);o.frequency.exponentialRampToValueAtTime(43,time+.12);o.connect(gain);gain.connect(musicBus);gain.gain.setValueAtTime(.26,time);gain.gain.exponentialRampToValueAtTime(.0001,time+.19);o.start(time);o.stop(time+.21)}
+function grooveTick(step,time){
+  const s=step%128,bar=Math.floor(s/16),beat=s%16,root=grooveRoots[bar],offset=bassHook[beat];
+  if(offset!==null)bassVoice(root+offset,time);
+  if(beat===0||beat===8||beat===14&&bar%2===1)kick(time);
+  if(beat===4||beat===12){drumNoise(time,.11,.09,1400);musicVoice(50,time,.08,.055,'triangle')}
+  if(beat%2===0)drumNoise(time,.035,beat%4===0?.035:.052,6500);
+  if(beat===7||beat===15)drumNoise(time,.024,.019,7500);
+  if(beat===2||beat===10)grooveChords[bar].forEach(n=>{musicVoice(n,time,.23,.035,'triangle');musicVoice(n+12,time,.18,.012)});
+  let note=leadHook[s%32];if(bar>=4&&s%32===14)note=79;if(note!==null){musicVoice(note,time,.19,.10,'sine');musicVoice(note+12,time+.012,.12,.012,'triangle')}
+}
+function scheduleMusic(){if(!musicEnabled||document.hidden||audioCtx.state!=='running')return;const sixteenth=60/110/4;if(nextMusicTime<audioCtx.currentTime-.2)nextMusicTime=audioCtx.currentTime+.04;let guard=0;while(nextMusicTime<audioCtx.currentTime+.18&&guard++<16){grooveTick(musicStep,nextMusicTime);nextMusicTime+=sixteenth*(musicStep%2===0?1.07:.93);musicStep++}}
 function pauseMusic(){if(musicTimer)clearInterval(musicTimer);musicTimer=null;if(musicBus){try{musicBus.disconnect()}catch{}musicBus=null}}
-async function startMusic(){try{audioCtx ||=new (window.AudioContext||window.webkitAudioContext)();await audioCtx.resume();if(!musicEnabled||document.hidden)return;pauseMusic();musicBus=audioCtx.createGain();musicBus.gain.value=.15;musicBus.connect(audioCtx.destination);nextMusicTime=audioCtx.currentTime+.06;musicTimer=setInterval(scheduleMusic,50);scheduleMusic()}catch{musicEnabled=false;updateMusicButton()}}
+async function startMusic(){try{audioCtx ||=new (window.AudioContext||window.webkitAudioContext)();await audioCtx.resume();if(!musicEnabled||document.hidden)return;pauseMusic();musicBus=audioCtx.createGain();musicBus.gain.value=.24;musicBus.connect(audioCtx.destination);nextMusicTime=audioCtx.currentTime+.06;musicTimer=setInterval(scheduleMusic,50);scheduleMusic()}catch{musicEnabled=false;updateMusicButton()}}
 function updateMusicButton(){const b=document.getElementById('music');b.textContent='♫ Music: '+(musicEnabled?'on':'off');b.setAttribute('aria-pressed',String(musicEnabled))}
 document.getElementById('music').onclick=()=>{musicEnabled=!musicEnabled;updateMusicButton();if(musicEnabled)startMusic();else pauseMusic()};
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseMusic();else if(musicEnabled)startMusic()});
