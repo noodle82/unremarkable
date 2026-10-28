@@ -5,36 +5,286 @@
 <meta name="theme-color" content="#171b33"><title>UNREMARKABLE! — Average wins</title>
 <style>
 :root{color-scheme:dark;--bg:#111427;--card:#1c2140;--ink:#f8f7f2;--muted:#b8bfd9;--lime:#d4ff63;--red:#ff7e94}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#2d315a,var(--bg) 70%);color:var(--ink);font:17px/1.5 system-ui,sans-serif;min-height:100vh}main{max-width:900px;margin:auto;padding:24px 20px 50px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:35px}.brand{font-weight:950;letter-spacing:-1px;font-size:clamp(20px,4vw,30px)}.brand span{color:var(--lime)}h1{font-size:clamp(38px,7vw,66px);line-height:1.05;letter-spacing:-2px;margin:12px 0 24px}h2{font-size:clamp(24px,4vw,35px);line-height:1.2;margin:12px 0 20px}p{margin:12px 0}.muted,small{color:var(--muted)}.eyebrow{color:var(--lime);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.card{background:var(--card);border:1px solid #353c65;border-radius:24px;padding:clamp(20px,4vw,36px);margin:20px 0;box-shadow:0 16px 60px #0002}button,input,textarea{font:inherit}button{border:0;border-radius:12px;padding:13px 20px;cursor:pointer;font-weight:750;background:var(--lime);color:#151a29;min-height:48px}button.secondary{background:#30385b;color:var(--ink)}button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:4px}input,textarea{width:100%;background:#10152d;border:1px solid #535d86;border-radius:12px;padding:14px;color:var(--ink);margin:8px 0 14px}textarea{resize:vertical;min-height:160px}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}.chip{border:1px solid #515b81;border-radius:99px;padding:6px 12px;font-size:13px}.error{color:#ffb3be;min-height:26px}.progress{height:5px;background:#343b60;border-radius:5px;margin:16px 0 24px;overflow:hidden}.progress div{height:100%;background:var(--lime)}details{margin:22px 0}summary{cursor:pointer;font-weight:700}li{margin:10px 0}.center{text-align:center}.pill{background:#30385b;border-radius:12px;padding:12px 18px;display:inline-block}.line{position:relative;margin:45px 18px 12px;height:300px;border-top:3px solid #687197}.endpoint{position:absolute;top:-30px;color:var(--muted);font-size:12px}.endpoint.right{right:0}.marker{position:absolute;left:50%;top:var(--lane);width:150px;max-width:44vw;transform:translateX(-50%);transition:left 1.4s cubic-bezier(.2,.8,.2,1),opacity .7s;opacity:0;text-align:center;font-size:13px}.marker:before{content:'';position:absolute;width:2px;background:#626c96;bottom:100%;height:var(--stem);left:50%}.marker b{display:block;position:relative;z-index:1;border:1px solid #64709d;background:#293154;border-radius:12px;padding:8px;overflow-wrap:anywhere}.marker.win b{background:#d4ff63;color:#151a29;border-color:#d4ff63;box-shadow:0 0 22px #d4ff6344}.marker.out b{background:#6f2944;border-color:var(--red)}.median{position:absolute;top:-14px;bottom:0;border-left:2px dashed var(--lime);opacity:0;transition:opacity .6s}.median span{position:absolute;top:-36px;left:0;transform:translateX(-50%);white-space:nowrap;font-size:12px;color:var(--lime)}table{width:100%;border-collapse:collapse;margin:14px 0}td,th{padding:12px 8px;text-align:left;border-bottom:1px solid #394165;overflow-wrap:anywhere}td:last-child,th:last-child{text-align:right}.positive{color:var(--lime)}.negative{color:#ff9bb0}.party{position:fixed;top:-20px;width:9px;height:15px;pointer-events:none;animation:fall 2.5s ease-in forwards;z-index:5}@keyframes fall{to{transform:translateY(105vh) rotate(650deg);opacity:0}}footer{font-size:12px;color:var(--muted);text-align:center;margin-top:28px}@media(max-width:500px){main{padding:18px 14px 35px}.card{border-radius:18px}.line{margin-left:28px;margin-right:28px}.marker{font-size:11px;width:110px}td,th{padding:10px 4px;font-size:14px}}@media(prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition:none!important}}
+
+/* Reveal theatre and player lobby */
+.header-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.header-controls button{font-size:12px;padding:9px 12px;min-height:40px}.player-entry{display:flex;gap:10px;align-items:center}.player-entry input{margin:0;min-width:0}.player-entry button{white-space:nowrap}.roster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:20px 0}.player-token{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:#11172e;animation:arrive .3s ease-out;min-width:0}.avatar{width:34px;height:34px;display:grid;place-items:center;background:#44406b;color:#e8e0ff;border-radius:50%;font-size:13px;font-weight:800;flex-shrink:0}.player-token span:nth-child(2){flex:1;overflow-wrap:anywhere}.remove-player{background:transparent;color:#b8bfd9;padding:0;min-height:36px;width:30px;font-size:22px}.start-game{width:100%;margin-top:8px}.lobby-count{font-size:13px;color:var(--muted)}.reveal-card{overflow:hidden;position:relative}.reveal-card:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,#d4ff6313,transparent 65%);pointer-events:none}.reveal-status{min-height:55px;font-size:clamp(17px,3vw,22px);font-weight:700;color:var(--lime);position:relative}.phase-label{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:24px}.number-stage{position:relative;padding:24px 0 12px}.axis{height:50px;position:relative;margin:12px 24px 8px}.axis-line{position:absolute;top:25px;left:0;right:0;height:3px;border-radius:3px;background:linear-gradient(90deg,#ff7e94,#a6b0de 35%,#d4ff63 50%,#a6b0de 65%,#ff7e94);transform-origin:left;animation:drawline .8s ease both}.axis-line:after{content:'';position:absolute;inset:-5px 0;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),#818bb0 calc(10% - 1px),#818bb0 10%);opacity:.5}.axis-end{position:absolute;left:0;top:0;font-size:11px;color:var(--muted)}.axis-end.high{left:auto;right:0}.axis-dot{position:absolute;top:19px;left:50%;width:15px;height:15px;border-radius:50%;background:#b2b9df;border:3px solid #171c35;opacity:0;transform:translateX(-50%);transition:left 1.1s cubic-bezier(.2,.8,.2,1),opacity .4s,background .5s,box-shadow .5s}.axis-dot.visible{opacity:1}.axis-dot.win{background:var(--lime);box-shadow:0 0 0 6px #d4ff6322,0 0 24px #d4ff6388;z-index:2}.axis-dot.out{background:var(--red);box-shadow:0 0 14px #ff7e9466}.median-pin{position:absolute;top:-14px;height:80px;left:50%;width:2px;background:var(--lime);opacity:0;transform:scaleY(0);transform-origin:top;transition:transform .7s,opacity .5s;z-index:3;pointer-events:none}.median-pin.visible{opacity:1;transform:scaleY(1)}.median-pin:before{content:'▼';position:absolute;top:-12px;left:50%;transform:translateX(-50%);color:var(--lime);font-size:18px}.median-readout{text-align:center;color:var(--lime);min-height:48px;opacity:0;transition:opacity .5s;font-size:14px}.median-readout.visible{opacity:1}.median-readout strong{font-size:25px;font-variant-numeric:tabular-nums;margin-left:6px}.reveal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 24px}.guess-tile{position:relative;border:1px solid #4b557f;border-radius:16px;min-height:132px;padding:16px 10px;text-align:center;background:#242c4d;transform:translateY(20px) scale(.94);opacity:.3;transition:transform .7s cubic-bezier(.2,1.5,.5,1),opacity .5s,background .5s,box-shadow .5s,border-color .5s;overflow:hidden}.guess-tile.revealed{opacity:1;transform:translateY(0) scale(1)}.guess-tile .tile-name{font-size:13px;overflow-wrap:anywhere;color:#d4d9ec;position:relative}.guess-tile .tile-value{font-size:clamp(20px,3.2vw,32px);font-weight:850;letter-spacing:-1px;min-height:48px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;position:relative}.tile-badge{font-size:11px;font-weight:800;letter-spacing:.4px;min-height:20px;position:relative}.guess-tile.win{background:#31452c;border-color:var(--lime);box-shadow:0 0 28px #d4ff6322;animation:winner-pop .8s ease}.guess-tile.win .tile-value,.guess-tile.win .tile-badge{color:var(--lime)}.guess-tile.bonus{background:linear-gradient(135deg,#465329,#233e3c);border-color:#eaff93}.guess-tile.bonus:before{content:'';position:absolute;inset:-100%;background:linear-gradient(100deg,transparent 40%,#ffffff25 50%,transparent 60%);animation:shine 1.8s ease-in-out 2}.guess-tile.out{border-color:var(--red);background:#44243c;animation:knockout .65s ease}.guess-tile.out .tile-value,.guess-tile.out .tile-badge{color:#ff9db0}.reveal-meta{display:flex;justify-content:space-between;align-items:center;gap:12px}.skip-reveal{font-size:12px;min-height:36px;padding:8px 12px;background:#30385b;color:#d9dff5}.score-note{padding:12px 16px;border-left:3px solid var(--lime);background:#d4ff6309;border-radius:0 8px 8px 0}.music-note{font-size:12px;color:var(--muted);margin:18px 0 0}.countdown{position:absolute;inset:0;display:grid;place-items:center;background:#13182bed;z-index:4;border-radius:20px;pointer-events:none}.countdown span{font-size:110px;font-weight:950;color:var(--lime);animation:countbeat .75s ease both}.reveal-grid .bonus-tag{color:#d4ff63}.fade-in{animation:arrive .55s ease both}@keyframes arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes drawline{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes winner-pop{0%{transform:scale(.95)}45%{transform:scale(1.07)}100%{transform:scale(1)}}@keyframes knockout{20%,60%{transform:translateX(-5px) rotate(-1deg)}40%,80%{transform:translateX(5px) rotate(1deg)}100%{transform:translateX(0)}}@keyframes shine{from{transform:translateX(-60%) rotate(12deg)}to{transform:translateX(60%) rotate(12deg)}}@keyframes countbeat{from{opacity:0;transform:scale(1.4)}30%{opacity:1}to{opacity:0;transform:scale(.8)}}@media(max-width:550px){header{align-items:flex-start}.brand{font-size:19px;padding-top:8px}.header-controls{max-width:170px;gap:6px}.header-controls button{font-size:11px;padding:8px}.roster{grid-template-columns:1fr}.reveal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.guess-tile{padding:12px 8px;min-height:120px}.guess-tile .tile-value{font-size:25px}.axis{margin-left:10px;margin-right:10px}.reveal-meta{align-items:flex-start}.reveal-card{padding:20px 16px}}
 </style></head>
-<body><main><header><div class="brand">UNREMARKABLE<span>!</span></div><button id="sound" class="secondary" aria-pressed="false">Sound: off</button></header><section id="app" aria-label="Game"></section><footer>One device. Secret guesses. Spectacularly average.</footer></main>
+<body><main><header><div class="brand">UNREMARKABLE<span>!</span></div><div class="header-controls"><button id="music" class="secondary" aria-pressed="false">♫ Music: off</button><button id="sound" class="secondary" aria-pressed="false">SFX: off</button></div></header><section id="app" aria-label="Game"></section><footer>One device. Secret guesses. Spectacularly average.</footer></main>
 <script>
 'use strict';
 const categories=[
-{name:'Everyday life',icon:'☕',questions:[['How many minutes is the ideal lunch break?','minutes'],['How many unread emails feels like too many?','emails'],['How many cups of tea or coffee make a good week?','cups'],['How many minutes should a perfect shower last?','minutes'],['How many alarms would you set for an early flight?','alarms'],['How many pairs of shoes is enough?','pairs'],['How many minutes early should you arrive at a party?','minutes'],['How many houseplants would make a home feel leafy?','plants'],['How many minutes is too long to wait for a bus?','minutes'],['How many hours makes an ideal night of sleep?','hours']]},
-{name:'Food & drink',icon:'🍕',questions:[['How many slices of pizza make the perfect dinner?','slices'],['How many chips would you steal from a friend’s plate?','chips'],['How many biscuits belong beside a cup of tea?','biscuits'],['How many pounds would you pay for an amazing sandwich?','£'],['How many scoops make the ideal ice cream?','scoops'],['How many different snacks should a movie night have?','snacks'],['How many minutes would you queue for great food?','minutes'],['How many toppings belong on a pizza?','toppings'],['How many pancakes make a great breakfast?','pancakes'],['How many people should share one large cake?','people']]},
-{name:'Entertainment',icon:'🎬',questions:[['How many minutes should the perfect film last?','minutes'],['How many episodes is a satisfying TV binge?','episodes'],['How many songs should a concert include?','songs'],['How many pounds is a fair cinema ticket price?','£'],['How many hours would you play a brilliant game in one sitting?','hours'],['How many books would you like to read in a year?','books'],['How many minutes of adverts is too many?','minutes'],['How many people makes a perfect board-game night?','people'],['How many films should a great series have?','films'],['How many minutes should a podcast episode last?','minutes']]},
-{name:'Travel & adventure',icon:'🧭',questions:[['How many days makes the perfect holiday?','days'],['How many minutes would you walk for a spectacular view?','minutes'],['How many countries would you like to visit in your lifetime?','countries'],['How many outfits would you pack for a week away?','outfits'],['How many hours is the longest enjoyable road trip?','hours'],['How many photos would you take on a weekend away?','photos'],['How many people makes an ideal travel group?','people'],['How many days could you happily camp?','days'],['How many minutes early would you arrive for a train?','minutes'],['How many hours should a perfect beach day last?','hours']]},
-{name:'Wild hypotheticals',icon:'🚀',questions:[['How many tiny dragons would you adopt?','dragons'],['How many years would you travel into the future?','years'],['How many robots should help run your home?','robots'],['How many days would you spend on the Moon?','days'],['How many extra hours would you add to each day?','hours'],['How many secret rooms should your dream house have?','rooms'],['How many superpowers would be enough?','superpowers'],['How many dinosaurs should a very small dinosaur park have?','dinosaurs'],['How many weeks would you live in an underwater city?','weeks'],['How many wishes should a generous genie grant?','wishes']]}
+  {
+    "name": "Heights & Sizes",
+    "icon": "📏",
+    "questions": [
+      [
+        "How tall is the Eiffel Tower, including its antenna installed in 2022?",
+        "metres"
+      ],
+      [
+        "How tall is the Burj Khalifa in Dubai?",
+        "metres"
+      ],
+      [
+        "How tall is the Statue of Liberty, from the ground to the torch?",
+        "metres"
+      ],
+      [
+        "How tall is London’s Elizabeth Tower, which houses Big Ben?",
+        "metres"
+      ],
+      [
+        "How high above sea level is Mount Everest, approximately?",
+        "metres"
+      ],
+      [
+        "What is the diameter of Earth at the equator, approximately?",
+        "km"
+      ],
+      [
+        "How tall was the Great Pyramid of Giza when it was first built, approximately?",
+        "metres"
+      ],
+      [
+        "What is the diameter of a regulation basketball hoop?",
+        "inches"
+      ],
+      [
+        "How long is a standard Olympic-size swimming pool?",
+        "metres"
+      ],
+      [
+        "How tall is a standard adult football goal, from the ground to the underside of the crossbar?",
+        "metres"
+      ]
+    ]
+  },
+  {
+    "name": "Distances",
+    "icon": "🧭",
+    "questions": [
+      [
+        "What is the average distance from Earth to the Moon, approximately?",
+        "km"
+      ],
+      [
+        "What is the official length of a marathon?",
+        "km"
+      ],
+      [
+        "How long is the Channel Tunnel, approximately?",
+        "km"
+      ],
+      [
+        "What is the average distance from Earth to the Sun, approximately?",
+        "million km"
+      ],
+      [
+        "How far is one complete lap of a standard outdoor athletics track in lane one?",
+        "metres"
+      ],
+      [
+        "What is the straight-line distance from London to New York, approximately?",
+        "km"
+      ],
+      [
+        "How long is the River Nile, approximately?",
+        "km"
+      ],
+      [
+        "How far is a half marathon?",
+        "km"
+      ],
+      [
+        "How long is the main span of the Golden Gate Bridge, approximately?",
+        "metres"
+      ],
+      [
+        "How far does light travel in one second in a vacuum, approximately?",
+        "km"
+      ]
+    ]
+  },
+  {
+    "name": "Everyday Numbers",
+    "icon": "🔢",
+    "questions": [
+      [
+        "How many squares are on a standard chessboard?",
+        "squares"
+      ],
+      [
+        "How many keys are on a standard full-size piano?",
+        "keys"
+      ],
+      [
+        "How many cards are in a standard deck, excluding jokers?",
+        "cards"
+      ],
+      [
+        "How many minutes are there in one week?",
+        "minutes"
+      ],
+      [
+        "How many seconds are there in 24 hours?",
+        "seconds"
+      ],
+      [
+        "How many millilitres are in an imperial pint, approximately?",
+        "ml"
+      ],
+      [
+        "How many dimples are on a standard six-sided die in total?",
+        "dimples"
+      ],
+      [
+        "How many tiles does a standard English-language Scrabble set contain?",
+        "tiles"
+      ],
+      [
+        "How many bones are in a typical adult human skeleton?",
+        "bones"
+      ],
+      [
+        "How many individual small squares cover all six faces of a 3×3 Rubik’s Cube?",
+        "squares"
+      ]
+    ]
+  },
+  {
+    "name": "History & Records",
+    "icon": "🏛️",
+    "questions": [
+      [
+        "In what year did humans first land on the Moon?",
+        "year"
+      ],
+      [
+        "In what year did the Titanic sink?",
+        "year"
+      ],
+      [
+        "In what year were the first modern Olympic Games held in Athens?",
+        "year"
+      ],
+      [
+        "In what year did the Berlin Wall fall?",
+        "year"
+      ],
+      [
+        "In what year was Magna Carta first issued?",
+        "year"
+      ],
+      [
+        "In what year did the Great Fire of London begin?",
+        "year"
+      ],
+      [
+        "How many seconds did Usain Bolt take in his 100-metre world-record run in Berlin in 2009?",
+        "seconds"
+      ],
+      [
+        "How many metres did Mike Powell jump when he set the long-jump world record in 1991?",
+        "metres"
+      ],
+      [
+        "In what year did the Wright brothers make their first powered flights at Kitty Hawk?",
+        "year"
+      ],
+      [
+        "In what year was Sputnik 1 launched?",
+        "year"
+      ]
+    ]
+  },
+  {
+    "name": "Wild Cards",
+    "icon": "🃏",
+    "questions": [
+      [
+        "How many tiny dragons would you adopt?",
+        "dragons"
+      ],
+      [
+        "How many years would you travel into the future?",
+        "years"
+      ],
+      [
+        "How many robots should help run your home?",
+        "robots"
+      ],
+      [
+        "How many days would you spend on the Moon?",
+        "days"
+      ],
+      [
+        "How many extra hours would you add to each day?",
+        "hours"
+      ],
+      [
+        "How many secret rooms should your dream house have?",
+        "rooms"
+      ],
+      [
+        "How many superpowers would be enough?",
+        "superpowers"
+      ],
+      [
+        "How many dinosaurs should a very small dinosaur park have?",
+        "dinosaurs"
+      ],
+      [
+        "How many weeks would you live in an underwater city?",
+        "weeks"
+      ],
+      [
+        "How many wishes should a generous genie grant?",
+        "wishes"
+      ]
+    ]
+  }
 ];
 const app=document.getElementById('app');let players=[],round=0,turn=0,answers=[],deck=[],deltas=[],stage='setup',timers=[],sound=false,audioCtx;
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=n=>new Intl.NumberFormat('en-GB',{maximumFractionDigits:2}).format(n);
-function later(fn,ms){timers.push(setTimeout(fn,ms))}function clearTimers(){timers.forEach(clearTimeout);timers=[]}
+const fmt=n=>new Intl.NumberFormat('en-GB',{maximumFractionDigits:3}).format(n);
+function later(fn,ms){timers.push(setTimeout(fn,ms))}function clearTimers(){timers.forEach(clearTimeout);timers=[];document.querySelectorAll('.party').forEach(el=>el.remove())}
 function beep(win=false){if(!sound)return;try{audioCtx ||=new (window.AudioContext||window.webkitAudioContext)();audioCtx.resume();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.setValueAtTime(win?660:280,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(win?990:420,audioCtx.currentTime+.18);g.gain.setValueAtTime(.05,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.3);o.start();o.stop(audioCtx.currentTime+.3)}catch{}}
-document.getElementById('sound').onclick=()=>{sound=!sound;document.getElementById('sound').textContent='Sound: '+(sound?'on':'off');document.getElementById('sound').setAttribute('aria-pressed',String(sound));beep()};
+document.getElementById('sound').onclick=()=>{sound=!sound;document.getElementById('sound').textContent='SFX: '+(sound?'on':'off');document.getElementById('sound').setAttribute('aria-pressed',String(sound));beep()};
 function focusHeading(){const h=app.querySelector('h1,h2');if(h){h.tabIndex=-1;h.focus()}}
-function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Enter 3–12 different player names. Play five rounds, one question from each category.</li><li>Pass the device. Each player secretly enters a number. There are no factual right answers: predict the middle of your group.</li><li>The median is the middle guess; with an even number of players it is the average of the two central guesses.</li><li>The guess or guesses closest to the median earn <strong>+1 each</strong>. All tied guesses share the same result. The lowest and highest guesses lose <strong>−1 each</strong>. Everyone else scores 0.</li><li>A middle winner always gets +1, even if their guess also ties an extreme. If everyone answers the same, everyone earns +1.</li><li>Highest total after five rounds wins. A tied total means shared champions.</li></ol></details>`}
-function setup(){clearTimers();stage='setup';let names='';try{names=JSON.parse(localStorage.getItem('unremarkable-names')||'[]').join('\n')}catch{}app.innerHTML=`<div class="eyebrow">The party game where average wins</div><h1>Greatness is<br>overrated.</h1><p class="muted">Aim for the middle. Avoid the extremes. Make being ordinary an extraordinary achievement.</p><div class="chips">${categories.map(c=>`<span class="chip">${c.icon} ${c.name}</span>`).join('')}</div><div class="card"><h2>Who’s playing?</h2><form id="setup"><label for="names">Player names <span class="muted">· one per line · 3–12 players</span></label><textarea id="names" maxlength="400" placeholder="Alex&#10;Sam&#10;Taylor" autocomplete="off">${escapeHTML(names)}</textarea><div id="error" class="error" role="alert"></div><button>Let’s be average →</button></form>${rules()}</div>`;document.getElementById('setup').onsubmit=e=>{e.preventDefault();const list=document.getElementById('names').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);let error='';if(list.length<3||list.length>12)error='Please enter between 3 and 12 players.';else if(list.some(s=>s.length>24))error='Keep each name to 24 characters or fewer.';else if(new Set(list.map(s=>s.toLowerCase())).size!==list.length)error='Use a different name for each player.';if(error){document.getElementById('error').textContent=error;return}players=list.map(name=>({name,score:0}));try{localStorage.setItem('unremarkable-names',JSON.stringify(list))}catch{}deck=categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]}));round=0;beginRound()}}
+function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play five rounds in order: Heights & Sizes, Distances, Everyday Numbers, History & Records, then Wild Cards.</li><li>The first four rounds ask factual numerical questions. The fifth is hypothetical. Secretly enter your estimate, then pass the device. You score against the group’s guesses, rather than the factual answer.</li><li>The median is the middle guess. With an even number of players, it is the average of the two central guesses.</li><li>Closest to the median: <strong>+1 each</strong>. Hit the median exactly: <strong>+1 bonus = +2 total</strong>. Tied identical guesses share the same award.</li><li>Lowest and highest guesses: <strong>−1 each</strong>. Others: 0. Middle winners take priority over extremes; if all guesses match, everyone gets +2.</li><li>Highest total after five rounds wins. Tied totals mean shared champions.</li></ol></details>`}
+let lobby=[];
+function saveLobby(){try{localStorage.setItem('unremarkable-names',JSON.stringify(lobby))}catch{}}
+function renderRoster(){const list=document.getElementById('roster');list.innerHTML=lobby.map((name,i)=>`<div class="player-token"><span class="avatar">${i+1}</span><span>${escapeHTML(name)}</span><button class="remove-player" type="button" data-remove="${i}" aria-label="Remove ${escapeHTML(name)}">×</button></div>`).join('');document.getElementById('player-count').textContent=lobby.length+' / 12 players'+(lobby.length<3?' · add '+(3-lobby.length)+' more to play':' · a beautifully ordinary crowd');document.getElementById('start').disabled=lobby.length<3;list.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{lobby.splice(Number(b.dataset.remove),1);saveLobby();renderRoster()})}
+function setup(){clearTimers();stage='setup';lobby=[];try{const saved=JSON.parse(localStorage.getItem('unremarkable-names')||'[]');if(Array.isArray(saved))lobby=saved.filter(n=>typeof n==='string'&&n.trim()&&n.length<=24).slice(0,12)}catch{}app.innerHTML=`<div class="eyebrow">The party game where average wins</div><h1>Greatness is<br>overrated.</h1><p class="muted">Four rounds of facts. One round of what-ifs. Aim for the middle — and hit the exact median for a bonus.</p><div class="chips">${categories.map((c,i)=>`<span class="chip">${i+1}. ${c.icon} ${c.name}</span>`).join('')}</div><div class="card"><h2>Who’s playing?</h2><form id="add-player"><label for="player-name">Add a player</label><div class="player-entry"><input id="player-name" maxlength="24" placeholder="Player name" autocomplete="off"><button type="submit">Add +</button></div><div id="error" class="error" role="alert"></div></form><div class="lobby-count" id="player-count" role="status"></div><div class="roster" id="roster"></div><button id="start" class="start-game">Let’s be average →</button><p class="music-note">♫ Switch on Music for a little groove. Talent remains optional.</p>${rules()}</div>`;renderRoster();document.getElementById('add-player').onsubmit=e=>{e.preventDefault();const input=document.getElementById('player-name'),name=input.value.trim();let error='';if(!name)error='A name would help. Even a spectacularly ordinary one.';else if(lobby.length>=12)error='Twelve is a crowd. Remove someone before adding another.';else if(lobby.some(n=>n.toLowerCase()===name.toLowerCase()))error='That name is already in. Try a nickname.';if(error){document.getElementById('error').textContent=error;return}lobby.push(name);saveLobby();renderRoster();input.value='';document.getElementById('error').textContent='';input.focus();beep()};document.getElementById('start').onclick=()=>{if(lobby.length<3)return;players=lobby.map(name=>({name,score:0}));deck=categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]}));round=0;beginRound()}}
+
 function roundTop(){return `<div class="eyebrow">Round ${round+1} / 5 · ${deck[round].icon} ${deck[round].name}</div><div class="progress"><div style="width:${round/5*100}%"></div></div>`}
 function beginRound(){answers=[];turn=0;handoff()}
 function handoff(){stage='handoff';app.innerHTML=roundTop()+`<div class="card center"><p class="muted">Player ${turn+1} of ${players.length}</p><h2>Pass to ${escapeHTML(players[turn].name)}</h2><p class="muted">Keep the next screen to yourself.</p><button id="ready">I’m ${escapeHTML(players[turn].name)} — ready</button></div>`;document.getElementById('ready').onclick=guess;focusHeading()}
 function guess(){stage='guess';app.innerHTML=roundTop()+`<div class="card"><p class="muted">${escapeHTML(players[turn].name)}, find the middle.</p><h2>${escapeHTML(deck[round].q[0])}</h2><form id="guess"><label for="answer">Your secret number · ${deck[round].q[1]}</label><input id="answer" type="number" inputmode="decimal" min="0" max="1000000000" step="0.01" required autocomplete="off" placeholder="Enter your guess"><small>0 to 1,000,000,000 · up to 2 decimal places</small><div class="error" id="error" role="alert"></div><button>Lock in & hide →</button></form></div>`;document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=document.getElementById('answer').value;const n=Number(raw);if(!raw.trim()||!Number.isFinite(n)||n<0||n>1e9||Math.abs(n*100-Math.round(n*100))>.0001){document.getElementById('error').textContent='Enter a number in range, with up to 2 decimal places.';return}answers.push(n);beep();turn++;if(turn<players.length)handoff();else revealReady()};focusHeading()}
 function revealReady(){stage='reveal-ready';app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">Reveal the number line →</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
-function scoreGuesses(values){const sorted=[...values].sort((a,b)=>a-b),n=sorted.length,median=n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;const distances=values.map(v=>Math.abs(v-median)),best=Math.min(...distances),epsilon=1e-7;return {median,deltas:values.map((v,i)=>Math.abs(distances[i]-best)<epsilon?1:(v===sorted[0]||v===sorted[n-1]?-1:0))}}
-function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(let i=0;i<35;i++){const el=document.createElement('i');el.className='party';el.style.left=Math.random()*100+'vw';el.style.background=['#d4ff63','#ff7e94','#a69aff'][i%3];el.style.animationDelay=Math.random()*.5+'s';document.body.append(el);later(()=>el.remove(),3200)}}
-function reveal(){if(stage!=='reveal-ready')return;stage='revealing';const result=scoreGuesses(answers);deltas=result.deltas;players.forEach((p,i)=>p.score+=deltas[i]);const min=Math.min(...answers),max=Math.max(...answers),spread=max-min;const position=v=>spread?8+(v-min)/spread*84:50;const groups=[...new Set(answers)].sort((a,b)=>a-b).map(v=>({v,ids:answers.map((x,i)=>x===v?i:-1).filter(i=>i>=0)}));let lineHeight=20;groups.forEach(g=>{g.lane=lineHeight;lineHeight+=Math.max(76,36+g.ids.reduce((sum,id)=>sum+Math.ceil(players[id].name.length/12),0)*22)});app.innerHTML=roundTop()+`<div class="card"><h2>${escapeHTML(deck[round].q[0])}</h2><p id="commentary" role="status">The guesses are taking their places…</p><div class="line" style="height:${Math.max(220,lineHeight+30)}px"><span class="endpoint">${fmt(min)}</span><span class="endpoint right">${fmt(max)}</span><div class="median" style="left:${position(result.median)}%"><span>Median: ${fmt(result.median)}</span></div>${groups.map((g,i)=>`<div class="marker" id="marker-${i}" style="--lane:${g.lane}px;--stem:${g.lane+3}px"><b>${fmt(g.v)}<br>${g.ids.map(id=>escapeHTML(players[id].name)).join(' & ')}</b></div>`).join('')}</div><div id="results" hidden></div><button id="next" hidden>${round===4?'Final results →':'Next round →'}</button></div>`;focusHeading();groups.forEach((g,i)=>later(()=>{const el=document.getElementById('marker-'+i);el.style.left=position(g.v)+'%';el.style.opacity=1;beep()},100+i*400));later(()=>finishReveal(result,groups),groups.length*400+1600)}
-function finishReveal(result,groups){if(stage!=='revealing')return;stage='results';document.querySelector('.median').style.opacity=1;groups.forEach((g,i)=>document.getElementById('marker-'+i).classList.add(deltas[g.ids[0]]===1?'win':deltas[g.ids[0]]===-1?'out':'neutral'));const winners=players.filter((_,i)=>deltas[i]===1).map(p=>p.name).join(', ');document.getElementById('commentary').textContent=winners+' — perfectly unremarkable! +1 each.';const el=document.getElementById('results');el.hidden=false;el.innerHTML=`<p class="muted">Green: middle winners +1 · Red: extremes −1 · Others: 0</p>${leaderboard(true)}`;const next=document.getElementById('next');next.hidden=false;next.onclick=()=>{clearTimers();if(round===4)final();else{round++;beginRound()}};beep(true);confetti()}
+function scoreGuesses(values){const sorted=[...values].sort((a,b)=>a-b),n=sorted.length,median=n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;const cents=values.map(v=>Math.round(v*100)),sortedCents=[...cents].sort((a,b)=>a-b),middle2=n%2?2*sortedCents[(n-1)/2]:sortedCents[n/2-1]+sortedCents[n/2];const distances=cents.map(v=>Math.abs(v*2-middle2)),best=Math.min(...distances);return {median:middle2/200,deltas:values.map((v,i)=>distances[i]===0?2:distances[i]===best?1:(v===sorted[0]||v===sorted[n-1]?-1:0))}}
+function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.party').forEach(el=>el.remove());return;}for(let i=0;i<35;i++){const el=document.createElement('i');el.className='party';el.style.left=Math.random()*100+'vw';el.style.background=['#d4ff63','#ff7e94','#a69aff'][i%3];el.style.animationDelay=Math.random()*.5+'s';document.body.append(el);later(()=>el.remove(),3200)}}
+let revealRun=0;
+const quips={intro:['Confidence is high. Evidence is patchy.','Let’s see who has aggressively misunderstood the question.','Everyone’s a genius until the number line arrives.'],extremes:['A little too ambitious. A little too economical.','The extremes have left the group chat.','Too much. Too little. A masterclass in standing out.'],middle:['Perfectly unremarkable. Your parents must be moderately proud.','The middle has spoken. Quietly, of course.','Outstandingly average. Please accept this modest glory.'],bonus:['BANG AVERAGE! The median called. You answered.','An exact hit. Precision mediocrity deserves a bonus.','You are the statistical centre of attention. +2!']};
+function quip(type){return quips[type][Math.floor(Math.random()*quips[type].length)]}
+function countValue(node,value,run){if(matchMedia('(prefers-reduced-motion: reduce)').matches){node.textContent=fmt(value);return}const start=performance.now();function tick(now){if(run!==revealRun||stage!=='revealing')return;const t=Math.min(1,(now-start)/650);node.textContent=fmt(Math.round(value*(1-Math.pow(1-t,3))*100)/100);if(t<1)requestAnimationFrame(tick);else node.textContent=fmt(value)}requestAnimationFrame(tick)}
+function reveal(){if(stage!=='reveal-ready')return;stage='revealing';const run=++revealRun;const result=scoreGuesses(answers);deltas=result.deltas;players.forEach((p,i)=>p.score+=deltas[i]);const min=Math.min(...answers),max=Math.max(...answers),spread=max-min;const position=v=>spread?5+(v-min)/spread*90:50;const groups=[...new Set(answers)].sort((a,b)=>a-b).map(v=>({v,ids:answers.map((x,i)=>x===v?i:-1).filter(i=>i>=0)}));app.innerHTML=roundTop()+`<div class="card reveal-card"><div class="reveal-meta"><span class="eyebrow">The grand underachievement</span><button id="skip" class="skip-reveal">Show results</button></div><h2>${escapeHTML(deck[round].q[0])}</h2><div class="phase-label" id="phase">Act 1 · The estimates</div><p class="reveal-status" id="commentary" role="status">${quip('intro')}</p><div class="number-stage"><div class="axis"><div class="axis-line"></div><span class="axis-end">${fmt(min)}</span><span class="axis-end high">${fmt(max)}</span>${groups.map((g,i)=>`<i class="axis-dot" id="dot-${i}" aria-hidden="true"></i>`).join('')}<div class="median-pin" id="median-pin" style="left:${position(result.median)}%"></div></div><div class="median-readout" id="median-readout">Exact median <strong>${fmt(result.median)}</strong></div><div class="reveal-grid">${players.map((p,i)=>`<div class="guess-tile" id="tile-${i}"><div class="tile-name">${escapeHTML(p.name)}</div><div class="tile-value" id="value-${i}">?</div><div class="tile-badge" id="badge-${i}">LOCKED IN</div></div>`).join('')}</div><div class="countdown" id="countdown"><span>3</span></div></div><div id="results" hidden></div><button id="next" hidden>${round===4?'Final results →':'Next round →'}</button></div>`;focusHeading();document.getElementById('skip').onclick=()=>{clearTimers();finishReveal(result,groups)};const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const lead=reduced?0:2100;if(!reduced){[2,1].forEach((n,i)=>later(()=>{document.getElementById('countdown').innerHTML='<span>'+n+'</span>';beep()},(i+1)*700))}later(()=>document.getElementById('countdown')?.remove(),lead);players.forEach((p,i)=>later(()=>{if(stage!=='revealing')return;const tile=document.getElementById('tile-'+i);tile.classList.add('revealed');document.getElementById('badge-'+i).textContent='GUESS REVEALED';countValue(document.getElementById('value-'+i),answers[i],run);const gi=groups.findIndex(g=>g.v===answers[i]),dot=document.getElementById('dot-'+gi);dot.classList.add('visible');dot.style.left=position(answers[i])+'%';beep()},lead+i*(reduced?0:480)));const afterGuesses=lead+players.length*(reduced?0:480)+850;later(()=>{if(stage!=='revealing')return;document.getElementById('phase').textContent='Act 2 · The extremes';document.getElementById('commentary').textContent=deltas.some(d=>d<0)?quip('extremes'):'Nobody at the extremes? Suspiciously well coordinated.';players.forEach((p,i)=>{if(deltas[i]<0){document.getElementById('tile-'+i).classList.add('out');document.getElementById('badge-'+i).textContent='TOO FAR · −1'}});groups.forEach((g,i)=>{if(deltas[g.ids[0]]<0)document.getElementById('dot-'+i).classList.add('out')});beep()},afterGuesses);later(()=>finishReveal(result,groups),afterGuesses+(reduced?0:1800))}
+function finishReveal(result,groups){if(stage!=='revealing')return;stage='results';document.getElementById('countdown')?.remove();document.getElementById('skip').hidden=true;document.getElementById('phase').textContent='Act 3 · The glorious middle';document.getElementById('median-pin').classList.add('visible');document.getElementById('median-readout').classList.add('visible');groups.forEach((g,i)=>{const dot=document.getElementById('dot-'+i);dot.classList.add('visible',deltas[g.ids[0]]>0?'win':deltas[g.ids[0]]<0?'out':'neutral');const min=Math.min(...answers),spread=Math.max(...answers)-min;dot.style.left=(spread?5+(g.v-min)/spread*90:50)+'%'});players.forEach((p,i)=>{const tile=document.getElementById('tile-'+i);tile.classList.add('revealed',deltas[i]>0?'win':deltas[i]<0?'out':'neutral');if(deltas[i]===2)tile.classList.add('bonus');document.getElementById('value-'+i).textContent=fmt(answers[i]);document.getElementById('badge-'+i).textContent=deltas[i]===2?'EXACT HIT · +2':deltas[i]===1?'MIDDLE WINNER · +1':deltas[i]===-1?'TOO FAR · −1':'SAFELY ORDINARY · 0'});document.getElementById('commentary').textContent=quip(deltas.includes(2)?'bonus':'middle');const el=document.getElementById('results');el.hidden=false;el.className='fade-in';el.innerHTML=`<p class="score-note">${players.filter((_,i)=>deltas[i]>0).map(p=>escapeHTML(p.name)).join(', ')}${deltas.includes(2)?' hit the exact median. +1 for the middle, +1 bonus.':' take the middle. +1 each. No exact-hit bonus this round.'}</p>${leaderboard(true)}`;const next=document.getElementById('next');next.hidden=false;next.onclick=()=>{clearTimers();if(round===4)final();else{round++;beginRound()}};beep(true);confetti()}
+
 function leaderboard(showRound=false){return `<table><caption class="eyebrow">${showRound?'Live leaderboard':'Final standings'}</caption><thead><tr><th scope="col">Player</th>${showRound?'<th scope="col">Round</th>':''}<th scope="col">Total</th></tr></thead><tbody>${players.map((p,i)=>({...p,i})).sort((a,b)=>b.score-a.score||a.i-b.i).map(p=>`<tr><th scope="row">${escapeHTML(p.name)}</th>${showRound?`<td class="${deltas[p.i]>0?'positive':deltas[p.i]<0?'negative':''}">${deltas[p.i]>0?'+':''}${deltas[p.i]}</td>`:''}<td>${p.score}</td></tr>`).join('')}</tbody></table>`}
 function final(){stage='final';const best=Math.max(...players.map(p=>p.score)),winners=players.filter(p=>p.score===best);app.innerHTML=`<div class="eyebrow">Five rounds. Utterly ordinary.</div><div class="card center"><p>🏆</p><h1>${winners.length>1?'Shared champions!':'Average royalty.'}</h1><h2>${winners.map(p=>escapeHTML(p.name)).join(' & ')}</h2><p class="muted">${best} point${best===1?'':'s'}. An outstanding commitment to being unremarkable.</p>${leaderboard()}<div class="row"><button id="again">Play again →</button><button id="new" class="secondary">Change players</button></div></div>`;document.getElementById('again').onclick=()=>{players.forEach(p=>p.score=0);deck=categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]}));round=0;beginRound()};document.getElementById('new').onclick=setup;confetti();focusHeading()}
+
+// Original eight-bar composition, synthesised locally. No audio downloads.
+let musicEnabled=false,musicTimer=null,musicBus=null,musicStep=0,nextMusicTime=0;
+const melody=[76,null,79,81,null,79,76,74,72,null,76,79,null,76,74,null,69,null,72,76,null,79,76,72,74,null,76,74,null,71,67,null,76,null,79,84,null,81,79,76,72,null,76,79,null,76,74,72,69,null,72,76,null,74,72,69,71,null,74,79,null,74,71,null];
+const chords=[[48,60,64,67],[43,59,62,67],[45,60,64,69],[41,57,60,65]];
+function musicVoice(midi,time,duration,volume,kind='sine'){const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=kind;o.frequency.value=440*Math.pow(2,(midi-69)/12);o.connect(g);g.connect(musicBus);g.gain.setValueAtTime(0,time);g.gain.linearRampToValueAtTime(volume,time+.015);g.gain.exponentialRampToValueAtTime(.0001,time+duration);o.start(time);o.stop(time+duration+.03)}
+function scheduleMusic(){if(!musicEnabled||document.hidden||audioCtx.state!=='running')return;const eighth=60/104/2;let guard=0;while(nextMusicTime<audioCtx.currentTime+.18&&guard++<16){const step=musicStep%64,chord=chords[Math.floor(step/16)],note=melody[step];if(note!==null)musicVoice(note,nextMusicTime,.28,.16,'sine');if(step%8===0){musicVoice(chord[0],nextMusicTime,.48,.16,'triangle');chord.slice(1).forEach(n=>musicVoice(n,nextMusicTime,.75,.025))}if(step%8===4)musicVoice(chord[0]+12,nextMusicTime,.24,.075,'triangle');if(step%2===1)musicVoice(91,nextMusicTime,.035,.018,'triangle');musicStep++;nextMusicTime+=eighth}}
+function pauseMusic(){if(musicTimer)clearInterval(musicTimer);musicTimer=null;if(musicBus){try{musicBus.disconnect()}catch{}musicBus=null}}
+async function startMusic(){try{audioCtx ||=new (window.AudioContext||window.webkitAudioContext)();await audioCtx.resume();if(!musicEnabled||document.hidden)return;pauseMusic();musicBus=audioCtx.createGain();musicBus.gain.value=.15;musicBus.connect(audioCtx.destination);nextMusicTime=audioCtx.currentTime+.06;musicTimer=setInterval(scheduleMusic,50);scheduleMusic()}catch{musicEnabled=false;updateMusicButton()}}
+function updateMusicButton(){const b=document.getElementById('music');b.textContent='♫ Music: '+(musicEnabled?'on':'off');b.setAttribute('aria-pressed',String(musicEnabled))}
+document.getElementById('music').onclick=()=>{musicEnabled=!musicEnabled;updateMusicButton();if(musicEnabled)startMusic();else pauseMusic()};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseMusic();else if(musicEnabled)startMusic()});
+
 setup();
 </script></body></html>
