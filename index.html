@@ -554,7 +554,7 @@ function guess(){
   document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=input.value,n=Number(raw);if(!complete.test(raw)||!Number.isFinite(n)){error.textContent=message();return}if(n<limits.min||n>limits.max){error.textContent='Enter a number from '+fmt(limits.min)+' to '+fmt(limits.max)+'.';return}answers.push(n);beep();turn++;if(turn<players.length)handoff();else revealReady()};focusHeading();
 }
 
-function revealReady(){stage='reveal-ready';updateFooter();app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">Fire up the Unremarkulator! →</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
+function revealReady(){stage='reveal-ready';updateFooter();app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">To the Unremarkulator!</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
 function scoreGuesses(values,multiplier=1){
   const scale=10000,units=values.map(v=>Math.round(v*scale)),sorted=[...units].sort((a,b)=>a-b),count=units.length;
   const middleTwice=count%2?2*sorted[(count-1)/2]:sorted[count/2-1]+sorted[count/2];
@@ -742,7 +742,7 @@ function celebrateMiddleWinner(){
 // The approved 80 BPM After Hours arrangement is embedded in this file for offline play.
 let musicEnabled=false;
 const musicTrack=document.getElementById('background-music');
-musicTrack.volume=.28;
+musicTrack.volume=.12;
 function updateAudioSettings(){
   document.getElementById('music').setAttribute('aria-checked',String(musicEnabled));
   document.getElementById('music').textContent=musicEnabled?'On':'Off';
