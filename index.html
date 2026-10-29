@@ -23,6 +23,8 @@ header{justify-content:flex-end}header .brand{display:none}body.cinema-mode head
 .free-bank-note{text-align:center;font-size:12px;color:var(--muted);margin:12px 0}.reveal-announcement.shared-winners h2{font-size:clamp(24px,4vw,40px);max-width:850px;letter-spacing:-.8px}
 
 .header-controls{max-width:none}.header-controls .quiet-exit{background:transparent;color:var(--muted)}.quiet-exit[hidden]{display:none}.round-actions{display:flex;justify-content:flex-end;margin:-12px 0 12px}.change-question{background:transparent;color:var(--muted);font-size:13px;min-height:40px;padding:8px 0 8px 12px;font-weight:600}.cinema-tools{justify-content:space-between}.cinema-tools .cinema-exit{padding-left:8px}#game-dialog{color:var(--ink);background:var(--card);border:1px solid #535d86;border-radius:22px;padding:28px;width:calc(100% - 36px);max-width:440px;box-shadow:0 20px 100px #0008}#game-dialog::backdrop{background:#080c20bb;backdrop-filter:blur(4px)}#game-dialog h2{font-size:27px;margin-top:0}#game-dialog p{color:var(--muted);font-size:15px;line-height:1.6}.dialog-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:24px}.dialog-actions button{font-size:14px;padding:12px 16px}#game-dialog[open]{animation:arrive .2s ease-out}@media(max-width:550px){.header-controls{gap:6px}.header-controls button{min-height:40px}.round-actions{margin-top:-14px}.change-question{font-size:12px}#game-dialog{padding:23px}.dialog-actions{justify-content:stretch}.dialog-actions button{flex:1}}
+
+.double-round-note{color:var(--lime);font-size:13px;text-align:center;background:#d4ff630b;border-radius:10px;padding:12px;margin:0 0 20px}
 </style></head>
 <body><main><header><div class="brand"><svg class="brand-icon" viewBox="85 20 470 240" aria-hidden="true"><path d="M85 251H555" stroke="#667095" stroke-width="2"/><rect x="112" y="202" width="62" height="48" rx="7" fill="#ff7e94"/><rect x="200" y="157" width="62" height="93" rx="7" fill="#91b8f7"/><rect x="288" y="113" width="62" height="137" rx="7" fill="#d4ff63"/><rect x="376" y="70" width="62" height="180" rx="7" fill="#91b8f7"/><rect x="464" y="26" width="62" height="224" rx="7" fill="#ff7e94"/><path d="M296 72 307 83 319 64 331 83 342 72 338 101H300Z" fill="#d4ff63"/></svg><div>UNREMARKABLE<span>!</span></div></div><div class="header-controls"><button id="exit-game" class="secondary quiet-exit" type="button" data-game-action="exit" hidden>Exit game</button><button id="music" class="secondary" aria-pressed="false">♫ Music: off</button><button id="sound" class="secondary" aria-pressed="false">SFX: off</button></div></header><section id="app" aria-label="Game"></section><footer>One device. Secret guesses. Spectacularly average.</footer></main><dialog id="game-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-message"></dialog>
 <script>
@@ -33,13 +35,85 @@ const categories=[
     "icon": "📏",
     "questions": [
       [
-        "How tall is the Eiffel Tower, including its antenna installed in 2022?",
+        "How tall is a New Routemaster double-decker London bus, approximately?",
         "metres",
         {
-          "answer": "330 metres",
-          "note": "Including the radio antenna fitted in March 2022.",
-          "source": "Eiffel Tower official site",
-          "url": "https://www.toureiffel.paris/en/news/events/eiffel-tower-grows-330-meters-tall"
+          "answer": "About 4.4 metres",
+          "note": "This question refers to the New Routemaster rather than every model of London bus.",
+          "source": "Transport for London — Big Red Book",
+          "url": "https://www.transportforall.org.uk/wp-content/uploads/2023/11/bigredbook2014.pdf"
+        },
+        1
+      ],
+      [
+        "How many metres long was the Titanic, approximately?",
+        "metres",
+        {
+          "answer": "About 269 metres",
+          "note": "Titanic’s overall length was approximately 269.1 metres.",
+          "source": "Causeway Coast and Glens Museum Services — Titanic",
+          "url": "https://www.niarchive.org/projectitems/rms-titanics-causeway-connections/"
+        }
+      ],
+      [
+        "Roughly how tall can a fully grown male giraffe be?",
+        "metres",
+        {
+          "answer": "About 5.5 metres",
+          "note": "Adult males can reach around 5.5 metres. This is an upper-end height, rather than an average for all giraffes.",
+          "source": "San Diego Zoo — giraffe",
+          "url": "https://animals.sandiegozoo.org/animals/giraffe"
+        },
+        1
+      ],
+      [
+        "To the nearest metre, how long was the longest blue whale documented by Guinness World Records?",
+        "metres",
+        {
+          "answer": "About 34 metres",
+          "note": "Guinness lists a female measured in South Georgia in 1909 at 33.57 metres. Rounded to the nearest whole metre, that is 34.",
+          "source": "Guinness World Records — largest whale",
+          "url": "https://www.guinnessworldrecords.com/world-records/69467-largest-whale"
+        }
+      ],
+      [
+        "How many centimetres tall is the Mona Lisa painting, excluding its frame?",
+        "cm",
+        {
+          "answer": "77 cm",
+          "note": "The Louvre lists the painting as 77 cm high and 53 cm wide. The frame is not included.",
+          "source": "Musée du Louvre — educational guide",
+          "url": "https://api-www.louvre.fr/sites/default/files/2025-11/Dossier_pedagogique_Louvre%20en%20classe.pdf"
+        }
+      ],
+      [
+        "How many centimetres long is the Statue of Liberty’s nose, approximately?",
+        "cm",
+        {
+          "answer": "About 137 cm",
+          "note": "The US National Park Service lists 4 feet 6 inches, equivalent to 137.16 cm. Rounded to the nearest centimetre: 137 cm.",
+          "source": "US National Park Service — Statue statistics",
+          "url": "https://home.nps.gov/stli/learn/historyculture/statue-statistics.htm"
+        }
+      ],
+      [
+        "How tall is the Leaning Tower of Pisa above the ground, approximately?",
+        "metres",
+        {
+          "answer": "About 56 metres",
+          "note": "Pisa’s municipal tourism site gives about 56 metres above ground. Height varies with the side measured; the monument operator’s larger 58.36-metre figure uses a different measurement reference.",
+          "source": "Comune di Pisa — tourism",
+          "url": "https://turismo.pisa.it/cultura/dettaglio/piazza-del-duomo-la-torre-pendente/"
+        }
+      ],
+      [
+        "How many metres across is one clock dial on the tower housing Big Ben?",
+        "metres",
+        {
+          "answer": "7 metres",
+          "note": "Each of the four clock dials is seven metres in diameter. Big Ben itself is the bell.",
+          "source": "UK Parliament — Big Ben facts",
+          "url": "https://www.parliament.uk/about/living-heritage/building/palace/big-ben/facts-figures/"
         }
       ],
       [
@@ -48,90 +122,18 @@ const categories=[
         {
           "answer": "828 metres",
           "note": "The architectural height, including the spire.",
-          "source": "Emaar — Burj Khalifa",
-          "url": "https://www.emaar.com/en/other-emaar-businesses/burj-khalifa"
+          "source": "Burj Khalifa — official fact sheet",
+          "url": "https://www.burjkhalifa.ae/en/assets/FACT-SHEET.pdf"
         }
       ],
       [
-        "How tall is the Statue of Liberty, from the ground to the torch?",
-        "metres",
+        "How tall is Al Pacino, approximately, in centimetres?",
+        "cm",
         {
-          "answer": "About 93 metres",
-          "note": "Ground to the tip of the torch, including the pedestal. The statue alone is about 46 metres tall.",
-          "source": "US National Park Service",
-          "url": "https://www.nps.gov/stli/learn/statue-of-liberty-facts.htm"
-        }
-      ],
-      [
-        "How tall is London’s Elizabeth Tower, which houses Big Ben?",
-        "metres",
-        {
-          "answer": "About 96 metres",
-          "note": "Parliament lists 96 metres in its facts guide and 96.3 metres in its architecture guide. Big Ben is the bell inside.",
-          "source": "UK Parliament",
-          "url": "https://www.parliament.uk/about/living-heritage/building/palace/architecture/palacestructure/towers-of-parliament/"
-        }
-      ],
-      [
-        "How high above sea level is Mount Everest, approximately?",
-        "metres",
-        {
-          "answer": "8,848.86 metres",
-          "note": "The snow-height measurement jointly announced by Nepal and China in 2020.",
-          "source": "State Council of China",
-          "url": "https://english.www.gov.cn/news/videos/202012/10/content_WS5fd17893c6d0f72576941a2f.html"
-        }
-      ],
-      [
-        "What is the diameter of Earth at the equator, approximately?",
-        "km",
-        {
-          "answer": "About 12,756 km",
-          "note": "The equatorial diameter; the polar diameter is slightly smaller.",
-          "source": "NASA — Earth facts",
-          "url": "https://science.nasa.gov/earth/facts/"
-        }
-      ],
-      [
-        "How tall was the Great Pyramid of Giza when it was first built, approximately?",
-        "metres",
-        {
-          "answer": "About 146.5 metres",
-          "note": "The Egyptian Ministry of Tourism and Antiquities gives this original height. Some references round it to 146.6 metres.",
-          "source": "Egyptian Ministry of Tourism and Antiquities",
-          "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/"
-        },
-        1
-      ],
-      [
-        "How long is the Statue of Liberty’s nose, approximately?",
-        "metres",
-        {
-          "answer": "About 1.37 metres",
-          "note": "The US National Park Service lists the nose length as 4 feet 6 inches.",
-          "source": "US National Park Service — Statue statistics",
-          "url": "https://home.nps.gov/stli/learn/historyculture/statue-statistics.htm"
-        },
-        2
-      ],
-      [
-        "What is the wingspan of an Airbus A380, approximately?",
-        "metres",
-        {
-          "answer": "About 80 metres",
-          "note": "The A380’s wings stretch nearly eighty metres from tip to tip.",
-          "source": "Airbus — A380",
-          "url": "https://www.airbus.com/en/products-services/commercial-aircraft/passenger-aircraft/a380"
-        }
-      ],
-      [
-        "How tall is Buckingham Palace, approximately?",
-        "metres",
-        {
-          "answer": "24 metres",
-          "note": "The Royal Family’s palace guide gives the building’s height as 24 metres.",
-          "source": "The Royal Family — Buckingham Palace",
-          "url": "https://www.royal.uk/royal-residences-buckingham-palace?_amp=true"
+          "answer": "About 168 cm",
+          "note": "IMDb lists his height as 5 feet 6 inches (1.68 metres). Celebrity heights are reported figures rather than independently certified measurements, and listings can differ.",
+          "source": "IMDb — Al Pacino biography",
+          "url": "https://www.imdb.com/name/nm0000199/bio/"
         }
       ]
     ]
@@ -141,23 +143,73 @@ const categories=[
     "icon": "🧭",
     "questions": [
       [
-        "What is the average distance from Earth to the Moon, approximately?",
+        "As the crow flies, how far is it from London to Timbuktu, approximately?",
         "km",
         {
-          "answer": "About 384,400 km",
-          "note": "An average distance between Earth and the Moon. The actual separation varies during the orbit.",
-          "source": "NASA — Moon facts",
-          "url": "https://science.nasa.gov/moon/facts/"
+          "answer": "About 3,860 km",
+          "note": "A great-circle distance rather than a road route; exact figures vary slightly with the chosen points in each city.",
+          "source": "Travelmath — London to Timbuktu",
+          "url": "https://www.travelmath.com/distance/from/London,+United+Kingdom/to/Timbuktu,+Mali"
         }
       ],
       [
-        "What is Jupiter’s average distance from the Sun, approximately?",
-        "million km",
+        "As the crow flies, roughly how far apart are the university cities of Oxford and Cambridge?",
+        "km",
         {
-          "answer": "About 778 million km",
-          "note": "NASA gives a mean distance of roughly 484 million miles.",
-          "source": "NASA — Jupiter facts",
-          "url": "https://science.nasa.gov/jupiter/jupiter-facts/"
+          "answer": "About 107 km",
+          "note": "Approximate straight-line distance between the cities, not a road journey. The universities have many buildings, so this uses city reference points rather than an unspecified pair of campuses.",
+          "source": "Travelmath — Oxford to Cambridge",
+          "url": "https://www.travelmath.com/distance/from/Oxford,+United+Kingdom/to/Cambridge,+United+Kingdom"
+        }
+      ],
+      [
+        "At its widest point, how wide is the Grand Canyon from rim to rim, to the nearest kilometre?",
+        "km",
+        {
+          "answer": "About 29 km",
+          "note": "The US National Park Service gives a maximum rim-to-rim width of 18 miles (about 29 km). This is not the width of the Colorado River below.",
+          "source": "US National Park Service — Grand Canyon statistics",
+          "url": "https://www.nps.gov/grca/learn/management/statistics.htm"
+        }
+      ],
+      [
+        "For the widest standard UK double yellow road lines, how wide is the gap between the two painted lines?",
+        "cm",
+        {
+          "answer": "10 cm",
+          "note": "The prescribed line widths are 50, 75 or 100 mm, with the gap matching the width of each line. The widest standard version therefore has a 100 mm (10 cm) gap. Narrower versions have smaller gaps.",
+          "source": "Department for Transport — Traffic Signs Manual, Chapter 3, section 13.4.5",
+          "url": "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/223943/traffic-signs-manual-chapter-03.pdf"
+        }
+      ],
+      [
+        "At its narrowest point, roughly how many kilometres of sea separate the UK and France?",
+        "km",
+        {
+          "answer": "About 34 km",
+          "note": "Dover District Council describes the narrowest part of the Dover Strait as 21 miles, or roughly 34 km. More precise endpoint measurements are often given as around 33 km. This refers to the British and French mainland coasts.",
+          "source": "Dover District Council — Channel crossings exhibition",
+          "url": "https://www.dover.gov.uk/News/Press-Releases/2023/New-Dover-Museum-Exhibition-Charts-History-of-Channel-Crossings.aspx"
+        }
+      ],
+      [
+        "How many metres long is Sydney Harbour Bridge, including its approaches?",
+        "metres",
+        {
+          "answer": "1,149 metres",
+          "note": "This is the full length including approaches, rather than just the central arch span.",
+          "source": "Transport for NSW — bridge facts",
+          "url": "https://www.transport.nsw.gov.au/system/files/media/documents/2024/Online_241205%20MR%20Graham%20Bridge%20maintenance.pdf"
+        }
+      ],
+      [
+        "How long is Brighton Palace Pier, approximately?",
+        "metres",
+        {
+          "answer": "About 525 metres",
+          "note": "The pier is 1,722 feet long, equivalent to approximately 525 metres.",
+          "source": "Visit Brighton — Palace Pier",
+          "url": "https://www.visitbrighton.com/things-to-do/brighton-palace-pier-p60603"
         }
       ],
       [
@@ -172,73 +224,23 @@ const categories=[
         1
       ],
       [
-        "What is the average distance from Earth to the Sun, approximately?",
-        "million km",
-        {
-          "answer": "About 150 million km",
-          "note": "The average Earth–Sun separation is approximately one astronomical unit.",
-          "source": "NASA — Earth facts",
-          "url": "https://science.nasa.gov/earth/facts/"
-        }
-      ],
-      [
-        "What is Venus’s average distance from the Sun, approximately?",
-        "million km",
-        {
-          "answer": "About 108 million km",
-          "note": "Venus orbits at roughly 0.72 times Earth’s distance from the Sun.",
-          "source": "NASA — Venus facts",
-          "url": "https://science.nasa.gov/venus/venus-facts/"
-        }
-      ],
-      [
-        "What is the straight-line distance from London to New York, approximately?",
-        "km",
-        {
-          "answer": "About 5,570 km",
-          "note": "Approximate great-circle distance between city centres; the exact value depends on the points selected.",
-          "source": "MapGO — London to New York",
-          "url": "https://mapgo.io/distance-between/london-to-new-york"
-        }
-      ],
-      [
-        "How long is the River Nile, approximately?",
-        "km",
-        {
-          "answer": "Over 6,800 km (estimate)",
-          "note": "National Geographic uses this estimate. River lengths vary with the chosen source and measurement method.",
-          "source": "National Geographic — Nile River",
-          "url": "https://education.nationalgeographic.org/resource/nile-river/"
-        }
-      ],
-      [
-        "How long was Hadrian’s Wall, approximately?",
-        "km",
-        {
-          "answer": "About 117 km",
-          "note": "That is about 73 modern miles, or 80 Roman miles.",
-          "source": "Segedunum Roman Fort — Hadrian’s Wall",
-          "url": "https://segedunumromanfort.org.uk/files/369580-the-building-and-development-of-hadrians-wall.pdf"
-        }
-      ],
-      [
-        "How long is the main span of the Golden Gate Bridge, approximately?",
+        "To the nearest metre, how far must a ten-pin bowling ball travel from the foul line to the front pin?",
         "metres",
         {
-          "answer": "About 1,280 metres",
-          "note": "The main suspended span between the two towers, rather than the bridge’s total length.",
-          "source": "Golden Gate Bridge District",
-          "url": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/"
+          "answer": "About 18 metres",
+          "note": "The regulation distance is 60 feet, or 18.288 metres, from the foul line to the centre of the headpin. The run-up is not included.",
+          "source": "Professional Bowlers Association — bowling lingo",
+          "url": "https://www.pba.com/about/bowling-lingo"
         }
       ],
       [
-        "How far does light travel in one second in a vacuum, approximately?",
+        "What is the average distance from Earth to the Moon, approximately?",
         "km",
         {
-          "answer": "About 299,792 km",
-          "note": "The defined speed is exactly 299,792,458 metres per second in a vacuum.",
-          "source": "NIST — defining constants",
-          "url": "https://www.nist.gov/si-redefinition/meet-constants"
+          "answer": "About 384,400 km",
+          "note": "An average distance between Earth and the Moon. The actual separation varies during the orbit.",
+          "source": "NASA — Moon facts",
+          "url": "https://science.nasa.gov/moon/facts/"
         }
       ]
     ]
@@ -247,6 +249,36 @@ const categories=[
     "name": "Everyday Numbers",
     "icon": "🔢",
     "questions": [
+      [
+        "How many pages are in the original 1997 UK edition of Harry Potter and the Philosopher’s Stone?",
+        "pages",
+        {
+          "answer": "223 pages",
+          "note": "The original Bloomsbury UK edition is specified: later editions, illustrated editions and translations have different page counts.",
+          "source": "BADA — first-edition bibliographic description",
+          "url": "https://www.bada.org/object/j-k-rowling-harry-potter-and-philosophers-stone-first-edition"
+        }
+      ],
+      [
+        "How many passenger capsules are on the London Eye?",
+        "capsules",
+        {
+          "answer": "32 capsules",
+          "note": "There is no capsule numbered 13, so the numbering runs up to 33 even though there are only 32.",
+          "source": "London Eye — anniversary facts",
+          "url": "https://www.londoneye.com/25th-anniversary/"
+        }
+      ],
+      [
+        "How many grams does one standard UK Cadbury Creme Egg weigh?",
+        "grams",
+        {
+          "answer": "40 grams",
+          "note": "The standard UK single Creme Egg, rather than a mini egg or another market’s version. Pack sizes can change.",
+          "source": "Cadbury — standard Creme Egg",
+          "url": "https://www.cadbury.co.uk/products/cadbury-creme-egg-40g/"
+        }
+      ],
       [
         "How many rooms does Buckingham Palace have?",
         "rooms",
@@ -268,63 +300,24 @@ const categories=[
         }
       ],
       [
-        "How many ridges are on the edge of a standard US quarter coin?",
-        "ridges",
-        {
-          "answer": "119 ridges",
-          "note": "The US Mint calls these edge ridges “reeds”.",
-          "source": "US Mint — quarter specifications",
-          "url": "https://www.usmint.gov/learn/coins-and-medals/circulating-coins/quarter"
-        }
-      ],
-      [
-        "How many grams did the original 2007 iPhone weigh?",
+        "How many grams does a standard modern UK £1 coin weigh?",
         "grams",
         {
-          "answer": "135 grams",
-          "note": "This is the original first-generation iPhone, rather than a later model.",
-          "source": "Mobile Phone Museum — original iPhone",
-          "url": "https://www.mobilephonemuseum.com/phone-detail/apple-iphone"
-        }
+          "answer": "8.75 grams",
+          "note": "The circulating twelve-sided pound coin, introduced in 2017, weighs 8.75 g. The older round pound coin had a different weight.",
+          "source": "The Royal Mint — twelve-sided £1 coin",
+          "url": "https://www.royalmint.com/new-pound-coin/"
+        },
+        2
       ],
       [
-        "How many glass panels make up the Louvre’s main pyramid?",
-        "panels",
+        "How many pieces are in LEGO’s 135 cm-long Titanic model, set 10294?",
+        "pieces",
         {
-          "answer": "673 panels",
-          "note": "603 diamond-shaped panels plus 70 triangular panels.",
-          "source": "Musée du Louvre — museum facts",
-          "url": "https://presse.louvre.fr/le-musee-du-louvre-en-bref-1063000220316/?lang=en"
-        }
-      ],
-      [
-        "How many millilitres are in an imperial pint, approximately?",
-        "ml",
-        {
-          "answer": "About 568 ml",
-          "note": "An imperial pint is 568.26125 ml. A US liquid pint is a different size.",
-          "source": "GOV.UK — packaged quantities",
-          "url": "https://www.gov.uk/guidance/packaged-goods-weights-and-measures-regulations"
-        }
-      ],
-      [
-        "How many individual steel wires are in ONE main cable of the Golden Gate Bridge?",
-        "wires",
-        {
-          "answer": "27,572 wires",
-          "note": "The bridge has two main cables; this question asks about just one.",
-          "source": "Golden Gate Bridge District — construction statistics",
-          "url": "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/"
-        }
-      ],
-      [
-        "How many rivets were used in the Eiffel Tower, approximately?",
-        "rivets",
-        {
-          "answer": "About 2,500,000 rivets",
-          "note": "The tower’s official key figures list two and a half million rivets.",
-          "source": "Eiffel Tower — key figures",
-          "url": "https://www.toureiffel.paris/en/the-monument/key-figures"
+          "answer": "9,090 pieces",
+          "note": "The model is approximately 1:200 scale and over a metre long.",
+          "source": "LEGO — large building sets",
+          "url": "https://www.lego.com/en-se/categories/adults-welcome/article/biggest-lego-sets-ever-made"
         }
       ],
       [
@@ -338,13 +331,23 @@ const categories=[
         }
       ],
       [
-        "How many ways can SIX same-colour 2×4 LEGO bricks be combined, according to the LEGO Group’s published count?",
-        "combinations",
+        "How many upright stones was Stonehenge’s outer stone circle designed to contain?",
+        "stones",
         {
-          "answer": "915,103,765 combinations",
-          "note": "The published calculation allows connected constructions beyond a simple six-brick-high stack.",
-          "source": "The LEGO Group — 2011 company presentation, page 23",
-          "url": "https://www.strategicplay.com/upload/documents/lego-company-presentation-.pdf"
+          "answer": "30 upright stones",
+          "note": "This asks about the original outer sarsen circle, excluding its horizontal lintels and the inner stones; counting every surviving fragment gives a different question.",
+          "source": "English Heritage — stones of Stonehenge",
+          "url": "https://www.english-heritage.org.uk/visit/places/stonehenge/things-to-do/stone-circle/stones-of-stonehenge/"
+        }
+      ],
+      [
+        "How many times does the word “God” appear in the New Testament of the King James Bible?",
+        "mentions",
+        {
+          "answer": "1,354 mentions (reference count)",
+          "note": "Christian Bible Reference lists 1,354. We use its base-word count: capitalisation is ignored; “gods” and “God’s”, headings and footnotes are excluded. Counts can vary with the digital text and search method, so this is the named reference’s count rather than a universal total.",
+          "source": "Christian Bible Reference — word-count table",
+          "url": "https://www.christianbiblereference.org/faq_WordCount.htm"
         }
       ]
     ]
@@ -354,105 +357,103 @@ const categories=[
     "icon": "🏛️",
     "questions": [
       [
-        "In what year did London’s first underground railway open to the public?",
+        "In what year did the first McDonald’s restaurant open in the UK?",
         "year",
         {
-          "answer": "1863",
-          "note": "The Metropolitan Railway opened on 10 January 1863.",
-          "source": "London Transport Museum",
-          "url": "https://library.ltmuseum.co.uk/Portal/Default/en-GB/RecordView/Index/108"
+          "answer": "1974",
+          "note": "The first UK restaurant opened in Woolwich, south London.",
+          "source": "McDonald’s UK — first restaurant",
+          "url": "https://www.mcdonalds.com/gb/en-gb/help/faq/when-did-mcdonald-s-first-restaurant-open-in-the-u-k.html"
         }
       ],
       [
-        "In what year was the Bank of England founded?",
+        "In what year did Percy Spencer invent microwave cooking and file the patent that led to the microwave oven?",
         "year",
         {
-          "answer": "1694",
-          "note": "The bank received its Royal Charter and began business in 1694.",
-          "source": "Bank of England — history",
-          "url": "https://www.bankofengland.co.uk/about/history?level=1"
+          "answer": "1945",
+          "note": "Spencer discovered the heating effect and the patent application was filed in October 1945. The first commercial Radarange followed in 1947; the patent was granted in 1950.",
+          "source": "MIT Lemelson — Percy Spencer",
+          "url": "https://lemelson.mit.edu/resources/percy-spencer"
         }
       ],
       [
-        "In what year were the first modern Olympic Games held in Athens?",
+        "In what year was the first video uploaded to YouTube?",
         "year",
         {
-          "answer": "1896",
-          "note": "Athens hosted the first Olympic Games of the modern era.",
-          "source": "International Olympic Committee",
-          "url": "https://www.olympics.com/ioc/faq/history-and-origin-of-the-games/what-is-the-origin-of-the-olympic-games"
+          "answer": "2005",
+          "note": "“Me at the zoo” was uploaded on 23 April 2005.",
+          "source": "YouTube — tenth anniversary",
+          "url": "https://blog.youtube/news-and-events/celebrating-10-years-of-youtube/"
         }
       ],
       [
-        "In what year did the British Museum first open its doors to visitors?",
-        "year",
-        {
-          "answer": "1759",
-          "note": "The museum was founded in 1753, but first opened to visitors in 1759.",
-          "source": "British Museum — the museum story",
-          "url": "https://www.britishmuseum.org/about-us/british-museum-story"
-        }
-      ],
-      [
-        "In what year was the Penny Black postage stamp first issued?",
-        "year",
-        {
-          "answer": "1840",
-          "note": "The Penny Black was the first adhesive postage stamp for a public postal system.",
-          "source": "Smithsonian National Postal Museum",
-          "url": "https://postalmuseum.si.edu/exhibition/international-philately-europe-northern-europe/great-britain"
-        }
-      ],
-      [
-        "In what year did John Logie Baird give his widely reported Soho demonstration of television?",
-        "year",
-        {
-          "answer": "1926",
-          "note": "The demonstration used an early mechanical television system.",
-          "source": "Science Museum — Information Age guide",
-          "url": "https://www.sciencemuseum.org.uk/sites/default/files/2023-11/Large-print-guide-Information-Age.pdf"
-        }
-      ],
-      [
-        "How many seconds did Usain Bolt take in his 100-metre world-record run in Berlin in 2009?",
+        "How many seconds did the Wright brothers’ first successful powered flight last?",
         "seconds",
         {
-          "answer": "9.58 seconds",
-          "note": "Usain Bolt ran this time in the world final in Berlin on 16 August 2009.",
-          "source": "World Athletics — 100 metres results",
-          "url": "https://worldathletics.org/records/all-time-toplists/sprints/100-metres/all/men/senior"
-        },
-        2
-      ],
-      [
-        "How many metres did Mike Powell jump when he set the long-jump world record in 1991?",
-        "metres",
-        {
-          "answer": "8.95 metres",
-          "note": "Mike Powell’s record jump came in Tokyo on 30 August 1991.",
-          "source": "USA Track & Field — Mike Powell",
-          "url": "https://www.usatf.org/athlete-bios/mike-powell"
-        },
-        2
-      ],
-      [
-        "In what year did the Wright brothers make their first powered flights at Kitty Hawk?",
-        "year",
-        {
-          "answer": "1903",
-          "note": "The Wright brothers’ first successful powered flights were on 17 December 1903 near Kitty Hawk.",
-          "source": "US National Park Service — first flight",
-          "url": "https://home.nps.gov/wrbr/learn/historyculture/thefirstflight.htm"
+          "answer": "12 seconds",
+          "note": "Orville Wright flew for 12 seconds on 17 December 1903, covering about 120 feet. Their later flights that day lasted longer.",
+          "source": "US National Park Service — Wright Flyer",
+          "url": "https://home.nps.gov/articles/wrightflyer.htm"
         }
       ],
       [
-        "In what year was Sputnik 1 launched?",
-        "year",
+        "What was the highest official race speed-trap reading at the 2016 Formula 1 Mexican Grand Prix, to the nearest mph?",
+        "mph",
         {
-          "answer": "1957",
-          "note": "Sputnik 1 launched on 4 October 1957.",
-          "source": "NASA — Sputnik history",
-          "url": "https://www.nasa.gov/history/sputnik/sputorig.html"
+          "answer": "231 mph",
+          "note": "Valtteri Bottas recorded 372.5 km/h in a Mercedes-powered Williams FW38. That converts to about 231.46 mph, or 231 mph to the nearest whole number. This specifies the official race speed trap, rather than private testing or unofficial telemetry.",
+          "source": "FIA — 2016 Mexican Grand Prix race speed trap",
+          "url": "https://www.fia.com/sites/default/files/speed_trap_37.pdf"
+        }
+      ],
+      [
+        "How many lifeboats did the Titanic carry on its maiden voyage?",
+        "lifeboats",
+        {
+          "answer": "20 lifeboats",
+          "note": "The total includes the collapsible boats.",
+          "source": "Causeway Coast and Glens Museum Services — Titanic",
+          "url": "https://www.niarchive.org/projectitems/rms-titanics-causeway-connections/"
+        }
+      ],
+      [
+        "How many centimetres tall was Robert Wadlow, the tallest person ever reliably measured?",
+        "cm",
+        {
+          "answer": "272 cm",
+          "note": "His final recorded height was 2.72 metres in 1940.",
+          "source": "Guinness World Records — Robert Wadlow",
+          "url": "https://www.guinnessworldrecords.com/news/icons/robert-wadlow-the-tallest-man-ever"
+        }
+      ],
+      [
+        "How many complete years did Jeanne Calment, the oldest verified person, live?",
+        "years",
+        {
+          "answer": "122 years",
+          "note": "She lived for 122 years and 164 days, from 1875 to 1997. Only complete years are requested.",
+          "source": "Guinness World Records — oldest person",
+          "url": "https://www.guinnessworldrecords.com/world-records/oldest-person"
+        }
+      ],
+      [
+        "How many hot dogs with buns did Joey Chestnut eat in ten minutes in his 2024 Netflix showdown?",
+        "hot dogs",
+        {
+          "answer": "83 hot dogs with buns",
+          "note": "He ate 83 in the ten-minute Chestnut vs. Kobayashi event on 2 September 2024. This refers to that specific contest.",
+          "source": "Netflix Tudum — Chestnut vs. Kobayashi",
+          "url": "https://www.netflix.com/tudum/articles/hot-dog-eating-contest-joey-chestnut-kobayashi-live-date-news"
+        }
+      ],
+      [
+        "How many floors does the Empire State Building officially list?",
+        "floors",
+        {
+          "answer": "102 floors",
+          "note": "The building’s official facts page lists 102 floors. It also describes a restricted 103rd level above them, which is not included in its headline floor count.",
+          "source": "Empire State Building — facts and figures",
+          "url": "https://www.esbnyc.com/about/facts-figures"
         }
       ]
     ]
@@ -462,48 +463,53 @@ const categories=[
     "icon": "🃏",
     "questions": [
       [
-        "How many tiny dragons would you adopt?",
-        "dragons"
+        "What is the maximum number of house spiders you would tolerate loose in your bedroom overnight?",
+        "spiders"
       ],
       [
-        "How many years would you travel into the future?",
-        "years"
+        "For £1,000, how many minutes would you agree to sit in a bath full of cold baked beans?",
+        "minutes"
       ],
       [
-        "How many robots should help run your home?",
-        "robots"
+        "How many seagulls could steal a chip from you before you gave up on eating at the beach?",
+        "seagulls"
       ],
       [
-        "How many days would you spend on the Moon?",
-        "days"
-      ],
-      [
-        "How many extra hours would you add to each day?",
+        "How many hours could you go without your phone before getting properly grumpy?",
         "hours"
       ],
       [
-        "How many secret rooms should your dream house have?",
-        "rooms"
+        "How many Ferrero Rocher chocolates could you eat in one sitting?",
+        "chocolates"
       ],
       [
-        "How many superpowers would be enough?",
-        "superpowers"
+        "On a camping trip, how many days would you wear the same pair of socks before admitting defeat?",
+        "days"
       ],
       [
-        "How many dinosaurs should a very small dinosaur park have?",
-        "dinosaurs"
+        "You win a lifetime supply of rubber ducks. How many would you keep before giving the rest away?",
+        "ducks"
       ],
       [
-        "How many weeks would you live in an underwater city?",
-        "weeks"
+        "What is the longest you would queue for a free pizza, in minutes?",
+        "minutes"
       ],
       [
-        "How many wishes should a generous genie grant?",
-        "wishes"
+        "What is the smallest amount of money you would accept to let the other players choose your next haircut?",
+        "£"
+      ],
+      [
+        "On a road trip, how many consecutive plays of the same song would you tolerate before demanding a change?",
+        "plays"
       ]
     ]
   }
 ];
+const finaleRound={name:'Double Points Finale',icon:'⚡',multiplier:2,fixed:true,min:1,max:1000000,q:['Pick a number between 1 and 1,000,000.','number']};
+function buildDeck(){return [...categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]})),{...finaleRound}]}
+function pointMultiplier(){return deck[round]?.multiplier||1}
+function signedPoints(n){return n>0?'+'+n:n<0?'−'+Math.abs(n):'0'}
+function guessLimits(){return {min:deck[round]?.min??0,max:deck[round]?.max??1000000000}}
 const brandLogo="<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 350\" role=\"img\" aria-labelledby=\"logo-title logo-desc\">\n<title id=\"logo-title\">UNREMARKABLE!</title><desc id=\"logo-desc\">Five rising bars. Red extremes, blue ordinary bars, and a crowned lime winner in the middle.</desc>\n<path d=\"M85 251H555\" stroke=\"#667095\" stroke-width=\"2\"/>\n<g><rect class=\"logo-bar\" x=\"112\" y=\"202\" width=\"62\" height=\"48\" rx=\"7\" fill=\"#ff7e94\"/><rect class=\"logo-bar\" x=\"200\" y=\"157\" width=\"62\" height=\"93\" rx=\"7\" fill=\"#91b8f7\"/><rect class=\"logo-bar\" x=\"288\" y=\"113\" width=\"62\" height=\"137\" rx=\"7\" fill=\"#d4ff63\"/><rect class=\"logo-bar\" x=\"376\" y=\"70\" width=\"62\" height=\"180\" rx=\"7\" fill=\"#91b8f7\"/><rect class=\"logo-bar\" x=\"464\" y=\"26\" width=\"62\" height=\"224\" rx=\"7\" fill=\"#ff7e94\"/></g>\n<path class=\"logo-crown\" d=\"M296 72 307 83 319 64 331 83 342 72 338 101H300Z\" fill=\"#d4ff63\" stroke=\"#efffbb\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/>\n<text x=\"320\" y=\"307\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"53\" font-weight=\"900\" letter-spacing=\"-2\" fill=\"#f8f7f2\">UNREMARKABLE<tspan fill=\"#d4ff63\">!</tspan></text>\n<text x=\"320\" y=\"337\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"13\" font-weight=\"700\" letter-spacing=\"3.5\" fill=\"#b8bfd9\">THE PARTY GAME WHERE AVERAGE WINS</text>\n</svg>\n";
 const app=document.getElementById('app');let players=[],round=0,turn=0,answers=[],deck=[],deltas=[],stage='setup',timers=[],sound=false,audioCtx;
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -513,39 +519,39 @@ function later(fn,ms){timers.push(setTimeout(fn,ms))}function clearTimers(){time
 function beep(win=false){if(!sound)return;try{audioCtx ||=new (window.AudioContext||window.webkitAudioContext)();audioCtx.resume();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.setValueAtTime(win?660:280,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(win?990:420,audioCtx.currentTime+.18);g.gain.setValueAtTime(.05,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.3);o.start();o.stop(audioCtx.currentTime+.3)}catch{}}
 document.getElementById('sound').onclick=()=>{sound=!sound;document.getElementById('sound').textContent='SFX: '+(sound?'on':'off');document.getElementById('sound').setAttribute('aria-pressed',String(sound));beep()};
 function focusHeading(){const h=app.querySelector('h1,h2');if(h){h.tabIndex=-1;h.focus()}}
-function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play five rounds: Heights & Sizes, Distances, Everyday Numbers, History & Records, then Wild Cards.</li><li>Enter your guess secretly and pass the device. Rounds 1–4 have factual answers, shown after the reveal. Wild Cards are hypothetical.</li><li><strong>The middle guess wins +2.</strong> Sort everyone’s guesses from low to high. With an odd number of players, the central value wins. With an even number, both central values win. Everyone sharing a winning value earns +2.</li><li><strong>Highest and lowest lose −1 each.</strong> Everyone else gets 0. A middle winner takes priority over an extreme when guesses tie.</li><li><strong>Rounded average bonus: +1 independently.</strong> Add all guesses, divide by the number of players, then round to the nearest whole number (a half rounds up). Guess that whole number exactly to earn +1 extra, even if you are not a middle winner. The average only appears when somebody hits it.</li><li>A middle winner who also hits the rounded average gets <strong>+3 total</strong>. If everyone guesses the same whole number, everyone gets +3. An identical decimal guess earns +2 each unless it equals the rounded bonus target.</li><li>Names and bars appear slowly, one player at a time: zero-point players, losing extremes, any bonus-only players, then middle winners. Tied middle winners rise together. Choose See round details afterward for the real answer and points.</li><li>The real answer is for curiosity; factual accuracy does not change points. Highest total after five rounds wins. Tied totals share the crown.</li></ol></details>`}
+function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play six rounds: Heights & Sizes, Distances, Everyday Numbers, History & Records, Wild Cards, then a fixed Double Points Finale.</li><li>Read your opponents rather than chasing the real answer. Enter your guess secretly and pass the device. Factual answers appear after the reveal; accuracy does not determine points.</li><li><strong>Rounds 1–5: the middle guess wins +2.</strong> Sort guesses from low to high. The central value wins; with an even group, both central values win. Identical winning guesses share the award.</li><li><strong>Highest and lowest lose −1 each.</strong> Others score 0. A middle winner takes priority over a tied extreme.</li><li><strong>Rounded-average bonus: +1 independently.</strong> Add all guesses, divide by the number of players, then round to the nearest whole number, with halves rounded up. Guess that number exactly for +1 extra. The average appears only if someone hits it. Middle plus bonus = +3.</li><li><strong>Final round: double everything.</strong> The question is always “Pick a number between 1 and 1,000,000.” Whole numbers only. Middle +4, highest and lowest −2 each, and a rounded-average hit adds +2. Middle plus bonus = +6.</li><li>Bars rise slowly: zero-point players, losing extremes, bonus-only players, then middle winners. Tied middle winners rise together. Choose See round details afterward for the answer and scores.</li><li>Change question picks another in the same category before a reveal. It clears this round’s guesses and restarts with the first player, preserving earlier scores. The fixed finale cannot be changed.</li><li>Highest total after six rounds wins. Tied totals share the crown.</li></ol></details>`}
 let lobby=[];
 function saveLobby(){try{localStorage.setItem('unremarkable-names',JSON.stringify(lobby))}catch{}}
 function renderRoster(){const list=document.getElementById('roster');list.innerHTML=lobby.map((name,i)=>`<div class="player-token"><span class="avatar">${i+1}</span><span>${escapeHTML(name)}</span><button class="remove-player" type="button" data-remove="${i}" aria-label="Remove ${escapeHTML(name)}">×</button></div>`).join('');document.getElementById('player-count').textContent=lobby.length+' / 12 players'+(lobby.length<3?' · add '+(3-lobby.length)+' more to play':' · a beautifully ordinary crowd');document.getElementById('start').disabled=lobby.length<3;list.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{lobby.splice(Number(b.dataset.remove),1);saveLobby();renderRoster()})}
-function setup(){clearTimers();stage='setup';setScreen('setup');app.innerHTML=`<div class="home-screen"><div class="hero-logo">${brandLogo}</div><h1 class="hero-tagline">Greatness is overrated.</h1><p class="muted hero-copy">Aim for the middle—being unremarkable is how you win.</p><div class="chips home-topics">${categories.map(c=>`<span class="chip">${c.icon} ${c.name}</span>`).join('')}</div><button id="home-start" class="home-start">Ready to be average? →</button><p class="free-bank-note">Free version · all 50 questions included</p>${rules()}</div>`;document.getElementById('home-start').onclick=showPlayers;window.scrollTo(0,0)}
+function setup(){clearTimers();stage='setup';setScreen('setup');app.innerHTML=`<div class="home-screen"><div class="hero-logo">${brandLogo}</div><h1 class="hero-tagline">Greatness is overrated.</h1><p class="muted hero-copy">Don’t guess the answer, guess your opponents. Aim for the middle — be unremarkable!</p><button id="home-start" class="home-start">Ready to be average? →</button><p class="free-bank-note">50 free questions + a double-points finale</p>${rules()}</div>`;document.getElementById('home-start').onclick=showPlayers;window.scrollTo(0,0)}
 function showPlayers(){clearTimers();stage='players';setScreen('play');lobby=[];try{const saved=JSON.parse(localStorage.getItem('unremarkable-names')||'[]');if(Array.isArray(saved))lobby=saved.filter(n=>typeof n==='string'&&n.trim()&&n.length<=24).slice(0,12)}catch{}app.innerHTML=`<div class="players-screen"><button id="back-home" class="back-home">← Home</button><div class="card"><h1>Who’s playing?</h1><form id="add-player"><label for="player-name">Add a player</label><div class="player-entry"><input id="player-name" maxlength="24" placeholder="Player name" autocomplete="off"><button type="submit">Add +</button></div><div id="error" class="error" role="alert"></div></form><div class="lobby-count" id="player-count" role="status"></div><div class="roster" id="roster"></div><button id="start" class="start-game">Let’s be average →</button></div></div>`
-;document.getElementById('back-home').onclick=setup;renderRoster();document.getElementById('add-player').onsubmit=e=>{e.preventDefault();const input=document.getElementById('player-name'),name=input.value.trim();let error='';if(!name)error='A name would help. Even a spectacularly ordinary one.';else if(lobby.length>=12)error='Twelve is a crowd. Remove someone before adding another.';else if(lobby.some(n=>n.toLowerCase()===name.toLowerCase()))error='That name is already in. Try a nickname.';if(error){document.getElementById('error').textContent=error;return}lobby.push(name);saveLobby();renderRoster();input.value='';document.getElementById('error').textContent='';input.focus();beep()};document.getElementById('start').onclick=()=>{if(lobby.length<3)return;players=lobby.map(name=>({name,score:0}));deck=categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]}));round=0;beginRound()};window.scrollTo(0,0);focusHeading()}
+;document.getElementById('back-home').onclick=setup;renderRoster();document.getElementById('add-player').onsubmit=e=>{e.preventDefault();const input=document.getElementById('player-name'),name=input.value.trim();let error='';if(!name)error='A name would help. Even a spectacularly ordinary one.';else if(lobby.length>=12)error='Twelve is a crowd. Remove someone before adding another.';else if(lobby.some(n=>n.toLowerCase()===name.toLowerCase()))error='That name is already in. Try a nickname.';if(error){document.getElementById('error').textContent=error;return}lobby.push(name);saveLobby();renderRoster();input.value='';document.getElementById('error').textContent='';input.focus();beep()};document.getElementById('start').onclick=()=>{if(lobby.length<3)return;players=lobby.map(name=>({name,score:0}));deck=buildDeck();round=0;beginRound()};window.scrollTo(0,0);focusHeading()}
 
 
-function roundTop(){return `<div class="eyebrow">Round ${round+1} / 5 · ${deck[round].icon} ${deck[round].name}</div><div class="progress"><div style="width:${round/5*100}%"></div></div>${canChangeQuestion()?'<div class="round-actions"><button class="change-question" type="button" data-game-action="change-question">Change question ↻</button></div>':''}`}
+function roundTop(){return `<div class="eyebrow">Round ${round+1} / ${deck.length} · ${deck[round].icon} ${deck[round].name}</div><div class="progress"><div style="width:${round/deck.length*100}%"></div></div>${pointMultiplier()===2?'<p class="double-round-note">Final round · Middle +4 · Extremes −2 · Average bonus +2</p>':''}${canChangeQuestion()?'<div class="round-actions"><button class="change-question" type="button" data-game-action="change-question">Change question ↻</button></div>':''}`}
 function beginRound(){answers=[];turn=0;roundQuestionHistory=[deck[round].q];handoff()}
 function handoff(){stage='handoff';setScreen('play');app.innerHTML=roundTop()+`<div class="card center"><p class="muted">Player ${turn+1} of ${players.length}</p><h2>Pass to ${escapeHTML(players[turn].name)}</h2><p class="muted">Keep the next screen to yourself.</p><button id="ready">I’m ${escapeHTML(players[turn].name)} — ready</button></div>`;document.getElementById('ready').onclick=guess;focusHeading()}
 function questionPrecision(){return deck[round].q[3]||0}
 function guess(){
-  stage='guess';const precision=questionPrecision();
-  app.innerHTML=roundTop()+`<div class="card"><p class="muted">${escapeHTML(players[turn].name)}, aim for the middle.</p><h2>${escapeHTML(deck[round].q[0])}</h2><form id="guess" novalidate><label for="answer">Your secret number · ${escapeHTML(deck[round].q[1])}</label><input id="answer" type="text" inputmode="${precision?'decimal':'numeric'}" maxlength="${precision?15:10}" required autocomplete="off" placeholder="Enter your guess">${precision?`<small>Up to ${precision} decimal place${precision===1?'':'s'} for this question.</small>`:''}<div class="error" id="error" role="alert"></div><button>Lock in & hide →</button></form></div>`;
+  stage='guess';const precision=questionPrecision(),limits=guessLimits();
+  app.innerHTML=roundTop()+`<div class="card"><p class="muted">${escapeHTML(players[turn].name)}, aim for the middle.</p><h2>${escapeHTML(deck[round].q[0])}</h2><form id="guess" novalidate><label for="answer">Your secret number${deck[round].fixed?'':' · '+escapeHTML(deck[round].q[1])}</label><input id="answer" type="text" inputmode="${precision?'decimal':'numeric'}" maxlength="${precision?15:10}" required autocomplete="off" placeholder="Enter your guess">${precision?`<small>Up to ${precision} decimal place${precision===1?'':'s'} for this question.</small>`:''}<div class="error" id="error" role="alert"></div><button>Lock in & hide →</button></form></div>`;
   const input=document.getElementById('answer'),error=document.getElementById('error');let lastValid='';
   const editing=precision?new RegExp('^\\d*(?:\\.\\d{0,'+precision+'})?$'):/^\d*$/;
   const complete=precision?new RegExp('^\\d+(?:\\.\\d{1,'+precision+'})?$'):/^\d+$/;
   const message=()=>precision?'Enter a number with up to '+precision+' decimal place'+(precision===1?'':'s')+'.':'Enter a whole number.';
   input.addEventListener('beforeinput',e=>{if(e.data===null||e.inputType.startsWith('delete'))return;const proposed=input.value.slice(0,input.selectionStart)+e.data+input.value.slice(input.selectionEnd);if(!editing.test(proposed)){e.preventDefault();error.textContent=message()}});
   input.addEventListener('input',()=>{if(editing.test(input.value)){lastValid=input.value;error.textContent=''}else{input.value=lastValid;error.textContent=message()}});
-  document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=input.value,n=Number(raw);if(!complete.test(raw)||!Number.isFinite(n)){error.textContent=message();return}if(n<0||n>1e9){error.textContent='Enter a number from 0 to 1,000,000,000.';return}answers.push(n);beep();turn++;if(turn<players.length)handoff();else revealReady()};focusHeading();
+  document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=input.value,n=Number(raw);if(!complete.test(raw)||!Number.isFinite(n)){error.textContent=message();return}if(n<limits.min||n>limits.max){error.textContent='Enter a number from '+fmt(limits.min)+' to '+fmt(limits.max)+'.';return}answers.push(n);beep();turn++;if(turn<players.length)handoff();else revealReady()};focusHeading();
 }
 
 function revealReady(){stage='reveal-ready';app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">Raise the bars →</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
-function scoreGuesses(values){
+function scoreGuesses(values,multiplier=1){
   const scale=10000,units=values.map(v=>Math.round(v*scale)),sorted=[...units].sort((a,b)=>a-b),count=units.length;
   const middleTwice=count%2?2*sorted[(count-1)/2]:sorted[count/2-1]+sorted[count/2];
   const distances=units.map(v=>Math.abs(v*2-middleTwice)),closest=Math.min(...distances),totalUnits=units.reduce((a,b)=>a+b,0);
   const baseDeltas=units.map((v,i)=>distances[i]===closest?2:(v===sorted[0]||v===sorted[count-1]?-1:0));
   const bonusTarget=Math.floor((totalUnits+scale/2*count)/(scale*count)),bonuses=units.map(v=>v===bonusTarget*scale?1:0);
-  return {middle:middleTwice/(2*scale),average:totalUnits/(scale*count),bonusTarget,totalUnits,count,baseDeltas,bonuses,deltas:baseDeltas.map((v,i)=>v+bonuses[i])};
+  return {middle:middleTwice/(2*scale),average:totalUnits/(scale*count),bonusTarget,totalUnits,count,multiplier,baseDeltas,bonuses,deltas:baseDeltas.map((v,i)=>(v+bonuses[i])*multiplier)};
 }
 function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.party').forEach(el=>el.remove());return;}for(let i=0;i<35;i++){const el=document.createElement('i');el.className='party';el.style.left=Math.random()*100+'vw';el.style.background=['#d4ff63','#ff7e94','#91b8f7'][i%3];el.style.animationDelay=Math.random()*.5+'s';document.body.append(el);later(()=>el.remove(),3200)}}
 let revealRun=0,currentReveal=null;
@@ -568,12 +574,12 @@ function showAverageHit(i,silent=false){
   if(!currentReveal.bonuses[i])return;
   const el=document.getElementById('bar-'+i);el.classList.add('bonus');if(currentReveal.baseDeltas[i]===0)el.classList.add('bonus-only');
   if(!document.getElementById('average-line')){const max=Math.max(...answers)||1,line=document.createElement('div');line.id='average-line';line.className='average-line visible';line.style.bottom=currentReveal.bonusTarget/max*78+'%';line.innerHTML='<span>AVERAGE HIT · '+formatGuess(currentReveal.bonusTarget)+'</span>';document.querySelector('.chart-bars').append(line)}
-  if(!silent){announce('AVERAGE HIT · +1 BONUS',players[i].name,remark('bonus'),'bonus-announcement');beep(true)}
+  if(!silent){announce('AVERAGE HIT · '+signedPoints(pointMultiplier())+' BONUS',players[i].name,remark('bonus'),'bonus-announcement');beep(true)}
 }
 function revealPerson(i,run,reduced){
   if(stage!=='revealing')return;
   const base=currentReveal.baseDeltas[i],low=answers[i]===Math.min(...answers),high=answers[i]===Math.max(...answers);
-  const label=base===2?'MIDDLE WINNER · +2':base<0?(low&&high?'EXTREME':low?'LOWEST GUESS':'HIGHEST GUESS')+' · −1':currentReveal.bonuses[i]?'A LITTLE EXTRAORDINARY…':'NO POINTS · 0';
+  const label=base===2?'MIDDLE WINNER · '+signedPoints(2*pointMultiplier()):base<0?(low&&high?'EXTREME':low?'LOWEST GUESS':'HIGHEST GUESS')+' · '+signedPoints(-pointMultiplier()):currentReveal.bonuses[i]?'A LITTLE EXTRAORDINARY…':'NO POINTS · 0';
   announce(label,players[i].name,remark(base===2?'winner':base<0?(low?'low':'high'):'neutral'),base===2?'winner-announcement':base<0?'loser-announcement':'neutral-announcement');
   revealBar(i,run);
   if(currentReveal.bonuses[i])later(()=>{if(stage==='revealing')showAverageHit(i)},reduced?0:2200);
@@ -581,22 +587,22 @@ function revealPerson(i,run,reduced){
 function revealMiddleWinners(ids,run,reduced){
   if(stage!=='revealing')return;
   const sharedStart=performance.now();
-  announce('SHARED MIDDLE WINNERS · +2 EACH',ids.map(i=>players[i].name).join(' & '),'Great minds think equally ordinarily.','winner-announcement shared-winners');
+  announce('SHARED MIDDLE WINNERS · '+signedPoints(2*pointMultiplier())+' EACH',ids.map(i=>players[i].name).join(' & '),'Great minds think equally ordinarily.','winner-announcement shared-winners');
   // Apply all winning classes before measuring layout, so every bar begins in the same paint.
   ids.forEach(i=>revealBar(i,run,false,sharedStart));beep(true);
   const scroll=document.querySelector('.chart-scroll'),first=document.getElementById('bar-'+ids[0]),last=document.getElementById('bar-'+ids[ids.length-1]);
   scroll.scrollTo({left:(first.offsetLeft+last.offsetLeft+last.offsetWidth)/2-scroll.clientWidth/2,behavior:reduced?'auto':'smooth'});
   const bonusIds=ids.filter(i=>currentReveal.bonuses[i]);
-  if(bonusIds.length)later(()=>{if(stage!=='revealing')return;bonusIds.forEach(i=>showAverageHit(i,true));announce('AVERAGE HIT · +1 BONUS',bonusIds.map(i=>players[i].name).join(' & '),remark('bonus'),'bonus-announcement');beep(true)},reduced?0:2200);
+  if(bonusIds.length)later(()=>{if(stage!=='revealing')return;bonusIds.forEach(i=>showAverageHit(i,true));announce('AVERAGE HIT · '+signedPoints(pointMultiplier())+' BONUS',bonusIds.map(i=>players[i].name).join(' & '),remark('bonus'),'bonus-announcement');beep(true)},reduced?0:2200);
 }
 
 function reveal(){
   if(stage!=='reveal-ready')return;
-  clearTimers();stage='revealing';setScreen('reveal');const run=++revealRun,result=scoreGuesses(answers);currentReveal=result;deltas=result.deltas;players.forEach((p,i)=>p.score+=deltas[i]);
+  clearTimers();stage='revealing';setScreen('reveal');const run=++revealRun,result=scoreGuesses(answers,pointMultiplier());currentReveal=result;deltas=result.deltas;players.forEach((p,i)=>p.score+=deltas[i]);
   const max=Math.max(...answers)||1,sorted=players.map((_,i)=>i).sort((a,b)=>answers[a]-answers[b]||a-b);
   const neutral=sorted.filter(i=>result.baseDeltas[i]===0&&!result.bonuses[i]),losers=sorted.filter(i=>result.baseDeltas[i]<0),bonusOnly=sorted.filter(i=>result.baseDeltas[i]===0&&result.bonuses[i]),winners=sorted.filter(i=>result.baseDeltas[i]===2);
   const order=[...neutral,...losers,...bonusOnly];
-  app.innerHTML=`<div class="cinema"><div class="cinema-tools"><button class="cinema-exit skip-reveal" type="button" data-game-action="exit">Exit game</button><button id="skip" class="skip-reveal">Skip animation</button></div><div id="announcement" class="reveal-announcement neutral-announcement" role="status" aria-live="polite" aria-atomic="true"><div class="announcement-label">LET’S RAISE THE BAR</div><h2>Who dares to be ordinary?</h2><p>One guess at a time.</p></div><div class="chart-scroll" tabindex="0" aria-label="Guesses revealed one player at a time. Scroll horizontally for more bars."><div class="bar-plot" style="--players:${players.length}"><div class="chart-bars"><div class="chart-grid" aria-hidden="true"></div><div class="bar-columns">${sorted.map(i=>`<div class="bar-column" id="bar-${i}" style="--height:${answers[i]/max*78}%" aria-label="Unrevealed guess"><div class="bar-fill"></div><div class="bar-number" id="value-${i}"></div><div class="bar-crown">${crownMarkup}</div></div>`).join('')}</div></div><div class="bar-labels">${sorted.map(i=>`<div><span class="bar-name" id="label-${i}"></span></div>`).join('')}</div></div></div><div class="cinema-end" id="cinema-end" hidden><button id="details">See round details →</button></div></div>`;
+  app.innerHTML=`<div class="cinema"><div class="cinema-tools"><button class="cinema-exit skip-reveal" type="button" data-game-action="exit">Exit game</button><button id="skip" class="skip-reveal">Skip animation</button></div><div id="announcement" class="reveal-announcement neutral-announcement" role="status" aria-live="polite" aria-atomic="true"><div class="announcement-label">${pointMultiplier()===2?'FINAL ROUND · DOUBLE POINTS':'LET’S RAISE THE BAR'}</div><h2>Who dares to be ordinary?</h2><p>One guess at a time.</p></div><div class="chart-scroll" tabindex="0" aria-label="Guesses revealed one player at a time. Scroll horizontally for more bars."><div class="bar-plot" style="--players:${players.length}"><div class="chart-bars"><div class="chart-grid" aria-hidden="true"></div><div class="bar-columns">${sorted.map(i=>`<div class="bar-column" id="bar-${i}" style="--height:${answers[i]/max*78}%" aria-label="Unrevealed guess"><div class="bar-fill"></div><div class="bar-number" id="value-${i}"></div><div class="bar-crown">${crownMarkup}</div></div>`).join('')}</div></div><div class="bar-labels">${sorted.map(i=>`<div><span class="bar-name" id="label-${i}"></span></div>`).join('')}</div></div></div><div class="cinema-end" id="cinema-end" hidden><button id="details">See round details →</button></div></div>`;
   window.scrollTo(0,0);document.querySelector('.cinema').tabIndex=-1;document.querySelector('.cinema').focus({preventScroll:true});
   document.getElementById('skip').onclick=()=>{clearTimers();finishReveal(result)};
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let time=reduced?0:700;
@@ -616,19 +622,19 @@ function finishReveal(result){
   // The chart remains on screen until the group chooses to view the answer and scores.
 }
 function answerCard(){
-  const q=deck[round].q;if(!q[2])return '<div class="answer-card wild-answer"><div class="eyebrow">Wild Cards</div><h3>No factual answer. Just questionable judgement.</h3><p>This one is hypothetical. Middle guesses earn +2; hitting the rounded average earns +1 extra.</p></div>';
+  const q=deck[round].q;if(deck[round].fixed)return '<div class="answer-card wild-answer"><div class="eyebrow">Double Points Finale</div><h3>No right answer. Just read the room.</h3><p>Middle +4. Highest and lowest −2. A rounded-average hit adds +2. Middle plus bonus = +6.</p></div>';if(!q[2])return '<div class="answer-card wild-answer"><div class="eyebrow">Wild Cards</div><h3>No factual answer. Just questionable judgement.</h3><p>This one is hypothetical. Middle guesses earn +2; hitting the rounded average earns +1 extra.</p></div>';
   const fact=q[2];return `<div class="answer-card"><div class="eyebrow">And the real answer is…</div><h3>${escapeHTML(fact.answer)}</h3><p>${escapeHTML(fact.note)}</p>${fact.url?`<a href="${escapeHTML(fact.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(fact.source)} ↗</a>`:`<small>${escapeHTML(fact.source)}</small>`}</div>`;
 }
 function showRoundDetails(){
   if(stage!=='reveal-complete')return;clearTimers();stage='results';setScreen('play');
   const result=currentReveal,n=answers.length,sorted=[...answers].sort((a,b)=>a-b),central=n%2?formatGuess(sorted[(n-1)/2]):formatGuess(sorted[n/2-1])+' and '+formatGuess(sorted[n/2]);
   const bonusIds=players.map((_,i)=>i).filter(i=>result.bonuses[i]);
-  app.innerHTML=roundTop()+`<div class="card round-details"><h2>A little knowledge.<br>A little glory.</h2>${answerCard()}<table><caption class="eyebrow">This round’s points</caption><thead><tr><th scope="col">Player</th><th scope="col">Guess</th><th scope="col">Base</th><th scope="col">Bonus</th><th scope="col">Round</th></tr></thead><tbody>${players.map((p,i)=>`<tr><th scope="row">${escapeHTML(p.name)}</th><td>${formatGuess(answers[i])}</td><td>${result.baseDeltas[i]>0?'+':''}${result.baseDeltas[i]}</td><td>${result.bonuses[i]?'+1':'—'}</td><td class="${deltas[i]>0?'positive':deltas[i]<0?'negative':''}">${deltas[i]>0?'+':''}${deltas[i]}</td></tr>`).join('')}</tbody></table>${bonusIds.length?`<div class="bonus-detail"><strong>Average hit: ${formatGuess(result.bonusTarget)}</strong><p>${bonusIds.map(i=>escapeHTML(players[i].name)).join(', ')} earned +1 extra. The group’s average was rounded to the nearest whole number.</p></div>`:''}<details class="average-maths"><summary>How the middle was found</summary><p>Sorted guesses: ${sorted.map(formatGuess).join(', ')}.<br>Central guess${n%2?'':'es'}: ${central}. ${n%2?'':'Both central values earn +2.'}</p></details>${leaderboard(false)}<button id="next">${round===4?'Final results →':'Next round →'}</button></div>`;
-  document.getElementById('next').onclick=()=>{clearTimers();if(round===4)final();else{round++;beginRound()}};focusHeading();window.scrollTo(0,0);
+  app.innerHTML=roundTop()+`<div class="card round-details"><h2>${deck[round].fixed?'One last guess.<br>Twice the glory.':'A little knowledge.<br>A little glory.'}</h2>${answerCard()}<table><caption class="eyebrow">This round’s points</caption><thead><tr><th scope="col">Player</th><th scope="col">Guess</th><th scope="col">Base</th><th scope="col">Bonus</th><th scope="col">Round</th></tr></thead><tbody>${players.map((p,i)=>`<tr><th scope="row">${escapeHTML(p.name)}</th><td>${formatGuess(answers[i])}</td><td>${signedPoints(result.baseDeltas[i]*result.multiplier)}</td><td>${result.bonuses[i]?signedPoints(result.multiplier):'—'}</td><td class="${deltas[i]>0?'positive':deltas[i]<0?'negative':''}">${deltas[i]>0?'+':''}${deltas[i]}</td></tr>`).join('')}</tbody></table>${bonusIds.length?`<div class="bonus-detail"><strong>Average hit: ${formatGuess(result.bonusTarget)}</strong><p>${bonusIds.map(i=>escapeHTML(players[i].name)).join(', ')} earned ${signedPoints(result.multiplier)} extra. The group’s average was rounded to the nearest whole number.</p></div>`:''}<details class="average-maths"><summary>How the middle was found</summary><p>Sorted guesses: ${sorted.map(formatGuess).join(', ')}.<br>Central guess${n%2?'':'es'}: ${central}. ${n%2?'':'Both central values earn '+signedPoints(2*result.multiplier)+'.'}</p></details>${leaderboard(false)}<button id="next">${round===deck.length-1?'Final results →':'Next round →'}</button></div>`;
+  document.getElementById('next').onclick=()=>{clearTimers();if(round===deck.length-1)final();else{round++;beginRound()}};focusHeading();window.scrollTo(0,0);
 }
 
 function leaderboard(showRound=false){return `<table><caption class="eyebrow">${showRound?'Live leaderboard':stage==='final'?'Final standings':'Overall standings'}</caption><thead><tr><th scope="col">Player</th>${showRound?'<th scope="col">Round</th>':''}<th scope="col">Total</th></tr></thead><tbody>${players.map((p,i)=>({...p,i})).sort((a,b)=>b.score-a.score||a.i-b.i).map(p=>`<tr><th scope="row">${escapeHTML(p.name)}</th>${showRound?`<td class="${deltas[p.i]>0?'positive':deltas[p.i]<0?'negative':''}">${deltas[p.i]>0?'+':''}${deltas[p.i]}</td>`:''}<td>${p.score}</td></tr>`).join('')}</tbody></table>`}
-function final(){stage='final';setScreen('play');const best=Math.max(...players.map(p=>p.score)),winners=players.filter(p=>p.score===best);app.innerHTML=`<div class="eyebrow">Five rounds. Utterly ordinary.</div><div class="card center"><p>🏆</p><h1>${winners.length>1?'Shared champions!':'Average royalty.'}</h1><h2>${winners.map(p=>escapeHTML(p.name)).join(' & ')}</h2><p class="muted">${best} point${best===1?'':'s'}. An outstanding commitment to being unremarkable.</p>${leaderboard()}<div class="row"><button id="again">Play again →</button><button id="new" class="secondary">Change players</button></div></div>`;document.getElementById('again').onclick=()=>{players.forEach(p=>p.score=0);deck=categories.map(c=>({...c,q:c.questions[Math.floor(Math.random()*c.questions.length)]}));round=0;beginRound()};document.getElementById('new').onclick=showPlayers;confetti();focusHeading()}
+function final(){stage='final';setScreen('play');const best=Math.max(...players.map(p=>p.score)),winners=players.filter(p=>p.score===best);app.innerHTML=`<div class="eyebrow">Six rounds. Utterly ordinary.</div><div class="card center"><p>🏆</p><h1>${winners.length>1?'Shared champions!':'Average royalty.'}</h1><h2>${winners.map(p=>escapeHTML(p.name)).join(' & ')}</h2><p class="muted">${best} point${best===1?'':'s'}. An outstanding commitment to being unremarkable.</p>${leaderboard()}<div class="row"><button id="again">Play again →</button><button id="new" class="secondary">Change players</button></div></div>`;document.getElementById('again').onclick=()=>{players.forEach(p=>p.score=0);deck=buildDeck();round=0;beginRound()};document.getElementById('new').onclick=showPlayers;confetti();focusHeading()}
 
 // Original eight-bar pocket-funk loop: syncopated bass, soft keys, hook and light drums.
 let musicEnabled=false,musicTimer=null,musicBus=null,musicStep=0,nextMusicTime=0;
@@ -671,7 +677,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseMusic(
 
 let roundQuestionHistory=[];
 function gameInProgress(){return ['handoff','guess','reveal-ready','question-preview','revealing','reveal-complete','results','final'].includes(stage)}
-function canChangeQuestion(){return ['handoff','guess','reveal-ready','question-preview'].includes(stage)}
+function canChangeQuestion(){return !deck[round]?.fixed&&['handoff','guess','reveal-ready','question-preview'].includes(stage)}
 function confirmGameAction(title,message,label,onConfirm){
   const dialog=document.getElementById('game-dialog');if(dialog.open)return;
   dialog.innerHTML=`<h2 id="dialog-title">${escapeHTML(title)}</h2><p id="dialog-message">${escapeHTML(message)}</p><div class="dialog-actions"><button class="secondary" type="button" data-cancel autofocus>Keep playing</button><button type="button" data-confirm>${escapeHTML(label)}</button></div>`;
