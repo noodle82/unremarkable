@@ -29,9 +29,11 @@ header{justify-content:flex-end}header .brand{display:none}body.cinema-mode head
 /* Quiet, accessible audio settings, available on every screen. */
 #settings-dialog{color:var(--ink);background:var(--card);border:1px solid #535d86;border-radius:22px;padding:28px;width:calc(100% - 36px);max-width:400px;box-shadow:0 20px 100px #0008}#settings-dialog::backdrop{background:#080c20bb;backdrop-filter:blur(4px)}#settings-dialog h2{margin:0 0 24px;font-size:28px}.settings-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid #394165}.audio-switch{min-width:76px;min-height:44px;padding:9px 18px;background:#30385b;color:var(--ink)}.audio-switch[aria-checked="true"]{background:var(--lime);color:#151a29}#audio-status{font-size:13px;color:var(--muted)}#audio-status:empty{display:none}#close-settings{width:100%;font-size:14px;margin-top:22px}.header-controls #settings-button{font-size:12px;min-height:40px}.cinema-tools .cinema-settings{color:#b8bfd9}#settings-dialog[open]{animation:arrive .2s ease-out}
 
-.reveal-announcement.winner-announcement h2{font-size:clamp(40px,7vw,68px);max-width:calc(100% - 40px)}.reveal-announcement.shared-winners h2{font-size:clamp(29px,5vw,46px)}.winner-emphasis h2{animation:winner-pop 2.4s cubic-bezier(.2,.65,.3,1) both}.winner-emphasis .announcement-label{animation:winner-pop 2.4s cubic-bezier(.2,.65,.3,1) both}.winner-award{display:inline-block;color:var(--lime);font-size:.9em;white-space:nowrap}@keyframes winner-pop{0%{transform:scale(1);opacity:1}28%{transform:scale(1.18)}78%{transform:scale(1.18)}100%{transform:scale(1)}}@media(prefers-reduced-motion:reduce){.winner-emphasis h2,.winner-emphasis .announcement-label{animation:none!important}}
+.reveal-announcement.winner-announcement h2{font-size:clamp(40px,7vw,68px);max-width:calc(100% - 40px)}.reveal-announcement.shared-winners h2{font-size:clamp(29px,5vw,46px)}.winner-emphasis h2{animation:winner-pop var(--winner-pop-duration,1135ms) cubic-bezier(.2,.65,.3,1) both}.winner-emphasis .announcement-label{animation:winner-pop var(--winner-pop-duration,1135ms) cubic-bezier(.2,.65,.3,1) both}.winner-award{display:inline-block;color:var(--lime);font-size:.9em;white-space:nowrap}@keyframes winner-pop{0%{transform:scale(1);opacity:1}28%{transform:scale(1.18)}78%{transform:scale(1.18)}100%{transform:scale(1)}}@media(prefers-reduced-motion:reduce){.winner-emphasis h2,.winner-emphasis .announcement-label{animation:none!important}}
 
 .cinema .chart-question{font-size:clamp(17px,2.4vw,24px);font-weight:650;line-height:1.35;letter-spacing:-.25px;text-align:center;max-width:780px;margin:10px auto 0;padding:0 14px;color:#dce5fc;overflow-wrap:anywhere}@media(max-width:550px){.cinema .chart-question{font-size:17px;margin-top:10px;padding:0 12px}}
+
+.reveal-announcement.loser-announcement h2{font-size:clamp(40px,7vw,68px);max-width:calc(100% - 40px)}.loser-announcement .winner-award{color:inherit}
 </style></head>
 <body><main><header><div class="brand"><svg class="brand-icon" viewBox="85 20 470 240" aria-hidden="true"><path d="M85 251H555" stroke="#667095" stroke-width="2"/><rect x="112" y="202" width="62" height="48" rx="7" fill="#ff7e94"/><rect x="200" y="157" width="62" height="93" rx="7" fill="#91b8f7"/><rect x="288" y="113" width="62" height="137" rx="7" fill="#d4ff63"/><rect x="376" y="70" width="62" height="180" rx="7" fill="#91b8f7"/><rect x="464" y="26" width="62" height="224" rx="7" fill="#ff7e94"/><path d="M296 72 307 83 319 64 331 83 342 72 338 101H300Z" fill="#d4ff63"/></svg><div>UNREMARKABLE<span>!</span></div></div><div class="header-controls"><button id="exit-game" class="secondary quiet-exit" type="button" data-game-action="exit" hidden>Exit game</button><button id="settings-button" class="secondary" type="button" aria-haspopup="dialog" aria-controls="settings-dialog">⚙ Settings</button></div></header><section id="app" aria-label="Game"></section><footer id="game-footer">One device. Secret guesses. Spectacularly average.</footer></main><dialog id="game-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-message"></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><h2 id="settings-title">Settings</h2><div class="settings-row"><span id="music-label">Music</span><button id="music" class="audio-switch" type="button" role="switch" aria-labelledby="music-label" aria-checked="false">Off</button></div><div class="settings-row"><span id="sound-label">Sound effects</span><button id="sound" class="audio-switch" type="button" role="switch" aria-labelledby="sound-label" aria-checked="true">On</button></div><p id="audio-status" role="status"></p><button id="close-settings" class="secondary" type="button">Back to being ordinary</button></dialog>
@@ -552,7 +554,7 @@ function guess(){
   document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=input.value,n=Number(raw);if(!complete.test(raw)||!Number.isFinite(n)){error.textContent=message();return}if(n<limits.min||n>limits.max){error.textContent='Enter a number from '+fmt(limits.min)+' to '+fmt(limits.max)+'.';return}answers.push(n);beep();turn++;if(turn<players.length)handoff();else revealReady()};focusHeading();
 }
 
-function revealReady(){stage='reveal-ready';updateFooter();app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">Raise the bars →</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
+function revealReady(){stage='reveal-ready';updateFooter();app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">Fire up the Unremarkulator! →</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
 function scoreGuesses(values,multiplier=1){
   const scale=10000,units=values.map(v=>Math.round(v*scale)),sorted=[...units].sort((a,b)=>a-b),count=units.length;
   const middleTwice=count%2?2*sorted[(count-1)/2]:sorted[count/2-1]+sorted[count/2];
@@ -576,7 +578,7 @@ const crownMarkup='<svg viewBox="0 0 60 40" aria-hidden="true"><path d="M5 8 18 
 const revealRemarks={neutral:['A heroic contribution to absolutely nothing.','Present. Accounted for. Entirely unremarkable.','A beautifully forgettable performance.'],low:['A little ambition would not have hurt.','You brought a teaspoon to a swimming pool.','Understatement has gone too far.'],high:['Confidence: enormous. Points: less so.','You have boldly overshot mediocrity.','A magnificent overachievement in the wrong direction.'],winner:['Your parents must be moderately proud.','Please accept this very modest glory.','You have peaked at being perfectly ordinary.'],bonus:['The average called. You actually answered.','Precision mediocrity. A rare and unimpressive gift.','Bang average. For once, that is a compliment.']};
 function remark(type){const a=revealRemarks[type];return a[Math.floor(Math.random()*a.length)]}
 function setScreen(screen){document.body.classList.toggle('playing',screen!=='setup');document.body.classList.toggle('cinema-mode',screen==='reveal');document.getElementById('exit-game').hidden=!gameInProgress();updateFooter()}
-function announce(label,name,joke,tone){const el=document.getElementById('announcement'),winner=tone.includes('winner-announcement'),award=winner&&stage==='revealing'?label.match(/\+\d+/):null;el.className='reveal-announcement '+tone;el.innerHTML=`<div class="announcement-label">${escapeHTML(label)}</div><h2>${escapeHTML(name)}${award?' <span class="winner-award">'+escapeHTML(award[0])+(tone.includes('shared-winners')?' each':'')+'</span>':''}</h2><p>${escapeHTML(joke)}</p>`}
+function announce(label,name,joke,tone){const el=document.getElementById('announcement'),winner=tone.includes('winner-announcement'),loser=tone.includes('loser-announcement'),award=(winner||loser)&&stage==='revealing'?label.match(/[+−-]\d+/):null;el.className='reveal-announcement '+tone;el.innerHTML=`<div class="announcement-label">${escapeHTML(label)}</div><h2>${escapeHTML(name)}${award?' <span class="winner-award">'+escapeHTML(award[0])+(tone.includes('shared-winners')?' each':'')+'</span>':''}</h2><p>${escapeHTML(joke)}</p>`}
 function countValue(node,value,run,startAt=performance.now()){if(matchMedia('(prefers-reduced-motion: reduce)').matches){node.textContent=formatGuess(value);return}const precision=Number.isInteger(value)?0:questionPrecision(),factor=10**precision,start=startAt;function tick(now){if(run!==revealRun||stage!=='revealing')return;const t=Math.min(1,(now-start)/revealPace.growth);node.textContent=formatGuess(Math.round(value*(1-Math.pow(1-t,2))*factor)/factor);if(t<1)requestAnimationFrame(tick);else node.textContent=formatGuess(value)}requestAnimationFrame(tick)}
 
 function revealBar(i,run,silent=false,sharedStart=null){
@@ -619,7 +621,7 @@ function reveal(){
   const max=Math.max(...answers)||1,sorted=players.map((_,i)=>i).sort((a,b)=>answers[a]-answers[b]||a-b);
   const neutral=sorted.filter(i=>result.baseDeltas[i]===0&&!result.bonuses[i]),losers=sorted.filter(i=>result.baseDeltas[i]<0),bonusOnly=sorted.filter(i=>result.baseDeltas[i]===0&&result.bonuses[i]),winners=sorted.filter(i=>result.baseDeltas[i]===2);
   const order=[...neutral,...losers,...bonusOnly];
-  app.innerHTML=`<div class="cinema"><div class="cinema-tools"><button class="cinema-exit skip-reveal" type="button" data-game-action="exit">Exit game</button><button class="skip-reveal cinema-settings" type="button" data-game-action="settings" aria-haspopup="dialog" aria-controls="settings-dialog">⚙ Settings</button><button id="skip" class="skip-reveal">Skip animation</button></div><h1 id="chart-question" class="chart-question">${escapeHTML(deck[round].q[0])}</h1><div id="announcement" class="reveal-announcement neutral-announcement" role="status" aria-live="polite" aria-atomic="true"><div class="announcement-label">${pointMultiplier()===2?'FINAL ROUND · DOUBLE POINTS':'LET’S RAISE THE BAR'}</div><h2>Who dares to be ordinary?</h2><p>One guess at a time.</p></div><div class="chart-scroll" tabindex="0" aria-labelledby="chart-question" aria-description="Guesses revealed one player at a time. Scroll horizontally for more bars."><div class="bar-plot" style="--players:${players.length}"><div class="chart-bars"><div class="chart-grid" aria-hidden="true"></div><div class="bar-columns">${sorted.map(i=>`<div class="bar-column" id="bar-${i}" style="--height:${answers[i]/max*78}%" aria-label="Unrevealed guess"><div class="bar-fill"></div><div class="bar-number" id="value-${i}"></div><div class="bar-crown">${crownMarkup}</div></div>`).join('')}</div></div><div class="bar-labels">${sorted.map(i=>`<div><span class="bar-name" id="label-${i}"></span></div>`).join('')}</div></div></div><div class="cinema-end" id="cinema-end" hidden><button id="details">See round details →</button></div></div>`;
+  app.innerHTML=`<div class="cinema"><div class="cinema-tools"><button class="cinema-exit skip-reveal" type="button" data-game-action="exit">Exit game</button><button class="skip-reveal cinema-settings" type="button" data-game-action="settings" aria-haspopup="dialog" aria-controls="settings-dialog">⚙ Settings</button><button id="skip" class="skip-reveal">Skip animation</button></div><h1 id="chart-question" class="chart-question">${escapeHTML(deck[round].q[0])}</h1><div id="announcement" class="reveal-announcement neutral-announcement" role="status" aria-live="polite" aria-atomic="true"><div class="announcement-label">${pointMultiplier()===2?'FINAL ROUND · DOUBLE POINTS':'THE UNREMARKULATOR'}</div><h2>Who dares to be ordinary?</h2><p>One guess at a time.</p></div><div class="chart-scroll" tabindex="0" aria-labelledby="chart-question" aria-description="Guesses revealed one player at a time. Scroll horizontally for more bars."><div class="bar-plot" style="--players:${players.length}"><div class="chart-bars"><div class="chart-grid" aria-hidden="true"></div><div class="bar-columns">${sorted.map(i=>`<div class="bar-column" id="bar-${i}" style="--height:${answers[i]/max*78}%" aria-label="Unrevealed guess"><div class="bar-fill"></div><div class="bar-number" id="value-${i}"></div><div class="bar-crown">${crownMarkup}</div></div>`).join('')}</div></div><div class="bar-labels">${sorted.map(i=>`<div><span class="bar-name" id="label-${i}"></span></div>`).join('')}</div></div></div><div class="cinema-end" id="cinema-end" hidden><button id="details">See round details →</button></div></div>`;
   window.scrollTo(0,0);document.querySelector('.cinema').tabIndex=-1;document.querySelector('.cinema').focus({preventScroll:true});
   document.getElementById('skip').onclick=()=>{clearTimers();finishReveal(result)};
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let time=reduced?0:500;
@@ -691,25 +693,50 @@ function prepareSfx(name){
   }
   return sfxBuffers.get(name);
 }
+const winnerVoiceTiming={"offsetMs":866,"durationMs":1135};
+function alignWinnerToYay(startTime,run,epoch){
+  const target=startTime+winnerVoiceTiming.offsetMs/1000;
+  function tick(){
+    if(stage!=='revealing'||run!==revealRun)return;
+    if(epoch!==sfxEpoch){if(!document.hidden)celebrateMiddleWinner();return}
+    let heardTime=audioCtx.currentTime-(audioCtx.baseLatency||0);
+    try{const stamp=audioCtx.getOutputTimestamp?.();if(stamp?.contextTime>0&&stamp.performanceTime>0)heardTime=stamp.contextTime+Math.max(0,performance.now()-stamp.performanceTime)/1000}catch{}
+    if(heardTime>=target)celebrateMiddleWinner();else requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 async function playSfx(name){
-  if(!sound||document.hidden)return;const epoch=sfxEpoch;
+  if(!sound||document.hidden)return false;const epoch=sfxEpoch,run=revealRun;
   try{
     audioCtx ||=new (window.AudioContext||window.webkitAudioContext)();
     await audioCtx.resume();const buffer=await prepareSfx(name);
-    if(!sound||document.hidden||epoch!==sfxEpoch)return;
+    if(!sound||document.hidden||epoch!==sfxEpoch)return false;
     const source=audioCtx.createBufferSource(),gain=audioCtx.createGain();source.buffer=buffer;
     gain.gain.value={whoosh:.4,meh:.4,uhoh:.4,yay:.4,bonus:.16}[name];
     source.connect(gain);gain.connect(audioCtx.destination);activeSfx.add(source);
-    source.onended=()=>{activeSfx.delete(source);source.disconnect();gain.disconnect()};source.start();
-  }catch{}
+    source.onended=()=>{activeSfx.delete(source);source.disconnect();gain.disconnect()};
+    const start=audioCtx.currentTime;source.start(start);
+    if(name==='yay')alignWinnerToYay(start,run,epoch);
+    return true;
+  }catch{return false}
 }
 function barRevealSfx(base,run){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   playSfx('whoosh');
-  later(()=>{if(stage==='revealing'&&run===revealRun){playSfx(base===2?'yay':base<0?'uhoh':'meh');if(base===2)later(()=>{if(stage==='revealing'&&run===revealRun)celebrateMiddleWinner()},805)}},revealPace.growth);
+  later(()=>{
+    if(stage!=='revealing'||run!==revealRun)return;
+    playSfx(base===2?'yay':base<0?'uhoh':'meh').then(started=>{
+      // Keep visual emphasis when effects are muted or audio cannot play.
+      if(base===2&&!started&&stage==='revealing'&&run===revealRun)later(()=>{if(stage==='revealing'&&run===revealRun)celebrateMiddleWinner()},winnerVoiceTiming.offsetMs);
+    });
+  },revealPace.growth);
 }
 function celebrateMiddleWinner(){
-  if(stage==='revealing'&&lastCheerRun!==revealRun){lastCheerRun=revealRun;document.getElementById('announcement')?.classList.add('winner-emphasis')}
+  if(stage==='revealing'&&lastCheerRun!==revealRun){
+    lastCheerRun=revealRun;const el=document.getElementById('announcement');
+    el.style.setProperty('--winner-pop-duration',winnerVoiceTiming.durationMs+'ms');
+    el.classList.add('winner-emphasis');
+  }
 }
 
 // The approved 80 BPM After Hours arrangement is embedded in this file for offline play.
