@@ -848,9 +848,9 @@ function scoreGuesses(values,multiplier=1){
 }
 function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.party').forEach(el=>el.remove());return;}for(let i=0;i<35;i++){const el=document.createElement('i');el.className='party';el.style.left=Math.random()*100+'vw';el.style.background=['#d4ff63','#ff7e94','#91b8f7'][i%3];el.style.animationDelay=Math.random()*.5+'s';document.body.append(el);later(()=>el.remove(),3200)}}
 let revealRun=0,currentReveal=null;
-const revealPace={growth:2100,neutral:2950,loser:3950,winner:5600,winnerBonus:6800,winnerBonusAt:5600};
+const revealPace={growth:2100,neutral:2950,loser:4500,winner:5600,winnerBonus:6800,winnerBonusAt:5600};
 const landingDurationMs={meh:510,uhoh:1650,yay:2257};
-function bonusRevealDelay(i){const base=currentReveal.baseDeltas[i];return base===2?revealPace.winnerBonusAt:revealPace.growth+landingDurationMs[base<0?'uhoh':'meh']+180}
+function bonusRevealDelay(i){const base=currentReveal.baseDeltas[i];return base===2?revealPace.winnerBonusAt:revealPace.growth+(base<0?Math.max(landingDurationMs.uhoh,standingsCrowdReaction.delay+standingsCrowdReaction.duration):landingDurationMs.meh)+180}
 function revealSlot(i){const base=currentReveal.baseDeltas[i],bonus=currentReveal.bonuses[i];if(base===2)return bonus?revealPace.winnerBonus:revealPace.winner;const slot=base<0?revealPace.loser:revealPace.neutral;return bonus?Math.max(slot,bonusRevealDelay(i)+1200):slot}
 const crownMarkup='<svg viewBox="0 0 60 40" aria-hidden="true"><path d="M5 8 18 20 30 3 42 20 55 8 50 35H10Z" fill="#d4ff63" stroke="#efffbb" stroke-width="2.5" stroke-linejoin="round"/></svg>';
 const revealRemarks={neutral:['A heroic contribution to absolutely nothing.','Present. Accounted for. Entirely unremarkable.','A beautifully forgettable performance.'],low:['A little ambition would not have hurt.','You brought a teaspoon to a swimming pool.','Understatement has gone too far.'],high:['Confidence: enormous. Points: less so.','You have boldly overshot mediocrity.','A magnificent overachievement in the wrong direction.'],winner:['Your parents must be moderately proud.','Please accept this very modest glory.','You have peaked at being perfectly ordinary.'],bonus:['The average called. You actually answered.','Precision mediocrity. A rare and unimpressive gift.','Bang average. For once, that is a compliment.']};
@@ -1131,6 +1131,7 @@ function barRevealSfx(base,run){
       if(base===2&&!started&&stage==='revealing'&&run===revealRun)later(()=>{if(stage==='revealing'&&run===revealRun)celebrateMiddleWinner()},winnerVoiceTiming.offsetMs);
     });
   },revealPace.growth);
+  if(base<0)later(()=>{if(stage==='revealing'&&run===revealRun)playSfx('crowdDown')},revealPace.growth+standingsCrowdReaction.delay);
 }
 function celebrateMiddleWinner(){
   if(stage==='revealing'&&lastCheerRun!==revealRun){
