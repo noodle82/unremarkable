@@ -36,6 +36,8 @@ header{justify-content:flex-end}header .brand{display:none}body.cinema-mode head
 .reveal-announcement.loser-announcement h2{font-size:clamp(40px,7vw,68px);max-width:calc(100% - 40px)}.loser-announcement .winner-award{color:inherit}
 
 .settings-legal{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;padding-top:20px;font-size:13px}.settings-legal a{color:#c6dcff;text-underline-offset:4px}.settings-legal a:hover{color:var(--lime)}.settings-legal a:focus-visible{outline:3px solid var(--lime);outline-offset:5px}
+
+.round-intro{min-height:calc(100svh - 185px);display:grid;place-items:center;padding:8px 0 24px}.round-intro-card{text-align:center;width:100%;max-width:740px;margin:auto;padding:38px 28px;border:1px solid #58618a;border-radius:26px;background:linear-gradient(145deg,#272e50,#191f3a);box-shadow:0 18px 70px #080b1933;animation:round-enter .5s ease-out both}.round-intro-number{color:var(--lime);font-size:25px;font-weight:850;letter-spacing:-.5px;margin:22px 0 12px}.round-intro-number span{color:var(--muted);font-size:17px;font-weight:500}.round-intro h1{font-size:clamp(32px,5.4vw,56px);line-height:1.08;letter-spacing:-1.5px;margin:12px auto 26px;max-width:650px;overflow-wrap:break-word}.round-intro-wit{font-size:clamp(20px,3vw,27px);line-height:1.35;font-weight:700;max-width:560px;margin:0 auto 12px}.round-intro-description{font-size:15px;max-width:520px;margin:0 auto 26px}.round-intro #round-start{min-height:56px;max-width:430px;width:100%;margin:4px auto 0;font-size:18px}.round-intro-steps{list-style:none;display:flex;justify-content:center;gap:12px;padding:0;margin:30px 0 0}.round-intro-steps li{width:30px;height:30px;border-radius:50%;border:1px solid #6a7393;color:var(--muted);display:grid;place-items:center;font-size:12px;font-weight:800}.round-intro-steps li.current{background:var(--lime);color:#151a29;border-color:var(--lime);box-shadow:0 0 0 4px #d4ff6314}.round-intro-steps li.completed{color:var(--lime);border-color:#7f9c4a}.round-intro-double{display:inline-block;color:#111427;background:var(--lime);font-weight:950;letter-spacing:2px;font-size:13px;border-radius:8px;padding:8px 14px;margin:-10px auto 22px}.round-intro-scoring{font-size:14px;line-height:1.8;color:var(--muted);margin:-6px auto 22px}.round-intro-scoring strong{color:var(--lime)}.answer-source{display:block;margin-top:8px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@keyframes round-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@media(max-width:550px){.round-intro{min-height:calc(100svh - 150px);padding-top:0}.round-intro-card{padding:28px 18px;border-radius:22px}.round-intro h1{letter-spacing:-1px;font-size:35px}.round-intro .eyebrow{font-size:10px;letter-spacing:1.4px}.round-intro-number{margin-top:18px}.round-intro #round-start{font-size:16px}.round-intro-steps{gap:10px;margin-top:24px}}@media(prefers-reduced-motion:reduce){.round-intro-card{animation:none}}
 </style></head>
 <body><main><header><div class="brand"><svg class="brand-icon" viewBox="85 20 470 240" aria-hidden="true"><path d="M85 251H555" stroke="#667095" stroke-width="2"/><rect x="112" y="202" width="62" height="48" rx="7" fill="#ff7e94"/><rect x="200" y="157" width="62" height="93" rx="7" fill="#91b8f7"/><rect x="288" y="113" width="62" height="137" rx="7" fill="#d4ff63"/><rect x="376" y="70" width="62" height="180" rx="7" fill="#91b8f7"/><rect x="464" y="26" width="62" height="224" rx="7" fill="#ff7e94"/><path d="M296 72 307 83 319 64 331 83 342 72 338 101H300Z" fill="#d4ff63"/></svg><div>UNREMARKABLE<span>!</span></div></div><div class="header-controls"><button id="exit-game" class="secondary quiet-exit" type="button" data-game-action="exit" hidden>Exit game</button><button id="settings-button" class="secondary" type="button" aria-haspopup="dialog" aria-controls="settings-dialog">⚙ Settings</button></div></header><section id="app" aria-label="Game"></section><footer id="game-footer">One device. Secret guesses. Spectacularly average.</footer></main><dialog id="game-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-message"></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><h2 id="settings-title">Settings</h2><div class="settings-row"><span id="music-label">Music</span><button id="music" class="audio-switch" type="button" role="switch" aria-labelledby="music-label" aria-checked="false">Off</button></div><div class="settings-row"><span id="sound-label">Sound effects</span><button id="sound" class="audio-switch" type="button" role="switch" aria-labelledby="sound-label" aria-checked="true">On</button></div><p id="audio-status" role="status"></p><nav class="settings-legal" aria-label="Information pages"><a href="privacy/index.html" target="_blank" rel="noopener noreferrer">Privacy</a><a href="terms/index.html" target="_blank" rel="noopener noreferrer">Terms</a><a href="support/index.html" target="_blank" rel="noopener noreferrer">Support</a></nav><button id="close-settings" class="secondary" type="button">Back to being ordinary</button></dialog>
@@ -44,32 +46,55 @@ header{justify-content:flex-end}header .brand{display:none}body.cinema-mode head
 'use strict';
 const categories=[
   {
-    "name": "Heights & Sizes",
-    "icon": "📏",
+    "name": "Heights, Sizes & Distances",
+    "icon": "↔",
     "questions": [
       [
-        "How tall is a New Routemaster double-decker London bus, approximately?",
-        "metres",
+        "How many centimetres long is the Statue of Liberty’s nose, approximately?",
+        "cm",
         {
-          "answer": "About 4.4 metres",
-          "note": "This question refers to the New Routemaster rather than every model of London bus.",
-          "source": "Transport for London — Big Red Book",
-          "url": "https://www.transportforall.org.uk/wp-content/uploads/2023/11/bigredbook2014.pdf"
+          "answer": "About 137 cm",
+          "note": "The US National Park Service lists 4 feet 6 inches, equivalent to 137.16 cm. Rounded to the nearest centimetre: 137 cm.",
+          "source": "US National Park Service — Statue statistics",
+          "url": "https://home.nps.gov/stli/learn/historyculture/statue-statistics.htm"
         },
-        1
+        0
       ],
       [
-        "How many metres long was the Titanic, approximately?",
-        "metres",
+        "How tall is Al Pacino, approximately, in centimetres?",
+        "cm",
         {
-          "answer": "About 269 metres",
-          "note": "Titanic’s overall length was approximately 269.1 metres.",
-          "source": "Causeway Coast and Glens Museum Services — Titanic",
-          "url": "https://www.niarchive.org/projectitems/rms-titanics-causeway-connections/"
-        }
+          "answer": "About 168 cm",
+          "note": "IMDb lists his height as 5 feet 6 inches (1.68 metres). Celebrity heights are reported figures rather than independently certified measurements, and listings can differ.",
+          "source": "IMDb — Al Pacino biography",
+          "url": "https://www.imdb.com/name/nm0000199/bio/"
+        },
+        0
       ],
       [
-        "Roughly how tall can a fully grown male giraffe be?",
+        "How many centimetres tall is the Mona Lisa painting, excluding its frame?",
+        "cm",
+        {
+          "answer": "77 cm",
+          "note": "The Louvre lists the painting as 77 cm high and 53 cm wide. The frame is not included.",
+          "source": "Musée du Louvre — educational guide",
+          "url": "https://api-www.louvre.fr/sites/default/files/2025-11/Dossier_pedagogique_Louvre%20en%20classe.pdf"
+        },
+        0
+      ],
+      [
+        "How many tonnes did an adult Tyrannosaurus rex weigh?",
+        "tonnes",
+        {
+          "answer": "About 6 tonnes",
+          "note": "An estimate for a typical adult. The Natural History Museum gives a normal weight range of 5,000–7,000 kg; exceptionally large individuals could be heavier.",
+          "source": "Natural History Museum",
+          "url": "https://www.nhm.ac.uk/discover/dino-directory/tyrannosaurus.html"
+        },
+        0
+      ],
+      [
+        "How tall can a fully grown male giraffe be?",
         "metres",
         {
           "answer": "About 5.5 metres",
@@ -80,34 +105,15 @@ const categories=[
         1
       ],
       [
-        "To the nearest metre, how long was the longest blue whale documented by Guinness World Records?",
+        "How long is Brighton Palace Pier, approximately?",
         "metres",
         {
-          "answer": "About 34 metres",
-          "note": "Guinness lists a female measured in South Georgia in 1909 at 33.57 metres. Rounded to the nearest whole metre, that is 34.",
-          "source": "Guinness World Records — largest whale",
-          "url": "https://www.guinnessworldrecords.com/world-records/69467-largest-whale"
-        }
-      ],
-      [
-        "How many centimetres tall is the Mona Lisa painting, excluding its frame?",
-        "cm",
-        {
-          "answer": "77 cm",
-          "note": "The Louvre lists the painting as 77 cm high and 53 cm wide. The frame is not included.",
-          "source": "Musée du Louvre — educational guide",
-          "url": "https://api-www.louvre.fr/sites/default/files/2025-11/Dossier_pedagogique_Louvre%20en%20classe.pdf"
-        }
-      ],
-      [
-        "How many centimetres long is the Statue of Liberty’s nose, approximately?",
-        "cm",
-        {
-          "answer": "About 137 cm",
-          "note": "The US National Park Service lists 4 feet 6 inches, equivalent to 137.16 cm. Rounded to the nearest centimetre: 137 cm.",
-          "source": "US National Park Service — Statue statistics",
-          "url": "https://home.nps.gov/stli/learn/historyculture/statue-statistics.htm"
-        }
+          "answer": "About 525 metres",
+          "note": "The pier is 1,722 feet long, equivalent to approximately 525 metres.",
+          "source": "Visit Brighton — Palace Pier",
+          "url": "https://www.visitbrighton.com/things-to-do/brighton-palace-pier-p60603"
+        },
+        0
       ],
       [
         "How tall is the Leaning Tower of Pisa above the ground, approximately?",
@@ -117,44 +123,9 @@ const categories=[
           "note": "Pisa’s municipal tourism site gives about 56 metres above ground. Height varies with the side measured; the monument operator’s larger 58.36-metre figure uses a different measurement reference.",
           "source": "Comune di Pisa — tourism",
           "url": "https://turismo.pisa.it/cultura/dettaglio/piazza-del-duomo-la-torre-pendente/"
-        }
+        },
+        0
       ],
-      [
-        "How many metres across is one clock dial on the tower housing Big Ben?",
-        "metres",
-        {
-          "answer": "7 metres",
-          "note": "Each of the four clock dials is seven metres in diameter. Big Ben itself is the bell.",
-          "source": "UK Parliament — Big Ben facts",
-          "url": "https://www.parliament.uk/about/living-heritage/building/palace/big-ben/facts-figures/"
-        }
-      ],
-      [
-        "How tall is the Burj Khalifa in Dubai?",
-        "metres",
-        {
-          "answer": "828 metres",
-          "note": "The architectural height, including the spire.",
-          "source": "Burj Khalifa — official fact sheet",
-          "url": "https://www.burjkhalifa.ae/en/assets/FACT-SHEET.pdf"
-        }
-      ],
-      [
-        "How tall is Al Pacino, approximately, in centimetres?",
-        "cm",
-        {
-          "answer": "About 168 cm",
-          "note": "IMDb lists his height as 5 feet 6 inches (1.68 metres). Celebrity heights are reported figures rather than independently certified measurements, and listings can differ.",
-          "source": "IMDb — Al Pacino biography",
-          "url": "https://www.imdb.com/name/nm0000199/bio/"
-        }
-      ]
-    ]
-  },
-  {
-    "name": "Distances",
-    "icon": "🧭",
-    "questions": [
       [
         "As the crow flies, how far is it from London to Timbuktu, approximately?",
         "km",
@@ -163,47 +134,30 @@ const categories=[
           "note": "A great-circle distance rather than a road route; exact figures vary slightly with the chosen points in each city.",
           "source": "Travelmath — London to Timbuktu",
           "url": "https://www.travelmath.com/distance/from/London,+United+Kingdom/to/Timbuktu,+Mali"
-        }
+        },
+        0
       ],
       [
-        "As the crow flies, roughly how far apart are the university cities of Oxford and Cambridge?",
-        "km",
-        {
-          "answer": "About 107 km",
-          "note": "Approximate straight-line distance between the cities, not a road journey. The universities have many buildings, so this uses city reference points rather than an unspecified pair of campuses.",
-          "source": "Travelmath — Oxford to Cambridge",
-          "url": "https://www.travelmath.com/distance/from/Oxford,+United+Kingdom/to/Cambridge,+United+Kingdom"
-        }
-      ],
-      [
-        "At its widest point, how wide is the Grand Canyon from rim to rim, to the nearest kilometre?",
-        "km",
-        {
-          "answer": "About 29 km",
-          "note": "The US National Park Service gives a maximum rim-to-rim width of 18 miles (about 29 km). This is not the width of the Colorado River below.",
-          "source": "US National Park Service — Grand Canyon statistics",
-          "url": "https://www.nps.gov/grca/learn/management/statistics.htm"
-        }
-      ],
-      [
-        "For the widest standard UK double yellow road lines, how wide is the gap between the two painted lines?",
-        "cm",
-        {
-          "answer": "10 cm",
-          "note": "The prescribed line widths are 50, 75 or 100 mm, with the gap matching the width of each line. The widest standard version therefore has a 100 mm (10 cm) gap. Narrower versions have smaller gaps.",
-          "source": "Department for Transport — Traffic Signs Manual, Chapter 3, section 13.4.5",
-          "url": "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/223943/traffic-signs-manual-chapter-03.pdf"
-        }
-      ],
-      [
-        "At its narrowest point, roughly how many kilometres of sea separate the UK and France?",
+        "At its narrowest point, how many kilometres of sea separate the UK and France?",
         "km",
         {
           "answer": "About 34 km",
           "note": "Dover District Council describes the narrowest part of the Dover Strait as 21 miles, or roughly 34 km. More precise endpoint measurements are often given as around 33 km. This refers to the British and French mainland coasts.",
           "source": "Dover District Council — Channel crossings exhibition",
           "url": "https://www.dover.gov.uk/News/Press-Releases/2023/New-Dover-Museum-Exhibition-Charts-History-of-Channel-Crossings.aspx"
-        }
+        },
+        0
+      ],
+      [
+        "How many kilograms is a typical fair-weather cumulus cloud?",
+        "kg",
+        {
+          "answer": "About 500,000 kg",
+          "note": "This estimate is for the liquid water in an illustrative cumulus cloud about one kilometre across. Clouds vary enormously in size and water content; it is not the mass of all the surrounding air.",
+          "source": "Smithsonian National Air and Space Museum",
+          "url": "https://howthingsfly.si.edu/ask-an-explainer/how-much-does-cloud-actually-weigh"
+        },
+        0
       ],
       [
         "How many metres long is Sydney Harbour Bridge, including its approaches?",
@@ -213,28 +167,8 @@ const categories=[
           "note": "This is the full length including approaches, rather than just the central arch span.",
           "source": "Transport for NSW — bridge facts",
           "url": "https://www.transport.nsw.gov.au/system/files/media/documents/2024/Online_241205%20MR%20Graham%20Bridge%20maintenance.pdf"
-        }
-      ],
-      [
-        "How long is Brighton Palace Pier, approximately?",
-        "metres",
-        {
-          "answer": "About 525 metres",
-          "note": "The pier is 1,722 feet long, equivalent to approximately 525 metres.",
-          "source": "Visit Brighton — Palace Pier",
-          "url": "https://www.visitbrighton.com/things-to-do/brighton-palace-pier-p60603"
-        }
-      ],
-      [
-        "How long is the Channel Tunnel, approximately?",
-        "km",
-        {
-          "answer": "About 50.5 km",
-          "note": "LeShuttle gives this approximate length between Folkestone and Calais.",
-          "source": "LeShuttle — Channel Tunnel facts",
-          "url": "https://www.leshuttle.com/uk-en/discover/why-choose-leshuttle/build/the-channel-tunnel?viewmode=0"
         },
-        1
+        0
       ],
       [
         "To the nearest metre, how far must a ten-pin bowling ball travel from the foul line to the front pin?",
@@ -244,43 +178,90 @@ const categories=[
           "note": "The regulation distance is 60 feet, or 18.288 metres, from the foul line to the centre of the headpin. The run-up is not included.",
           "source": "Professional Bowlers Association — bowling lingo",
           "url": "https://www.pba.com/about/bowling-lingo"
-        }
+        },
+        0
       ],
       [
-        "What is the average distance from Earth to the Moon, approximately?",
-        "km",
+        "A traditional gold bar weighs how many grams?",
+        "grams",
         {
-          "answer": "About 384,400 km",
-          "note": "An average distance between Earth and the Moon. The actual separation varies during the orbit.",
-          "source": "NASA — Moon facts",
-          "url": "https://science.nasa.gov/moon/facts/"
-        }
+          "answer": "About 12,400 grams",
+          "note": "The familiar large bullion bar is nominally 400 troy ounces: approximately 12,441 g. Actual London Good Delivery bars can vary from roughly 10.9 to 13.4 kg. This is a guide estimate, not the weight of every gold bar.",
+          "source": "London Bullion Market Association",
+          "url": "https://www.lbma.org.uk/publications/the-otc-guide/london-good-delivery-gold-and-silver"
+        },
+        0
+      ],
+      [
+        "How many grams did an 8 tonne Tyrannosaurus rex’s brain weigh?",
+        "grams",
+        {
+          "answer": "About 150 grams — an estimate",
+          "note": "Fossil brain size is reconstructed rather than weighed. Recent models give estimates around 100–180 g, while other reconstructions have suggested over 300 g. The 8-tonne body description does not imply a precise brain-to-body conversion.",
+          "source": "Caspar and colleagues: How smart was T. rex?",
+          "url": "https://www.biorxiv.org/content/10.1101/2024.01.10.575006v2.full"
+        },
+        0
+      ],
+      [
+        "How tall is a New Routemaster double-decker London bus, approximately?",
+        "metres",
+        {
+          "answer": "About 4.4 metres",
+          "note": "This question refers to the New Routemaster rather than every model of London bus.",
+          "source": "Transport for London — Big Red Book",
+          "url": "https://www.transportforall.org.uk/wp-content/uploads/2023/11/bigredbook2014.pdf"
+        },
+        1
       ]
     ]
   },
   {
     "name": "Everyday Numbers",
-    "icon": "🔢",
+    "icon": "▦",
     "questions": [
       [
-        "How many pages are in the original 1997 UK edition of Harry Potter and the Philosopher’s Stone?",
-        "pages",
+        "How many teeth does a great white shark have at one time, including its replacement rows?",
+        "teeth",
         {
-          "answer": "223 pages",
-          "note": "The original Bloomsbury UK edition is specified: later editions, illustrated editions and translations have different page counts.",
-          "source": "BADA — first-edition bibliographic description",
-          "url": "https://www.bada.org/object/j-k-rowling-harry-potter-and-philosophers-stone-first-edition"
-        }
+          "answer": "About 300 teeth",
+          "note": "That includes replacement teeth in as many as seven rows. Individuals vary, and only the front teeth do the biting at any one time.",
+          "source": "Smithsonian Ocean",
+          "url": "https://ocean.si.edu/ocean-life/sharks-rays/great-white-shark"
+        },
+        0
       ],
       [
-        "How many passenger capsules are on the London Eye?",
-        "capsules",
+        "How many times does the word “God” appear in the New Testament of the King James Bible?",
+        "mentions",
         {
-          "answer": "32 capsules",
-          "note": "There is no capsule numbered 13, so the numbering runs up to 33 even though there are only 32.",
-          "source": "London Eye — anniversary facts",
-          "url": "https://www.londoneye.com/25th-anniversary/"
-        }
+          "answer": "1,354 mentions (reference count)",
+          "note": "Christian Bible Reference lists 1,354. We use its base-word count: capitalisation is ignored; “gods” and “God’s”, headings and footnotes are excluded. Counts can vary with the digital text and search method, so this is the named reference’s count rather than a universal total.",
+          "source": "Christian Bible Reference — word-count table",
+          "url": "https://www.christianbiblereference.org/faq_WordCount.htm"
+        },
+        0
+      ],
+      [
+        "How many cats have been recorded as living at 10 Downing Street?",
+        "cats",
+        {
+          "answer": "At least 9 well-documented residents",
+          "note": "A working minimum: Munich Mouser, Nelson, Nemo, Wilberforce, Humphrey, Sybil, Larry, JoJo and Prince. There is no exhaustive historical register. Counts change if neighbouring government offices, visiting cats or unnamed residents are included.",
+          "source": "Purr ’n’ Fur historical account; AP’s 2026 account of JoJo and Prince",
+          "url": "https://www.purr-n-fur.org.uk/famous/humphrey.html",
+          "sources": [
+            {
+              "title": "Historical Downing Street cats",
+              "url": "https://www.purr-n-fur.org.uk/famous/humphrey.html"
+            },
+            {
+              "title": "AP: Larry and the resident family cats (2026)",
+              "url": "https://apnews.com/article/c5dd5cecf43867c2f53c307031d6717a"
+            }
+          ]
+        },
+        0
       ],
       [
         "How many grams does one standard UK Cadbury Creme Egg weigh?",
@@ -290,27 +271,117 @@ const categories=[
           "note": "The standard UK single Creme Egg, rather than a mini egg or another market’s version. Pack sizes can change.",
           "source": "Cadbury — standard Creme Egg",
           "url": "https://www.cadbury.co.uk/products/cadbury-creme-egg-40g/"
-        }
+        },
+        0
       ],
       [
-        "How many rooms does Buckingham Palace have?",
-        "rooms",
+        "What is the maximum certified passenger seating capacity of an Airbus A380?",
+        "passengers",
         {
-          "answer": "775 rooms",
-          "note": "The total includes state rooms, bedrooms, offices and bathrooms.",
-          "source": "The Royal Family — Buckingham Palace",
-          "url": "https://www.royal.uk/royal-residences-buckingham-palace?_amp=true"
-        }
+          "answer": "853 passengers",
+          "note": "This is the certified maximum for an all-economy arrangement; airline layouts usually have fewer seats.",
+          "source": "Airbus — A380 facts and figures",
+          "url": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf?pubDate=20251126"
+        },
+        0
       ],
       [
-        "How many dimples are on a 2025 Titleist Pro V1 golf ball?",
-        "dimples",
+        "How many McDonald’s restaurants are there in Wales?",
+        "restaurants",
         {
-          "answer": "388 dimples",
-          "note": "The model matters: the 2025 Pro V1x uses a different dimple count.",
-          "source": "Titleist — 2025 Pro V1 and Pro V1x",
-          "url": "https://production-na.titleist.com/teamtitleist/b/tourblog/posts/titleist-introduces-new-2025-pro-v1-and-pro-v1x-golf-balls"
-        }
+          "answer": "89 restaurants in McDonald’s published FAQ",
+          "note": "This is the figure displayed by McDonald’s UK when checked on 30 October 2026. The page retains an older publication date; openings and closures can change the live total.",
+          "source": "McDonald’s UK",
+          "url": "https://www.mcdonalds.com/gb/en-gb/help/faq/how-many-restaurants-are-there-in-wales.html"
+        },
+        0
+      ],
+      [
+        "How many days can it take a three-toed sloth to digest a meal?",
+        "days",
+        {
+          "answer": "Up to about 30 days",
+          "note": "The Sloth Conservation Foundation describes a leaf taking up to 30 days to pass through a sloth’s digestive tract. Food, species and conditions affect the time; this is a guide rather than a stopwatch for every meal.",
+          "source": "The Sloth Conservation Foundation",
+          "url": "https://www.slothconservation.org/blog/what-do-sloths-eat-sloth-diet-food-and-digestion"
+        },
+        0
+      ],
+      [
+        "How many calories are in a standard 330 ml can of full sugar Coca-Cola?",
+        "kcal",
+        {
+          "answer": "139 kcal",
+          "note": "The reference is a 330 ml can of the classic full-sugar formulation. Recipes and labels can vary between markets, so this is not a figure for Zero Sugar or reduced-sugar variants.",
+          "source": "Coca-Cola",
+          "url": "https://www.coca-cola.com/es/es/about-us/faq/cuanto-azucar-hay-en-una-lata-de-cocacola"
+        },
+        0
+      ],
+      [
+        "How many seconds long is the full-length opening title sequence of Friends?",
+        "seconds",
+        {
+          "answer": "About 45 seconds",
+          "note": "A guide for the familiar full-length TV theme, not the full commercial song. Title edits and episode versions vary; some opening sequences run closer to 48 seconds.",
+          "source": "MuseScore’s history of the theme; TVTitles opening-sequence catalogue",
+          "url": "https://musescore.com/news/features/the-rembrandts-rewrote-the-friends-theme-without-warner-bros-tvs-approval/"
+        },
+        0
+      ],
+      [
+        "How many sesame seeds are on a McDonald’s Big Mac bun?",
+        "seeds",
+        {
+          "answer": "About 400 seeds — a guide estimate",
+          "note": "A commonly reported estimate is around 385–400. The supplier interviewed by the Tacoma News Tribune said it does not aim for an exact count, so real buns vary. This is not an official fixed specification.",
+          "source": "Supplier interview in the Tacoma News Tribune",
+          "url": "https://www.thenewstribune.com/news/business/article220455915.html"
+        },
+        0
+      ],
+      [
+        "In the Beatles’ original 1969 single recording of “Get Back”, how many times is the phrase “get back” sung?",
+        "times",
+        {
+          "answer": "About 35 repetitions",
+          "note": "A guide count for the original single, including the short calls to Jojo and Loretta and the closing coda. How you count the fading final phrases can change the tally. The abbreviated lyrics on the Beatles’ website omit repeated performance sections; the album and live versions also differ.",
+          "source": "Single-version transcription; The Beatles’ release notes",
+          "url": "https://readdork.com/lyrics/the-beatles-get-back-single-version",
+          "sources": [
+            {
+              "title": "Single-version transcription",
+              "url": "https://readdork.com/lyrics/the-beatles-get-back-single-version"
+            },
+            {
+              "title": "The Beatles: release and version information",
+              "url": "https://www.thebeatles.com/get-back"
+            }
+          ]
+        },
+        0
+      ],
+      [
+        "In a UK survey, how many unread emails did the average respondent have in their inbox?",
+        "emails",
+        {
+          "answer": "1,143 unread emails",
+          "note": "This is the reported average from CCleaner’s April 2022 survey of 2,000 people. It is a dated survey finding, not a live measurement of everyone in the UK.",
+          "source": "CCleaner / Gen Digital, April 2022",
+          "url": "https://newsroom.gendigital.com/2022-04-13-ccleaner-reveals-the-uk-s-dirty-digital-habits"
+        },
+        0
+      ],
+      [
+        "How many upright stones was Stonehenge’s outer stone circle designed to contain?",
+        "stones",
+        {
+          "answer": "30 upright stones",
+          "note": "This asks about the original outer sarsen circle, excluding its horizontal lintels and the inner stones; counting every surviving fragment gives a different question.",
+          "source": "English Heritage — stones of Stonehenge",
+          "url": "https://www.english-heritage.org.uk/visit/places/stonehenge/things-to-do/stone-circle/stones-of-stonehenge/"
+        },
+        0
       ],
       [
         "How many grams does a standard modern UK £1 coin weigh?",
@@ -324,110 +395,54 @@ const categories=[
         2
       ],
       [
-        "How many pieces are in LEGO’s 135 cm-long Titanic model, set 10294?",
-        "pieces",
+        "How many passenger capsules are on the London Eye?",
+        "capsules",
         {
-          "answer": "9,090 pieces",
-          "note": "The model is approximately 1:200 scale and over a metre long.",
-          "source": "LEGO — large building sets",
-          "url": "https://www.lego.com/en-se/categories/adults-welcome/article/biggest-lego-sets-ever-made"
-        }
-      ],
-      [
-        "What is the maximum certified passenger seating capacity of an Airbus A380?",
-        "passengers",
-        {
-          "answer": "853 passengers",
-          "note": "This is the certified maximum for an all-economy arrangement; airline layouts usually have fewer seats.",
-          "source": "Airbus — A380 facts and figures",
-          "url": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/EN-Airbus-A380-Facts-and-Figures_0.pdf?pubDate=20251126"
-        }
-      ],
-      [
-        "How many upright stones was Stonehenge’s outer stone circle designed to contain?",
-        "stones",
-        {
-          "answer": "30 upright stones",
-          "note": "This asks about the original outer sarsen circle, excluding its horizontal lintels and the inner stones; counting every surviving fragment gives a different question.",
-          "source": "English Heritage — stones of Stonehenge",
-          "url": "https://www.english-heritage.org.uk/visit/places/stonehenge/things-to-do/stone-circle/stones-of-stonehenge/"
-        }
-      ],
-      [
-        "How many times does the word “God” appear in the New Testament of the King James Bible?",
-        "mentions",
-        {
-          "answer": "1,354 mentions (reference count)",
-          "note": "Christian Bible Reference lists 1,354. We use its base-word count: capitalisation is ignored; “gods” and “God’s”, headings and footnotes are excluded. Counts can vary with the digital text and search method, so this is the named reference’s count rather than a universal total.",
-          "source": "Christian Bible Reference — word-count table",
-          "url": "https://www.christianbiblereference.org/faq_WordCount.htm"
-        }
+          "answer": "32 capsules",
+          "note": "There is no capsule numbered 13, so the numbering runs up to 33 even though there are only 32.",
+          "source": "London Eye — anniversary facts",
+          "url": "https://www.londoneye.com/25th-anniversary/"
+        },
+        0
       ]
     ]
   },
   {
     "name": "History & Records",
-    "icon": "🏛️",
+    "icon": "⌛",
     "questions": [
       [
-        "In what year did the first McDonald’s restaurant open in the UK?",
+        "What is the advertised top speed of Formula Rossa at Ferrari World Abu Dhabi, in kilometres per hour?",
+        "km/h",
+        {
+          "answer": "240 km/h",
+          "note": "The operator advertises a launch from rest to 240 km/h. The question asks about this ride’s specification, rather than who holds the current world speed record.",
+          "source": "Ferrari World Abu Dhabi",
+          "url": "https://www.ferrariworldabudhabi.com/en/rides/formula-rossa/worlds-fastest-rollercoaster"
+        },
+        0
+      ],
+      [
+        "In what year did Laika become the first dog to orbit Earth?",
         "year",
         {
-          "answer": "1974",
-          "note": "The first UK restaurant opened in Woolwich, south London.",
-          "source": "McDonald’s UK — first restaurant",
-          "url": "https://www.mcdonalds.com/gb/en-gb/help/faq/when-did-mcdonald-s-first-restaurant-open-in-the-u-k.html"
-        }
+          "answer": "1957",
+          "note": "Laika launched aboard Sputnik 2 on 3 November 1957. She was the first dog to orbit Earth.",
+          "source": "NASA",
+          "url": "https://www.nasa.gov/history/60-years-ago-the-first-animal-in-orbit/"
+        },
+        0
       ],
       [
-        "In what year did Percy Spencer invent microwave cooking and file the patent that led to the microwave oven?",
+        "In what year was the last widely accepted sighting of a wild dodo recorded?",
         "year",
         {
-          "answer": "1945",
-          "note": "Spencer discovered the heating effect and the patent application was filed in October 1945. The first commercial Radarange followed in 1947; the patent was granted in 1950.",
-          "source": "MIT Lemelson — Percy Spencer",
-          "url": "https://lemelson.mit.edu/resources/percy-spencer"
-        }
-      ],
-      [
-        "In what year was the first video uploaded to YouTube?",
-        "year",
-        {
-          "answer": "2005",
-          "note": "“Me at the zoo” was uploaded on 23 April 2005.",
-          "source": "YouTube — tenth anniversary",
-          "url": "https://blog.youtube/news-and-events/celebrating-10-years-of-youtube/"
-        }
-      ],
-      [
-        "How many seconds did the Wright brothers’ first successful powered flight last?",
-        "seconds",
-        {
-          "answer": "12 seconds",
-          "note": "Orville Wright flew for 12 seconds on 17 December 1903, covering about 120 feet. Their later flights that day lasted longer.",
-          "source": "US National Park Service — Wright Flyer",
-          "url": "https://home.nps.gov/articles/wrightflyer.htm"
-        }
-      ],
-      [
-        "What was the highest official race speed-trap reading at the 2016 Formula 1 Mexican Grand Prix, to the nearest mph?",
-        "mph",
-        {
-          "answer": "231 mph",
-          "note": "Valtteri Bottas recorded 372.5 km/h in a Mercedes-powered Williams FW38. That converts to about 231.46 mph, or 231 mph to the nearest whole number. This specifies the official race speed trap, rather than private testing or unofficial telemetry.",
-          "source": "FIA — 2016 Mexican Grand Prix race speed trap",
-          "url": "https://www.fia.com/sites/default/files/speed_trap_37.pdf"
-        }
-      ],
-      [
-        "How many lifeboats did the Titanic carry on its maiden voyage?",
-        "lifeboats",
-        {
-          "answer": "20 lifeboats",
-          "note": "The total includes the collapsible boats.",
-          "source": "Causeway Coast and Glens Museum Services — Titanic",
-          "url": "https://www.niarchive.org/projectitems/rms-titanics-causeway-connections/"
-        }
+          "answer": "1662",
+          "note": "The last widely accepted sighting is dated to 1662. Later reports exist, and the precise extinction date remains debated.",
+          "source": "Oxford University Museum of Natural History",
+          "url": "https://www.oumnh.ox.ac.uk/sites/default/files/oumnh/documents/media/dodo_roadshow.pdf"
+        },
+        0
       ],
       [
         "How many centimetres tall was Robert Wadlow, the tallest person ever reliably measured?",
@@ -437,7 +452,63 @@ const categories=[
           "note": "His final recorded height was 2.72 metres in 1940.",
           "source": "Guinness World Records — Robert Wadlow",
           "url": "https://www.guinnessworldrecords.com/news/icons/robert-wadlow-the-tallest-man-ever"
-        }
+        },
+        0
+      ],
+      [
+        "What speed did Rankireddy’s Guinness-recognised 2023 badminton smash reach, in kilometres per hour?",
+        "km/h",
+        {
+          "answer": "565 km/h",
+          "note": "Rankireddy achieved this initial shuttle speed in a controlled record attempt at Yonex in April 2023. It is not the sustained flight speed of a shuttle or a rally speed from a match.",
+          "source": "Yonex’s record announcement",
+          "url": "https://www.yonex.co.jp/company/pr/pdf/230718.pdf"
+        },
+        0
+      ],
+      [
+        "According to Guinness World Records, what is the highest recorded speed of a human sneeze, in miles per hour?",
+        "mph",
+        {
+          "answer": "103.6 mph — about 104 mph",
+          "note": "Guinness lists expelled particles measured at 167 km/h, equivalent to 103.6 mph. That is a recorded maximum, not the typical speed of every sneeze.",
+          "source": "Guinness World Records",
+          "url": "https://www.guinnessworldrecords.com/world-records/67593-fastest-sneeze"
+        },
+        0
+      ],
+      [
+        "What was the highest official race speed-trap reading at the 2016 Formula 1 Mexican Grand Prix, to the nearest mph?",
+        "mph",
+        {
+          "answer": "231 mph",
+          "note": "Valtteri Bottas recorded 372.5 km/h in a Mercedes-powered Williams FW38. That converts to about 231.46 mph, or 231 mph to the nearest whole number. This specifies the official race speed trap, rather than private testing or unofficial telemetry.",
+          "source": "FIA — 2016 Mexican Grand Prix race speed trap",
+          "url": "https://www.fia.com/sites/default/files/speed_trap_37.pdf"
+        },
+        0
+      ],
+      [
+        "In what year did the first McDonald’s restaurant open in the UK?",
+        "year",
+        {
+          "answer": "1974",
+          "note": "The first UK restaurant opened in Woolwich, south London.",
+          "source": "McDonald’s UK — first restaurant",
+          "url": "https://www.mcdonalds.com/gb/en-gb/help/faq/when-did-mcdonald-s-first-restaurant-open-in-the-u-k.html"
+        },
+        0
+      ],
+      [
+        "How many lifeboats did the Titanic carry on its maiden voyage?",
+        "lifeboats",
+        {
+          "answer": "20 lifeboats",
+          "note": "The total includes the collapsible boats.",
+          "source": "Causeway Coast and Glens Museum Services — Titanic",
+          "url": "https://www.niarchive.org/projectitems/rms-titanics-causeway-connections/"
+        },
+        0
       ],
       [
         "How many complete years did Jeanne Calment, the oldest verified person, live?",
@@ -447,7 +518,8 @@ const categories=[
           "note": "She lived for 122 years and 164 days, from 1875 to 1997. Only complete years are requested.",
           "source": "Guinness World Records — oldest person",
           "url": "https://www.guinnessworldrecords.com/world-records/oldest-person"
-        }
+        },
+        0
       ],
       [
         "How many hot dogs with buns did Joey Chestnut eat in ten minutes in his 2024 Netflix showdown?",
@@ -457,63 +529,249 @@ const categories=[
           "note": "He ate 83 in the ten-minute Chestnut vs. Kobayashi event on 2 September 2024. This refers to that specific contest.",
           "source": "Netflix Tudum — Chestnut vs. Kobayashi",
           "url": "https://www.netflix.com/tudum/articles/hot-dog-eating-contest-joey-chestnut-kobayashi-live-date-news"
-        }
+        },
+        0
       ],
       [
-        "How many floors does the Empire State Building officially list?",
-        "floors",
+        "How many kilometres per hour does the International Space Station travel in orbit?",
+        "km/h",
         {
-          "answer": "102 floors",
-          "note": "The building’s official facts page lists 102 floors. It also describes a restricted 103rd level above them, which is not included in its headline floor count.",
-          "source": "Empire State Building — facts and figures",
-          "url": "https://www.esbnyc.com/about/facts-figures"
-        }
+          "answer": "About 28,000 km/h",
+          "note": "NASA gives the station’s representative orbital speed as 17,500 mph, or approximately 28,000 km/h. Its precise speed varies with the orbit.",
+          "source": "NASA: Spot the Station",
+          "url": "https://www.nasa.gov/spot-the-station/"
+        },
+        0
+      ],
+      [
+        "How fast can a large raindrop fall, in miles per hour?",
+        "mph",
+        {
+          "answer": "About 20 mph",
+          "note": "A guide for a large raindrop near terminal speed. Smaller drops fall more slowly; the speed depends on size, air density and conditions.",
+          "source": "Oklahoma DEQ technical documentation",
+          "url": "https://oklahoma.gov/content/dam/ok/en/deq/documents/land-division/Response%20to%20Technical%20NOD_CHLM.pdf"
+        },
+        0
+      ],
+      [
+        "In what year did Nintendo first release the original Game Boy in Japan?",
+        "year",
+        {
+          "answer": "1989",
+          "note": "The original Game Boy first launched in Japan in 1989, before its later European release.",
+          "source": "Nintendo UK",
+          "url": "https://www.nintendo.com/en-gb/Hardware/Nintendo-History/Game-Boy/Game-Boy-627031.html"
+        },
+        0
+      ],
+      [
+        "In what year did Percy Spencer invent microwave cooking and file the patent that led to the microwave oven?",
+        "year",
+        {
+          "answer": "1945",
+          "note": "Spencer discovered the heating effect and the patent application was filed in October 1945. The first commercial Radarange followed in 1947; the patent was granted in 1950.",
+          "source": "MIT Lemelson — Percy Spencer",
+          "url": "https://lemelson.mit.edu/resources/percy-spencer"
+        },
+        0
       ]
     ]
   },
   {
-    "name": "Wild Cards",
-    "icon": "🃏",
+    "name": "Ordinary Life",
+    "icon": "☕",
     "questions": [
       [
-        "What is the maximum number of house spiders you would tolerate loose in your bedroom overnight?",
-        "spiders"
+        "On an IKEA trip with someone you love, how many minutes pass before the first argument?",
+        "minutes",
+        null,
+        0
       ],
       [
-        "For £1,000, how many minutes would you agree to sit in a bath full of cold baked beans?",
-        "minutes"
+        "How many of the world’s capital cities could you correctly name on the spot?",
+        "cities",
+        null,
+        0
       ],
       [
-        "How many seagulls could steal a chip from you before you gave up on eating at the beach?",
-        "seagulls"
+        "How much should the tooth fairy leave per tooth, in pence?",
+        "pence",
+        null,
+        0
       ],
       [
-        "How many hours could you go without your phone before getting properly grumpy?",
-        "hours"
+        "How many unanswered rings would you let the phone make before giving up?",
+        "rings",
+        null,
+        0
+      ],
+      [
+        "You buy a flat-pack wardrobe. How many minutes do you try building it before calling for help?",
+        "minutes",
+        null,
+        0
+      ],
+      [
+        "After asking for the bill in a restaurant, how many minutes would you wait before asking again?",
+        "minutes",
+        null,
+        0
+      ],
+      [
+        "Out of 100, how would you rate your own driving ability? If you don’t drive, how good do you think you would be?",
+        "points out of 100",
+        null,
+        0
+      ],
+      [
+        "How long can you hold your breath?",
+        "seconds",
+        null,
+        0
+      ],
+      [
+        "How much should a good bottle of wine cost?",
+        "your currency",
+        null,
+        0
+      ],
+      [
+        "How many years would you keep a completely broken phone in a drawer “just in case”?",
+        "years",
+        null,
+        0
       ],
       [
         "How many Ferrero Rocher chocolates could you eat in one sitting?",
-        "chocolates"
+        "chocolates",
+        null,
+        0
       ],
       [
-        "On a camping trip, how many days would you wear the same pair of socks before admitting defeat?",
-        "days"
+        "How many hours can a dirty frying pan soak in the sink before it stops being \"helpful soaking\" and becomes pure laziness?",
+        "hours",
+        null,
+        0
       ],
       [
-        "You win a lifetime supply of rubber ducks. How many would you keep before giving the rest away?",
-        "ducks"
+        "What is the maximum number of house spiders you would tolerate loose in your bedroom overnight?",
+        "spiders",
+        null,
+        0
       ],
       [
-        "What is the longest you would queue for a free pizza, in minutes?",
-        "minutes"
+        "What is your IQ score?",
+        "IQ points",
+        null,
+        0
       ],
       [
-        "What is the smallest amount of money you would accept to let the other players choose your next haircut?",
-        "£"
+        "How many years should a pair of socks last before you retire them?",
+        "years",
+        null,
+        0
+      ]
+    ]
+  },
+  {
+    "name": "Extraordinary Circumstances",
+    "icon": "✦",
+    "questions": [
+      [
+        "You’re invisible for a day. How many minutes before you do something you shouldn’t?",
+        "minutes",
+        null,
+        0
       ],
       [
-        "On a road trip, how many consecutive plays of the same song would you tolerate before demanding a change?",
-        "plays"
+        "A friendly dinosaur needs a home. What is the maximum height, in centimetres, you’d accept for a house pet?",
+        "cm",
+        null,
+        0
+      ],
+      [
+        "You wake up as the Prime Minister. How many days before you resign?",
+        "days",
+        null,
+        0
+      ],
+      [
+        "How many days was Bill Murray’s character trapped in the time loop in Groundhog Day?",
+        "days",
+        {
+          "answer": "About 3,650 days — one filmmaker’s estimate",
+          "note": "There is no definitive duration stated in the film. Screenwriter Danny Rubin recalled director Harold Ramis estimating about ten years. Multiplying ten years by 365 gives this illustrative day count; it is an estimate, not a canonical answer.",
+          "source": "Danny Rubin interview, The Ringer (2017)",
+          "url": "https://www.theringer.com/2017/12/20/movies/groundhog-day-screenwriter-interview-danny-rubin"
+        },
+        0
+      ],
+      [
+        "What is the smallest amount of money you would accept to eat a whole large raw brown onion?",
+        "£",
+        null,
+        0
+      ],
+      [
+        "What is the smallest amount of money you would accept to legally change your middle name to “Spaghetti”?",
+        "£",
+        null,
+        0
+      ],
+      [
+        "Stranded on a desert island with no lighter or matches, how many days would it take you to make fire?",
+        "days",
+        null,
+        0
+      ],
+      [
+        "You can clone yourself, how many copies do you make?",
+        "copies",
+        null,
+        0
+      ],
+      [
+        "You’re next up on the stand-up stage. How long before you get your first laugh?",
+        "seconds",
+        null,
+        0
+      ],
+      [
+        "You and two friends are in separate rooms, unaware when the others leave. First and last out lose. How many minutes would you wait before leaving?",
+        "minutes",
+        null,
+        0
+      ],
+      [
+        "You’re stealing a biscuit from a sleeping dragon. How many people do you take with you?",
+        "people",
+        null,
+        0
+      ],
+      [
+        "What year would you travel back in time to?",
+        "year",
+        null,
+        0
+      ],
+      [
+        "You can freeze your age permanently. What age would you choose?",
+        "years",
+        null,
+        0
+      ],
+      [
+        "What is the smallest amount of money you would accept to completely shave off both of your eyebrows today?",
+        "£",
+        null,
+        0
+      ],
+      [
+        "If a zombie apocalypse began right now, how many days do you think you would survive?",
+        "days",
+        null,
+        0
       ]
     ]
   }
@@ -531,7 +789,7 @@ function formatGuess(n){return deck[round]?.q[1]==='year'?String(n):fmt(n)}
 function later(fn,ms){timers.push(setTimeout(fn,ms))}function clearTimers(){stopSfx();timers.forEach(clearTimeout);timers=[];document.querySelectorAll('.party').forEach(el=>el.remove())}
 function beep(win=false){if(!sound||document.hidden)return;if(win){playSfx('bonus');return}try{audioCtx ||=new (window.AudioContext||window.webkitAudioContext)();audioCtx.resume();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='triangle';o.frequency.setValueAtTime(650,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(480,audioCtx.currentTime+.08);g.gain.setValueAtTime(.16,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.085);o.connect(g);g.connect(audioCtx.destination);activeSfx.add(o);o.onended=()=>{activeSfx.delete(o);o.disconnect();g.disconnect()};o.start();o.stop(audioCtx.currentTime+.095)}catch{}}
 function focusHeading(){const h=app.querySelector('h1,h2');if(h){h.tabIndex=-1;h.focus()}}
-function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play six rounds: Heights & Sizes, Distances, Everyday Numbers, History & Records, Wild Cards, then a fixed Double Points Finale.</li><li>Read your opponents rather than chasing the real answer. Enter your guess secretly and pass the device. Factual answers appear after the reveal; accuracy does not determine points.</li><li><strong>Rounds 1–5: the middle guess wins +2.</strong> Sort guesses from low to high. The central value wins. With an even group, only the central value closest to the unrounded average wins. If equally close, both win. Identical winning guesses share the award.</li><li><strong>Highest and lowest lose −1 each.</strong> Others score 0. A middle winner takes priority over a tied extreme.</li><li><strong>Rounded-average bonus: +1 independently.</strong> Add all guesses, divide by the number of players, then round to the nearest whole number, with halves rounded up. Guess that number exactly for +1 extra. The average appears only if someone hits it. Middle plus bonus = +3.</li><li><strong>Final round: double everything.</strong> The question is always “Pick a number between 1 and 1,000,000.” Whole numbers only. Middle +4, highest and lowest −2 each, and a rounded-average hit adds +2. Middle plus bonus = +6.</li><li>Bars rise slowly: zero-point players, losing extremes, bonus-only players, then middle winners. Tied middle winners rise together. Choose See round details afterward for the answer and scores.</li><li>Change question picks another in the same category before a reveal. It clears this round’s guesses and restarts with the first player, preserving earlier scores. The fixed finale cannot be changed.</li><li>Highest total after six rounds wins. Tied scores go to the most popular baby name in the ONS England and Wales 2025 lists, combining published boy and girl counts. Equal leading counts or no listed names go to a random draw.</li></ol></details>`}
+function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play six rounds: Heights, Sizes &amp; Distances; Everyday Numbers; History &amp; Records; Ordinary Life; Extraordinary Circumstances; then a fixed Double Points Finale. Each question category has 15 free questions. A short introduction starts every round.</li><li>Read your opponents rather than chasing the real answer. Enter your guess secretly and pass the device. Factual answers appear after the reveal; accuracy does not determine points.</li><li><strong>Rounds 1–5: the middle guess wins +2.</strong> Sort guesses from low to high. The central value wins. With an even group, only the central value closest to the unrounded average wins. If equally close, both win. Identical winning guesses share the award.</li><li><strong>Highest and lowest lose −1 each.</strong> Others score 0. A middle winner takes priority over a tied extreme.</li><li><strong>Rounded-average bonus: +1 independently.</strong> Add all guesses, divide by the number of players, then round to the nearest whole number, with halves rounded up. Guess that number exactly for +1 extra. The average appears only if someone hits it. Middle plus bonus = +3.</li><li><strong>Final round: double everything.</strong> The question is always “Pick a number between 1 and 1,000,000.” Whole numbers only. Middle +4, highest and lowest −2 each, and a rounded-average hit adds +2. Middle plus bonus = +6.</li><li>Bars rise slowly: zero-point players, losing extremes, bonus-only players, then middle winners. Tied middle winners rise together. Choose See round details afterward for the answer and scores.</li><li>Change question picks another in the same category before a reveal. It clears this round’s guesses and restarts with the first player, preserving earlier scores. The fixed finale cannot be changed.</li><li>Highest total after six rounds wins. Tied scores go to the most popular baby name in the ONS England and Wales 2025 lists, combining published boy and girl counts. Equal leading counts or no listed names go to a random draw.</li></ol></details>`}
 let lobby=[];
 // Remove this game's names left by older versions; current names stay in page memory only.
 try{localStorage.removeItem('unremarkable-names')}catch{}
@@ -542,7 +800,20 @@ function showPlayers(){clearTimers();players=[];answers=[];deltas=[];deck=[];cur
 
 
 function roundTop(){return `<div class="eyebrow">Round ${round+1} / ${deck.length} · ${deck[round].icon} ${deck[round].name}</div><div class="progress"><div style="width:${round/deck.length*100}%"></div></div>${pointMultiplier()===2?'<p class="double-round-note">Final round · Middle +4 · Extremes −2 · Average bonus +2</p>':''}${canChangeQuestion()?'<div class="round-actions"><button class="change-question" type="button" data-game-action="change-question">Change question ↻</button></div>':''}`}
-function beginRound(){answers=[];turn=0;roundQuestionHistory=[deck[round].q];handoff()}
+const roundIntroductions={
+  'Heights, Sizes & Distances':['Think big. Guess modestly.','Big things, small things and getting from A to B.'],
+  'Everyday Numbers':['Everyday things. Unnecessarily confident guesses.','Familiar things with surprisingly unfamiliar numbers.'],
+  'History & Records':['Make history. Preferably somewhere in the middle.','Dates, milestones and people who took things much too far.'],
+  'Ordinary Life':['Finally, your questionable habits count as research.','Personal habits, household debates and everyday dilemmas.'],
+  'Extraordinary Circumstances':['Ridiculous situations. Perfectly average ambitions.','Strange scenarios. Questionable decisions. Read your opponents.'],
+  'Double Points Finale':['Twice the points. The same modest ambition.','One final number between 1 and 1,000,000.']
+};
+function beginRound(){clearTimers();answers=[];deltas=[];turn=0;currentReveal=null;roundQuestionHistory=[deck[round].q];showRoundIntroduction()}
+function showRoundIntroduction(){
+  stage='round-intro';setScreen('play');const category=deck[round],copy=roundIntroductions[category.name],isFinal=Boolean(category.fixed);
+  app.innerHTML=`<section class="round-intro" aria-labelledby="round-intro-title"><div class="round-intro-card"><div class="eyebrow">${isFinal?'THE GRANDLY AVERAGE FINALE':'A FRESH CHANCE TO BE ORDINARY'}</div><p class="round-intro-number">Round ${round+1} <span>of ${deck.length}</span></p><h1 id="round-intro-title">${escapeHTML(category.name)}</h1>${isFinal?'<div class="round-intro-double">DOUBLE POINTS</div>':''}<p class="round-intro-wit">${escapeHTML(copy[0])}</p><p class="muted round-intro-description">${escapeHTML(copy[1])}</p>${isFinal?'<p class="round-intro-scoring">Middle <strong>+4</strong> · Extremes <strong>−2</strong><br>Rounded-average bonus <strong>+2</strong></p>':''}<button id="round-start">${isFinal?'Let’s be twice as average →':'Bring on the ordinary →'}</button><ol class="round-intro-steps" aria-label="Six-round progress">${deck.map((item,i)=>`<li class="${i<round?'completed':i===round?'current':''}"${i===round?' aria-current="step"':''}><span aria-hidden="true">${i<round?'✓':i+1}</span><span class="sr-only">Round ${i+1}: ${escapeHTML(item.name)}${i<round?', completed':i===round?', current':''}</span></li>`).join('')}</ol></div></section>`;
+  document.getElementById('round-start').onclick=()=>{if(stage==='round-intro')handoff()};window.scrollTo(0,0);focusHeading();
+}
 function handoff(){stage='handoff';setScreen('play');app.innerHTML=roundTop()+`<div class="card center"><p class="muted">Player ${turn+1} of ${players.length}</p><h2>Pass to ${escapeHTML(players[turn].name)}</h2><p class="muted">Keep the next screen to yourself.</p><button id="ready">I’m ${escapeHTML(players[turn].name)} — ready</button></div>`;document.getElementById('ready').onclick=guess;focusHeading()}
 function questionPrecision(){return deck[round].q[3]||0}
 function guess(){
@@ -644,8 +915,8 @@ function finishReveal(result){
   // The chart remains on screen until the group chooses to view the answer and scores.
 }
 function answerCard(){
-  const q=deck[round].q;if(deck[round].fixed)return '<div class="answer-card wild-answer"><div class="eyebrow">Double Points Finale</div><h3>No right answer. Just read the room.</h3><p>Middle +4. Highest and lowest −2. A rounded-average hit adds +2. Middle plus bonus = +6.</p></div>';if(!q[2])return '<div class="answer-card wild-answer"><div class="eyebrow">Wild Cards</div><h3>No factual answer. Just questionable judgement.</h3><p>This one is hypothetical. Middle guesses earn +2; hitting the rounded average earns +1 extra.</p></div>';
-  const fact=q[2];return `<div class="answer-card"><div class="eyebrow">And the real answer is…</div><h3>${escapeHTML(fact.answer)}</h3><p>${escapeHTML(fact.note)}</p>${fact.url?`<a href="${escapeHTML(fact.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(fact.source)} ↗</a>`:`<small>${escapeHTML(fact.source)}</small>`}</div>`;
+  const q=deck[round].q;if(deck[round].fixed)return '<div class="answer-card wild-answer"><div class="eyebrow">Double Points Finale</div><h3>No right answer. Just read the room.</h3><p>Middle +4. Highest and lowest −2. A rounded-average hit adds +2. Middle plus bonus = +6.</p></div>';if(!q[2])return '<div class="answer-card wild-answer"><div class="eyebrow">'+escapeHTML(deck[round].name)+'</div><h3>No right answer. Just questionable judgement.</h3><p>This one is personal. Read the room. Middle guesses earn +2; hitting the rounded average earns +1 extra.</p></div>';
+  const fact=q[2],sources=fact.sources||[{title:fact.source,url:fact.url}];return `<div class="answer-card"><div class="eyebrow">And the answer is…</div><h3>${escapeHTML(fact.answer)}</h3><p>${escapeHTML(fact.note)}</p>${sources.map(source=>source.url?`<a class="answer-source" href="${escapeHTML(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.title)} ↗</a>`:`<small>${escapeHTML(source.title)}</small>`).join('')}</div>`;
 }
 function showRoundDetails(){
   if(stage!=='reveal-complete')return;clearTimers();stage='results';setScreen('play');
@@ -779,6 +1050,7 @@ function updateFooter(){
   const messages={
     setup:['One device. Secret guesses. Spectacularly average.'],
     players:['An exceptionally ordinary bunch.'],
+    'round-intro':['A fresh round. Same modest ambitions.','New territory. Comfortably average company.'],
     handoff:['Pass it on. Keep it ordinary.','No peeking. Mediocrity is confidential.','Your turn to be perfectly average.'],
     guess:['Be perfectly average.','Keep it ordinary.','Read the room. Resist greatness.','Somewhere in the middle lies modest glory.','Aim low. But not the lowest.','A little less ambition. A little more average.'],
     'question-preview':['New question. Same ordinary ambitions.'],
@@ -795,7 +1067,7 @@ updateAudioSettings();
 
 
 let roundQuestionHistory=[];
-function gameInProgress(){return ['handoff','guess','reveal-ready','question-preview','revealing','reveal-complete','results','final'].includes(stage)}
+function gameInProgress(){return ['round-intro','handoff','guess','reveal-ready','question-preview','revealing','reveal-complete','results','final'].includes(stage)}
 function canChangeQuestion(){return !deck[round]?.fixed&&['handoff','guess','reveal-ready','question-preview'].includes(stage)}
 function confirmGameAction(title,message,label,onConfirm){
   const dialog=document.getElementById('game-dialog');if(dialog.open)return;
@@ -805,7 +1077,7 @@ function confirmGameAction(title,message,label,onConfirm){
 }
 function requestExitGame(){
   if(!gameInProgress())return;
-  confirmGameAction('Exit this game?','This game’s scores and guesses will be cleared. Your player names will stay saved.','Exit to home',()=>{clearTimers();revealRun++;players=[];answers=[];deck=[];deltas=[];round=0;turn=0;currentReveal=null;finalDecision=null;roundQuestionHistory=[];setup()});
+  confirmGameAction('Exit this game?','This game’s scores, guesses and player names will be cleared.','Exit to home',()=>{clearTimers();revealRun++;players=[];answers=[];deck=[];deltas=[];round=0;turn=0;currentReveal=null;finalDecision=null;roundQuestionHistory=[];setup()});
 }
 function requestQuestionChange(){
   if(!canChangeQuestion())return;
