@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 350" role="img" aria-labelledby="logo-title logo-desc">
+<title id="logo-title">UNREMARKABLE!</title><desc id="logo-desc">Five rising bars. Red extremes, blue ordinary bars, and a crowned lime winner in the middle.</desc>
+<path d="M85 251H555" stroke="#667095" stroke-width="2"/>
+<g><rect class="logo-bar" x="112" y="202" width="62" height="48" rx="7" fill="#ff7e94"/><rect class="logo-bar" x="200" y="157" width="62" height="93" rx="7" fill="#91b8f7"/><rect class="logo-bar" x="288" y="113" width="62" height="137" rx="7" fill="#d4ff63"/><rect class="logo-bar" x="376" y="70" width="62" height="180" rx="7" fill="#91b8f7"/><rect class="logo-bar" x="464" y="26" width="62" height="224" rx="7" fill="#ff7e94"/></g>
+<path class="logo-crown" d="M296 72 307 83 319 64 331 83 342 72 338 101H300Z" fill="#d4ff63" stroke="#efffbb" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="320" y="307" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="53" font-weight="900" letter-spacing="-2" fill="#f8f7f2">UNREMARKABLE<tspan fill="#d4ff63">!</tspan></text>
+<text x="320" y="337" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" letter-spacing="3.5" fill="#b8bfd9">THE PARTY GAME WHERE AVERAGE WINS</text>
+</svg>
