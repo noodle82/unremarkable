@@ -11,4 +11,4 @@ const addDemoLinks=()=>{
   slot.append(note,links);
 };
 new MutationObserver(addDemoLinks).observe(document.getElementById('app'),{childList:true,subtree:true});addDemoLinks();
-const settings=document.getElementById('settings-dialog'),home=document.createElement('a');home.href='../';home.className='shop-settings';home.textContent='About UNREMARKABLE! / App availability';settings.append(home);
+const settings=document.getElementById('settings-dialog'),home=document.createElement('a');home.href='../';home.className='shop-settings';home.textContent='About UNREMARKABLE! / App availability';settings.insertBefore(home,settings.querySelector('.more-games'));
