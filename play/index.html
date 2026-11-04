@@ -71,6 +71,17 @@ dialog{max-height:calc(100svh - env(safe-area-inset-top) - env(safe-area-inset-b
 .question-access-note{color:#b8bfd9;font-size:14px}
 .question-shop-open{font-size:14px;max-width:100%}
 .shop-settings{display:block;width:100%;margin-top:18px;font-size:14px}
+/* These headings receive focus for screen readers, not a visible control outline. */
+#app h1[tabindex="-1"]:focus,#app h2[tabindex="-1"]:focus{outline:none}
+.standings-gather{display:flex;min-height:65svh;flex-direction:column;justify-content:center;text-align:center;padding:28px 12px}
+.standings-gather p{font-size:clamp(20px,4vw,28px);color:#b8bfd9;max-width:600px;margin:12px auto}
+.standings-actions:not([hidden]),.final-primary-action{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:0;padding:14px max(20px,calc((100vw - 820px)/2)) calc(14px + env(safe-area-inset-bottom));background:#111427f5;border-top:1px solid #465077;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.standings-actions #standings-again{grid-column:1/-1}
+.standings-actions button{min-width:0;margin:0;white-space:normal;font-size:14px;padding:12px 10px}
+body:has(.standings-actions:not([hidden])) main{padding-bottom:calc(190px + env(safe-area-inset-bottom))}
+body:has(.final-primary-action) main{padding-bottom:calc(120px + env(safe-area-inset-bottom))}
+.final-primary-action{display:flex;justify-content:center}
+.final-primary-action #again{width:min(100%,420px)}
 #settings-dialog #close-settings{display:block;width:100%;margin-top:22px;background:#d4ff63;color:#111427}
 .more-games{margin:22px 0;border:1px solid #596283;border-radius:16px;text-align:left;overflow:hidden}
 .more-games summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;list-style:none;padding:18px;font-weight:700;font-size:17px;color:#f8f7f2}
@@ -108,6 +119,7 @@ body.app-intro-played main .hero-logo .logo-bar,body.app-intro-played main .hero
 #app-intro:not(.intro-playing) .logo-bar{animation:none;transform:scaleY(0)}
 #app-intro:not(.intro-playing) .logo-crown{animation:none;opacity:0}
 @media(prefers-reduced-motion:reduce){#app-intro:not(.intro-playing) .logo-bar{transform:none}#app-intro:not(.intro-playing) .logo-crown{opacity:1}}
+.final-primary-action{margin:0}
 
 </style><link rel="canonical" href="https://unremarkable.uk/play/"></head>
 <body class="app-intro-pending"><script>// Question currency is independent of Apple's purchase currency. Freeze it in each deck.
@@ -567,7 +579,7 @@ function formatGuess(n){return deck[round]?.q[1]==='year'?String(n):fmt(n)}
 function later(fn,ms){timers.push(setTimeout(fn,ms))}function clearTimers(){stopSfx();timers.forEach(clearTimeout);timers=[];document.querySelectorAll('.party').forEach(el=>el.remove())}
 function beep(win=false){if(!sound||document.hidden)return;if(win){playSfx('bonus');return}try{ensureGameAudio();audioCtx.resume();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='triangle';o.frequency.setValueAtTime(650,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(480,audioCtx.currentTime+.08);g.gain.setValueAtTime(.16,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.085);o.connect(g);g.connect(audioCtx.destination);activeSfx.add(o);o.onended=()=>{activeSfx.delete(o);o.disconnect();g.disconnect()};o.start();o.stop(audioCtx.currentTime+.095)}catch{}}
 function focusHeading(){const h=app.querySelector('h1,h2');if(h){h.tabIndex=-1;h.focus()}}
-function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play seven rounds: Heights, Sizes &amp; Distances; Everyday Numbers; History &amp; Records; Ordinary Life; Extraordinary Circumstances; Know Your Players; then a fixed Double Points Finale. The browser demo has 5 questions per category. The iPhone and iPad app has an optional expansion with 25 per category, making 150 questions in total. Purchases are not available in this browser demo. A short introduction starts every round.</li><li>Read your opponents rather than chasing the real answer. Enter your guess secretly and pass the device. Factual answers appear after the reveal; accuracy does not determine points.</li><li><strong>Rounds 1–6: the middle guess wins +2.</strong> Sort guesses from low to high. The central value wins. With an even group, only the central value closest to the unrounded average wins. If equally close, both win. Identical winning guesses share the award.</li><li><strong>Highest and lowest lose −1 each.</strong> Others score 0. A middle winner takes priority over a tied extreme.</li><li><strong>Rounded-average bonus: +1 independently.</strong> Add all guesses, divide by the number of players, then round to the nearest whole number, with halves rounded up. Guess that number exactly for +1 extra. The average appears only if someone hits it. Middle plus bonus = +3.</li><li><strong>Final round: double everything.</strong> The question is always “Pick a number between 1 and 1,000,000.” Whole numbers only. Middle +4, highest and lowest −2 each, and a rounded-average hit adds +2. Middle plus bonus = +6.</li><li>Bars rise slowly: zero-point players, losing extremes, bonus-only players, then middle winners. Tied middle winners rise together. Choose See round details afterward for the answer and scores.</li><li>Change question picks another in the same category before a reveal. It clears this round’s guesses and restarts with the first player, preserving earlier scores. The fixed finale cannot be changed.</li><li>Highest total after seven rounds wins. After the winner’s celebration, the middle final score receives an honorary “Most Statistically Unremarkable” mention, with no extra points. With an even group, the central score closest to the average is mentioned; equally close or identical middle scores share the mention. Tied winning scores go to the most popular baby name in the ONS England and Wales 2025 lists, combining published boy and girl counts. Equal leading counts or no listed names go to a random draw.</li></ol></details>`}
+function rules(){return `<details><summary>How to be unremarkable</summary><ol><li>Add 3–12 players. Play seven rounds: Heights, Sizes &amp; Distances; Everyday Numbers; History &amp; Records; Ordinary Life; Extraordinary Circumstances; Know Your Players; then a fixed Double Points Finale. The browser demo has 5 questions per category. The iPhone and iPad app has an optional expansion with 25 per category, making 150 questions in total. Purchases are not available in this browser demo. A short introduction starts every round.</li><li>Read your opponents rather than chasing the real answer. The starting player moves on one seat each round. They read the question aloud before everyone guesses secretly, passing in the same order. Only the first player can change the question, before locking in their guess. Factual answers appear after the reveal; accuracy does not determine points.</li><li><strong>Rounds 1–6: the middle guess wins +2.</strong> Sort guesses from low to high. The central value wins. With an even group, only the central value closest to the unrounded average wins. If equally close, both win. Identical winning guesses share the award.</li><li><strong>Highest and lowest lose −1 each.</strong> Others score 0. A middle winner takes priority over a tied extreme.</li><li><strong>Rounded-average bonus: +1 independently.</strong> Add all guesses, divide by the number of players, then round to the nearest whole number, with halves rounded up. Guess that number exactly for +1 extra. The average appears only if someone hits it. Middle plus bonus = +3.</li><li><strong>Final round: double everything.</strong> The question is always “Pick a number between 1 and 1,000,000.” Whole numbers only. Middle +4, highest and lowest −2 each, and a rounded-average hit adds +2. Middle plus bonus = +6.</li><li>Bars rise slowly: zero-point players, losing extremes, bonus-only players, then middle winners. Tied middle winners rise together. Choose See round details afterward for the answer and scores.</li><li>Change question picks another in the same category before a reveal. It clears this round’s guesses and restarts with the first player, preserving earlier scores. The fixed finale cannot be changed.</li><li>Highest total after seven rounds wins. After the winner’s celebration, the middle final score receives an honorary “Most Statistically Unremarkable” mention, with no extra points. With an even group, the central score closest to the average is mentioned; equally close or identical middle scores share the mention. Tied winning scores go to the most popular baby name in the ONS England and Wales 2025 lists, combining published boy and girl counts. Equal leading counts or no listed names go to a random draw.</li></ol></details>`}
 let lobby=[];
 // Remove this game's names left by older versions; current names stay in page memory only.
 try{localStorage.removeItem('unremarkable-names')}catch{}
@@ -593,19 +605,22 @@ function showRoundIntroduction(){
   app.innerHTML=`<section class="round-intro" aria-labelledby="round-intro-title"><div class="round-intro-card"><div class="eyebrow">${isFinal?'THE GRANDLY AVERAGE FINALE':'A FRESH CHANCE TO BE ORDINARY'}</div><p class="round-intro-number">Round ${round+1} <span>of ${deck.length}</span></p><h1 id="round-intro-title">${escapeHTML(category.name)}</h1>${isFinal?'<div class="round-intro-double">DOUBLE POINTS</div>':''}<p class="round-intro-wit">${escapeHTML(copy[0])}</p><p class="muted round-intro-description">${escapeHTML(copy[1])}</p>${isFinal?'<p class="round-intro-scoring">Middle <strong>+4</strong> · Extremes <strong>−2</strong><br>Rounded-average bonus <strong>+2</strong></p>':''}<button id="round-start">${isFinal?'Let’s be twice as average →':'Bring on the ordinary →'}</button><ol class="round-intro-steps" aria-label="Seven-round progress">${deck.map((item,i)=>`<li class="${i<round?'completed':i===round?'current':''}"${i===round?' aria-current="step"':''}><span aria-hidden="true">${i<round?'✓':i+1}</span><span class="sr-only">Round ${i+1}: ${escapeHTML(item.name)}${i<round?', completed':i===round?', current':''}</span></li>`).join('')}</ol></div></section>`;
   document.getElementById('round-start').onclick=()=>{if(stage==='round-intro')handoff()};window.scrollTo(0,0);focusHeading();
 }
-function handoff(){stage='handoff';setScreen('play');app.innerHTML=roundTop()+`<div class="card center"><p class="muted">Player ${turn+1} of ${players.length}</p><h2>Pass to ${escapeHTML(players[turn].name)}</h2><p class="muted">Keep the next screen to yourself.</p><button id="ready">I’m ${escapeHTML(players[turn].name)} — ready</button></div>`;document.getElementById('ready').onclick=guess;focusHeading()}
+// Advance the starting seat each round; keep the passing direction unchanged.
+function roundPlayerIndex(position=turn){return (round+position)%players.length}
+function roundPlayer(){return players[roundPlayerIndex()]}
+function handoff(){stage='handoff';setScreen('play');app.innerHTML=roundTop()+`<div class="card center"><p class="muted">Player ${turn+1} of ${players.length}</p><h2>Pass to ${escapeHTML(roundPlayer().name)}</h2><p class="muted">Keep the next screen to yourself.</p><button id="ready">I’m ${escapeHTML(roundPlayer().name)} — ready</button></div>`;document.getElementById('ready').onclick=guess;focusHeading()}
 function questionPrecision(){return deck[round].q[3]||0}
 function guess(){
   markRoundQuestionViewed();
   stage='guess';updateFooter();const precision=questionPrecision(),limits=guessLimits();
-  app.innerHTML=roundTop()+`<div class="card"><p class="muted">${escapeHTML(players[turn].name)}, aim for the middle.</p><h2>${escapeHTML(deck[round].q[0])}</h2><form id="guess" novalidate><label for="answer">Your secret number${deck[round].fixed?'':' · '+escapeHTML(deck[round].q[1])}</label><input id="answer" type="text" inputmode="${precision?'decimal':'numeric'}" maxlength="${precision?15:10}" required autocomplete="off" placeholder="Enter your guess">${precision?`<small>Up to ${precision} decimal place${precision===1?'':'s'} for this question.</small>`:''}<div class="error" id="error" role="alert"></div><button>Lock in & hide →</button></form></div>`;
+  app.innerHTML=roundTop()+`<div class="card"><p class="muted">${escapeHTML(roundPlayer().name)}, ${turn===0?'read the question, loud enough for the ordinary people at the back.':'aim for the middle.'}</p><h2>${escapeHTML(deck[round].q[0])}</h2><form id="guess" novalidate><label for="answer">Your secret number${deck[round].fixed?'':' · '+escapeHTML(deck[round].q[1])}</label><input id="answer" type="text" inputmode="${precision?'decimal':'numeric'}" maxlength="${precision?15:10}" required autocomplete="off" placeholder="Enter your guess">${precision?`<small>Up to ${precision} decimal place${precision===1?'':'s'} for this question.</small>`:''}<div class="error" id="error" role="alert"></div><button>Lock in & hide →</button></form></div>`;
   const input=document.getElementById('answer'),error=document.getElementById('error');let lastValid='';
   const editing=precision?new RegExp('^\\d*(?:\\.\\d{0,'+precision+'})?$'):/^\d*$/;
   const complete=precision?new RegExp('^\\d+(?:\\.\\d{1,'+precision+'})?$'):/^\d+$/;
   const message=()=>precision?'Enter a number with up to '+precision+' decimal place'+(precision===1?'':'s')+'.':'Enter a whole number.';
   input.addEventListener('beforeinput',e=>{if(e.data===null||e.inputType.startsWith('delete'))return;const proposed=input.value.slice(0,input.selectionStart)+e.data+input.value.slice(input.selectionEnd);if(!editing.test(proposed)){e.preventDefault();error.textContent=message()}});
   input.addEventListener('input',()=>{if(editing.test(input.value)){lastValid=input.value;error.textContent=''}else{input.value=lastValid;error.textContent=message()}});
-  document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=input.value,n=Number(raw);if(!complete.test(raw)||!Number.isFinite(n)){error.textContent=message();return}if(n<limits.min||n>limits.max){error.textContent='Enter a number from '+fmt(limits.min)+' to '+fmt(limits.max)+'.';return}answers.push(n);turn++;if(turn<players.length)handoff();else revealReady()};focusHeading();
+  document.getElementById('guess').onsubmit=e=>{e.preventDefault();if(stage!=='guess')return;const raw=input.value,n=Number(raw);if(!complete.test(raw)||!Number.isFinite(n)){error.textContent=message();return}if(n<limits.min||n>limits.max){error.textContent='Enter a number from '+fmt(limits.min)+' to '+fmt(limits.max)+'.';return}answers[roundPlayerIndex()]=n;turn++;if(turn<players.length)handoff();else revealReady()};focusHeading();
 }
 
 function revealReady(){stage='reveal-ready';updateFooter();app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">All guesses locked</div><h2>Gather round.<br>It’s time to be average.</h2><p class="muted">${escapeHTML(deck[round].q[0])}</p><button id="reveal">To the Unremarkulator!</button></div>`;document.getElementById('reveal').onclick=reveal;focusHeading()}
@@ -742,11 +757,19 @@ function finalPlaceRemark(place,total){
 }
 function startFinalStandings(){
   if(stage!=='reveal-complete'||!deck[round]?.fixed)return;
+  clearTimers();const run=++standingsRun;stage='final-gather';setScreen('play');
+  app.innerHTML=`<section class="standings-gather" aria-labelledby="standings-gather-title"><div class="eyebrow">THE RESULTS ARE IN</div><h1 id="standings-gather-title">Gather round.</h1><p>Someone’s about to be celebrated for being nothing special.</p></section>`;
+  focusHeading();window.scrollTo(0,0);
+  later(()=>{if(stage==='final-gather'&&standingsRun===run)beginFinalStandings()},2000);
+}
+function beginFinalStandings(){
+  if(stage!=='final-gather'||!deck[round]?.fixed)return;
   clearTimers();standingsClapWanted=false;const run=++standingsRun,best=Math.max(...players.map(p=>p.score));
   const top=players.map((p,i)=>p.score===best?i:-1).filter(i=>i>=0),scores=[...new Set(players.filter(p=>p.score!==best).map(p=>p.score))].sort((a,b)=>a-b);
   finalStandings={run,top,groups:scores.map(score=>({score,ids:players.map((p,i)=>p.score===score?i:-1).filter(i=>i>=0),place:1+players.filter(p=>p.score>score).length})),cursor:0,shown:new Set(),winnerShown:false,honourShown:false};
   stage='final-revealing';setScreen('play');
-  app.innerHTML=`<section class="standings-show" aria-labelledby="standings-title"><div class="standings-toolbar"><div class="eyebrow">SIX ROUNDS. ONE MODEST CROWN.</div><button id="standings-skip" class="secondary">Show everyone</button></div><h1 id="standings-title">The final standings</h1><p class="standings-intro muted">From gloriously last to spectacularly average.</p><div id="standings-spotlight" class="standings-spotlight" role="status" aria-live="polite" aria-atomic="true"><div class="standings-place">THE MOMENT OF MODERATE TRUTH</div><h2>Greatness was never the objective.</h2><p>Let’s see who understood the assignment.</p></div><div id="standings-honour" role="status" aria-live="polite" aria-atomic="true" hidden></div><ol id="standings-list" class="standings-list" aria-label="Revealed final standings"></ol><div id="standings-actions" class="standings-actions" hidden><button id="standings-scores">See final scores →</button><button id="standings-round" class="secondary">Final-round details</button></div></section>`;
+  app.innerHTML=`<section class="standings-show" aria-labelledby="standings-title"><div class="standings-toolbar"><div class="eyebrow">${deck.length} ROUNDS. ONE MODEST CROWN.</div><button id="standings-skip" class="secondary">Show everyone</button></div><h1 id="standings-title">The final standings</h1><p class="standings-intro muted">From gloriously last to spectacularly average.</p><div id="standings-spotlight" class="standings-spotlight" role="status" aria-live="polite" aria-atomic="true"><div class="standings-place">THE MOMENT OF MODERATE TRUTH</div><h2>Greatness was never the objective.</h2><p>Let’s see who understood the assignment.</p></div><div id="standings-honour" role="status" aria-live="polite" aria-atomic="true" hidden></div><ol id="standings-list" class="standings-list" aria-label="Revealed final standings"></ol><div id="standings-actions" class="standings-actions" hidden><button id="standings-again">Play again →</button><button id="standings-round" class="secondary">← Final-round details</button><button id="standings-scores" class="secondary">See final scores →</button></div></section>`;
+  document.getElementById('standings-again').onclick=()=>{if(stage==='final-complete')playAgain()};
   document.getElementById('standings-skip').onclick=skipFinalStandings;
   document.getElementById('standings-scores').onclick=()=>{if(stage==='final-complete'){clearTimers();final()}};
   document.getElementById('standings-round').onclick=()=>{if(stage==='final-complete')showRoundDetails()};
@@ -834,12 +857,15 @@ function showOverallMiddleMention(run,instant=false){
   if(!instant){playStandingsCue(false,run,true);host.scrollIntoView({block:'nearest',behavior:'auto'})}
 }
 
+function playAgain(){
+  clearTimers();resetFinalStandings();finalDecision=null;players.forEach(p=>p.score=0);round=0;deck=buildDeck();beginRound();
+}
 function final(){
   stage='final';setScreen('play');const best=Math.max(...players.map(p=>p.score)),tied=players.map((p,i)=>p.score===best?i:-1).filter(i=>i>=0),pending=tied.length>1&&!finalDecision;
   const winner=pending?null:players[finalDecision?finalDecision.winner:tied[0]];
   app.innerHTML=`<div class="eyebrow">Seven rounds. Utterly ordinary.</div><div class="card center"><p>🏆</p><h1>${pending?'Equally ordinary.':'Average royalty.'}</h1><h2>${pending?tied.map(i=>escapeHTML(players[i].name)).join(' & '):escapeHTML(winner.name)}</h2><p class="muted">${best} point${best===1?'':'s'}. ${pending?'The scores are tied. Time to judge your parents’ naming choices.':'An outstanding commitment to being unremarkable.'}</p>${pending?'<p>The most popular baby name takes the crown. A deeply scientific decision.</p><button id="name-decider">Consult the birth register →</button>':finalDecision?finalTieDetails(finalDecision):''}${leaderboard()}${pending?'':overallMiddleMentionMarkup(true)}<div class="final-primary-action"><button id="again">Play again →</button></div><div class="final-secondary-actions">${deck[round]?.fixed&&currentReveal?'<button id="final-round-details" class="secondary">← Final-round details</button>':''}<button id="new" class="secondary">Change players</button></div></div>`;
   if(pending)document.getElementById('name-decider').onclick=()=>{if(finalDecision)return;finalDecision=chooseFinalWinner(tied);final()};
-  document.getElementById('again').onclick=()=>{clearTimers();resetFinalStandings();finalDecision=null;players.forEach(p=>p.score=0);deck=buildDeck();round=0;beginRound()};document.getElementById('new').onclick=showPlayers;const breakdown=document.getElementById('final-round-details');if(breakdown)breakdown.onclick=showRoundDetails;if(!pending&&!finalStandings?.winnerShown)confetti();focusHeading();
+  document.getElementById('again').onclick=playAgain;document.getElementById('new').onclick=showPlayers;const breakdown=document.getElementById('final-round-details');if(breakdown)breakdown.onclick=showRoundDetails;if(!pending&&!finalStandings?.winnerShown)confetti();focusHeading();
 }
 
 
@@ -1008,6 +1034,7 @@ function updateFooter(){
     revealing:['Please contain your moderate excitement.'],
     'reveal-complete':['A modest triumph. A perfectly ordinary achievement.'],
     results:['Celebrate responsibly. It was only the middle.','Points earned. Egos gently adjusted.','Onwards to further mediocrity.'],
+    'final-gather':['Please assemble for some thoroughly modest glory.'],
     'final-revealing':['The suspense is entirely disproportionate.'],
     'final-tie':['Your parents are about to become relevant.'],
     'final-complete':['All hail a thoroughly ordinary human.'],
@@ -1020,8 +1047,8 @@ updateAudioSettings();
 
 
 let roundQuestionHistory=[];
-function gameInProgress(){return ['round-intro','handoff','guess','reveal-ready','question-preview','revealing','reveal-complete','results','final-revealing','final-tie','final-complete','final'].includes(stage)}
-function canChangeQuestion(){return !deck[round]?.fixed&&['handoff','guess','reveal-ready','question-preview'].includes(stage)}
+function gameInProgress(){return ['round-intro','handoff','guess','reveal-ready','question-preview','revealing','reveal-complete','results','final-gather','final-revealing','final-tie','final-complete','final'].includes(stage)}
+function canChangeQuestion(){return turn===0&&answers.length===0&&!deck[round]?.fixed&&['handoff','guess','question-preview'].includes(stage)}
 function confirmGameAction(title,message,label,onConfirm){
   const dialog=document.getElementById('game-dialog');if(dialog.open)return;
   dialog.innerHTML=`<h2 id="dialog-title">${escapeHTML(title)}</h2><p id="dialog-message">${escapeHTML(message)}</p><div class="dialog-actions"><button class="secondary" type="button" data-cancel autofocus>Keep playing</button><button type="button" data-confirm>${escapeHTML(label)}</button></div>`;
@@ -1046,7 +1073,7 @@ function changeQuestion(){
 function showChangedQuestion(){
   markRoundQuestionViewed();
   stage='question-preview';setScreen('play');
-  app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">New question. Same questionable judgement.</div><h2>${escapeHTML(deck[round].q[0])}</h2><p class="muted">Answer in ${escapeHTML(deck[round].q[1])}. Everyone starts this round afresh.</p><button id="accept-question">Pass to ${escapeHTML(players[0].name)} →</button></div>`;
+  app.innerHTML=roundTop()+`<div class="card center"><div class="eyebrow">New question. Same questionable judgement.</div><h2>${escapeHTML(deck[round].q[0])}</h2><p class="muted">Answer in ${escapeHTML(deck[round].q[1])}. Everyone starts this round afresh.</p><button id="accept-question">Pass to ${escapeHTML(players[roundPlayerIndex(0)].name)} →</button></div>`;
   document.getElementById('accept-question').onclick=handoff;focusHeading();window.scrollTo(0,0);
 }
 document.addEventListener('click',event=>{const control=event.target.closest?.('[data-game-action]');if(!control)return;if(control.dataset.gameAction==='settings')openSettings();else if(control.dataset.gameAction==='exit')requestExitGame();else if(control.dataset.gameAction==='change-question')requestQuestionChange()});
